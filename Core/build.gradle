@@ -1,0 +1,30 @@
+repositories {
+    mavenLocal()
+}
+
+configurations {
+    includeInJar
+}
+
+dependencies {
+    includeInJar "org.apache.commons:commons-dbcp2:2.1.1"
+
+    includeInJar "org.javatuples:javatuples:1.2"
+    includeInJar "com.google.guava:guava:20.0"
+    includeInJar "org.projectlombok:lombok:1.16.16"
+    includeInJar "net.jodah:typetools:0.4.9"
+    includeInJar "org.redisson:redisson:3.2.0"
+
+    configurations.compile.extendsFrom(configurations.includeInJar)
+}
+
+jar {
+    from configurations.includeInJar.collect { zipTree it }
+}
+
+idea {
+    module {
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}

@@ -1,0 +1,28 @@
+libsDirName = '../../server/plugins'
+
+repositories {
+    maven {
+        url 'https://repo.destroystokyo.com/repository/maven-public/'
+    }
+    maven {
+        url 'https://oss.sonatype.org/content/groups/public/'
+    }
+}
+
+configurations {
+    includeInJar
+}
+
+dependencies {
+    includeInJar(project(':Core')) {
+        transitive = false
+    }
+
+    compile 'org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT'
+
+    configurations.compile.extendsFrom(configurations.includeInJar)
+}
+
+jar {
+    from configurations.includeInJar.collect { zipTree it }
+}

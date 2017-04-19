@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core_main.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core_test.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine.iml" group="Engine" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/EngineOne.iml" filepath="$PROJECT_DIR$/.idea/modules/EngineOne.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine_main.iml" group="Engine" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine_test.iml" group="Engine" />
+    </modules>
+  </component>
+</project>
