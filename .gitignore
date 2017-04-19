@@ -1,6 +1,7 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-/Servers
+/Servers/
+/server/
 
 
 ### Gradle template

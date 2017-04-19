@@ -1,5 +1,3 @@
-libsDirName = '../../server/plugins'
-
 repositories {
     maven {
         url 'https://repo.destroystokyo.com/repository/maven-public/'
