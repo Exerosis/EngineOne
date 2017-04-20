@@ -1,15 +1,16 @@
 package me.engineone.core.component;
 
 import me.engineone.core.holder.CollectionHolder;
+import me.engineone.core.listenable.BasicPriorityListenable;
+import me.engineone.core.listenable.PriorityListenable;
 
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Consumer;
 
 public class CollectionHolderComponent<T> extends Component implements CollectionHolder<T> {
-    private final Set<Consumer<T>> removeListeners = new HashSet<>();
-    private final Set<Consumer<T>> addListeners = new HashSet<>();
+
+    private final PriorityListenable<T> removeListenable = new BasicPriorityListenable<>();
+    private final PriorityListenable<T> addListenable = new BasicPriorityListenable<>();
     private final Collection<T> contents;
 
     public CollectionHolderComponent() {
@@ -21,17 +22,17 @@ public class CollectionHolderComponent<T> extends Component implements Collectio
     }
 
     @Override
-    public Set<Consumer<T>> getRemoveListeners() {
-        return removeListeners;
-    }
-
-    @Override
-    public Set<Consumer<T>> getAddListeners() {
-        return addListeners;
-    }
-
-    @Override
     public Collection<T> getContents() {
         return contents;
+    }
+
+    @Override
+    public PriorityListenable<T> getAddListenable() {
+        return addListenable;
+    }
+
+    @Override
+    public PriorityListenable<T> getRemoveListenable() {
+        return removeListenable;
     }
 }

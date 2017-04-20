@@ -1,5 +1,7 @@
 package me.engineone.core.holder;
 
+import me.engineone.core.listenable.BasicListenable;
+import me.engineone.core.listenable.Listenable;
 import me.engineone.core.mutable.Mutable;
 
 import java.util.HashSet;
@@ -8,35 +10,35 @@ import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public abstract class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHolder<T> {
-    private Set<Consumer<T>> addListeners = new HashSet<>();
-    private Set<Consumer<T>> removeListeners = new HashSet<>();
 
-    public MutablePartitionHolder() {
+    private Listenable<T> addListenable = new BasicListenable<>();
+    private Listenable<T> removeListenable = new BasicListenable<>();
+
+    MutablePartitionHolder() {
         updater(getParent());
     }
 
-    public MutablePartitionHolder updater(Mutable<T> mutable) {
-        getParent().onAdd(element -> {
+    MutablePartitionHolder updater(Mutable<T> mutable) {
+        getParent().addAddListener(element -> {
             if (getFilter().test(element))
-                getAddListeners().forEach(listener -> listener.accept(element));
+                getAddListenable().call(element);
         });
 
-        getParent().onRemove(element -> {
+        getParent().addRemoveListener(element -> {
             if (getFilter().test(element))
-                getRemoveListeners().forEach(listener -> listener.accept(element));
+                getRemoveListenable().call(element);
         });
         return this;
     }
 
-
     @Override
-    public Set<Consumer<T>> getRemoveListeners() {
-        return removeListeners;
+    public Listenable<T> getAddListenable() {
+        return addListenable;
     }
 
     @Override
-    public Set<Consumer<T>> getAddListeners() {
-        return addListeners;
+    public Listenable<T> getRemoveListenable() {
+        return removeListenable;
     }
 
     @Override

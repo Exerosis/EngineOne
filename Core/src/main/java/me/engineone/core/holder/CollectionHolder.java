@@ -1,5 +1,7 @@
 package me.engineone.core.holder;
 
+import me.engineone.core.listenable.PriorityListenable;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Spliterator;
@@ -9,23 +11,61 @@ import java.util.stream.Stream;
 public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     Collection<T> getContents();
 
-    @Override
-    default Consumer<T> onAdd(Consumer<T> listener) {
-        if (getAddListeners().contains(listener))
-            getAddListeners().remove(listener);
-        else
-            getAddListeners().add(listener);
-        return listener;
+    /**
+     * Alias for {@link me.engineone.core.listenable.PriorityListenable#addListener(Consumer) getAddListenable().addListener(Consumer)}
+     *
+     * @param listener listener to register
+     */
+    default void addAddListener(Consumer<T> listener) {
+        getAddListenable().addListener(listener);
     }
+    /**
+     * Alias for {@link me.engineone.core.listenable.PriorityListenable#addListener(Consumer, float) getAddListenable().addListener(Consumer, float)}
+     *
+     * @param listener listener to register
+     * @param priority listener priority
+     */
+    default void addAddListener(Consumer<T> listener, float priority) {
+        getAddListenable().addListener(listener, priority);
+    }
+    /**
+     * Alias for {@link me.engineone.core.listenable.PriorityListenable#removeListener(Consumer) getAddListenable().removeListener(Consumer)}
+     *
+     * @param listener listener to register
+     */
+    default void removeAddListener(Consumer<T> listener) {
+        getAddListenable().removeListener(listener);
+    }
+    PriorityListenable<T> getAddListenable();
 
-    @Override
-    default Consumer<T> onRemove(Consumer<T> listener) {
-        if (getRemoveListeners().contains(listener))
-            getRemoveListeners().remove(listener);
-        else
-            getRemoveListeners().add(listener);
-        return listener;
+
+    /**
+     * Alias for {@link me.engineone.core.listenable.PriorityListenable#addListener(Consumer) getRemoveListenable().addListener(Consumer)}
+     *
+     * @param listener listener to register
+     */
+    default void addRemoveListener(Consumer<T> listener) {
+        getRemoveListenable().addListener(listener);
     }
+    /**
+     * Alias for {@link me.engineone.core.listenable.PriorityListenable#addListener(Consumer, float) getRemoveListenable().addListener(Consumer, float)}
+     *
+     * @param listener listener to register
+     * @param priority listener priority
+     */
+    default void addRemoveListener(Consumer<T> listener, float priority) {
+        getRemoveListenable().addListener(listener, priority);
+    }
+    /**
+     * Alias for {@link me.engineone.core.listenable.PriorityListenable#removeListener(Consumer) getRemoveListenable().removeListener(Consumer)}
+     *
+     * @param listener listener to register
+     */
+    default void removeRemoveListener(Consumer<T> listener) {
+        getRemoveListenable().removeListener(listener);
+    }
+    PriorityListenable<T> getRemoveListenable();
+
 
 
     @Override
@@ -41,7 +81,7 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     @Override
     default boolean add(T element) {
         boolean result = getContents().add(element);
-        getAddListeners().forEach(listener -> listener.accept(element));
+        getAddListenable().call(element);
         return result;
     }
 
@@ -49,7 +89,7 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     @Override
     default boolean remove(Object element) {
         boolean result = getContents().remove(element);
-        getRemoveListeners().forEach(listener -> listener.accept((T) element));
+        getRemoveListenable().call((T) element);
         return result;
     }
 

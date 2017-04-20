@@ -9,4 +9,5 @@ public interface Listenable<T> {
     void addListener(Consumer<T> listener);
     void removeListener(Consumer<T> listener);
     boolean isRegistered(Consumer<T> listener);
+    void call(T t);
 }

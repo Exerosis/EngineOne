@@ -1,5 +1,7 @@
 package me.engineone.core.mutable;
 
+import me.engineone.core.listenable.Listenable;
+
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -20,14 +22,15 @@ public interface Augmentable<T> {
         return added;
     }
 
-    Set<Consumer<T>> getAddListeners();
+    Listenable<T> getAddListenable();
 
 
-    default Consumer<T> onAdd(Consumer<T> listener) {
-        if (getAddListeners().contains(listener))
-            getAddListeners().remove(listener);
-        else
-            getAddListeners().add(listener);
-        return listener;
+    default void addAddListener(Consumer<T> listener) {
+        getAddListenable().addListener(listener);
     }
+
+    default void removeAddListener(Consumer<T> listener) {
+        getAddListenable().removeListener(listener);
+    }
+
 }

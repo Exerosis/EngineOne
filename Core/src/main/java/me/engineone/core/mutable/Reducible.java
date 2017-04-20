@@ -1,5 +1,7 @@
 package me.engineone.core.mutable;
 
+import me.engineone.core.listenable.Listenable;
+
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -20,13 +22,12 @@ public interface Reducible<T> {
         return removed;
     }
 
-    Set<Consumer<T>> getRemoveListeners();
+    Listenable<T> getRemoveListenable();
 
-    default Consumer<T> onRemove(Consumer<T> listener) {
-        if (getRemoveListeners().contains(listener))
-            getRemoveListeners().remove(listener);
-        else
-            getRemoveListeners().add(listener);
-        return listener;
+    default void addRemoveListener(Consumer<T> listener) {
+        getRemoveListenable().addListener(listener);
+    }
+    default void removeRemoveListener(Consumer<T> listener) {
+        getRemoveListenable().removeListener(listener);
     }
 }

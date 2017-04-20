@@ -1,5 +1,8 @@
 package me.engineone.core.holder;
 
+import me.engineone.core.listenable.BasicPriorityListenable;
+import me.engineone.core.listenable.PriorityListenable;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,22 +13,22 @@ import java.util.function.Consumer;
  */
 public class BasicCollectionHolder<T> implements CollectionHolder<T> {
 
-    private final Set<Consumer<T>> removeListeners = new HashSet<>();
-    private final Set<Consumer<T>> addListeners = new HashSet<>();
-    private final Set<T> contents = new HashSet<>();
-
-    @Override
-    public Set<Consumer<T>> getRemoveListeners() {
-        return removeListeners;
-    }
-
-    @Override
-    public Set<Consumer<T>> getAddListeners() {
-        return addListeners;
-    }
+    private PriorityListenable<T> removeListenable = new BasicPriorityListenable<>();
+    private PriorityListenable<T> addListenable = new BasicPriorityListenable<>();
+    private Set<T> contents = new HashSet<>();
 
     @Override
     public Collection<T> getContents() {
         return contents;
+    }
+
+    @Override
+    public PriorityListenable<T> getAddListenable() {
+        return addListenable;
+    }
+
+    @Override
+    public PriorityListenable<T> getRemoveListenable() {
+        return removeListenable;
     }
 }
