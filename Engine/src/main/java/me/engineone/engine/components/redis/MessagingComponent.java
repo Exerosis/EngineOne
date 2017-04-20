@@ -24,14 +24,14 @@ public class MessagingComponent extends Component {
         this.packets = packets;
         topic = redisson.getTopic(channel);
 
-        onEnable(() -> {
+        addEnableListener(() -> {
             listener = topic.addListener((c, packet) -> {
                 if (packets.test(packet))
                     listeners.get(packet.getClass()).forEach(listener -> ((Consumer<Object>) listener).accept(packet));
             });
         });
 
-        onDisable(() -> {
+        addDisableListener(() -> {
             topic.removeListener(listener);
         });
     }

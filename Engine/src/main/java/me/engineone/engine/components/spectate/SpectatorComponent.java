@@ -39,7 +39,7 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
 
         addAddListener(this::addListener);
         addRemoveListener(this::removeListener);
-        onDisable(this::clear);
+        addDisableListener(this::clear);
     }
 
     private void addListener(Player player) {

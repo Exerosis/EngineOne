@@ -1,45 +1,46 @@
 package me.engineone.core.component;
 
 import me.engineone.core.enableable.Enableable;
+import me.engineone.core.listenable.BasicListenable;
+import me.engineone.core.listenable.Listenable;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class Component implements Enableable {
     //TODO maybe make these lists, if removeChild and addChild io is faster that way?
-    private final Set<Runnable> enableListeners = new HashSet<>();
-    private final Set<Runnable> disableListeners = new HashSet<>();
+    private final Listenable enableListenable = new BasicListenable();
+    private final Listenable disableListenable = new BasicListenable();
     private boolean enabled = false;
 
-    public Runnable onEnable(Runnable listener) {
-        if (enableListeners.contains(listener))
-            enableListeners.remove(listener);
-        else
-            enableListeners.add(listener);
-        return listener;
+    public void addEnableListener(Runnable listener) {
+        enableListenable.addListener(listener);
     }
 
-    public Runnable onDisable(Runnable listener) {
-        if (disableListeners.contains(listener))
-            disableListeners.remove(listener);
-        else
-            disableListeners.add(listener);
-        return listener;
+    public void removeEnableListener(Runnable listener) {
+        enableListenable.removeListener(listener);
     }
 
-    public Set<Runnable> getEnableListeners() {
-        return enableListeners;
+    public void addDisableListener(Runnable listener) {
+        disableListenable.addListener(listener);
     }
 
-    public Set<Runnable> getDisableListeners() {
-        return disableListeners;
+    public void removeDisableListener(Runnable listener) {
+        disableListenable.removeListener(listener);
+    }
+
+    public Listenable getEnableListenable() {
+        return enableListenable;
+    }
+
+    public Listenable getDisableListenable() {
+        return disableListenable;
     }
 
     @Override
     public void enable() {
         if (enabled)
             return;
-        enableListeners.forEach(Runnable::run);
+        enableListenable.call();
         enabled = true;
     }
 
@@ -47,7 +48,7 @@ public class Component implements Enableable {
     public void disable() {
         if (!enabled)
             return;
-        disableListeners.forEach(Runnable::run);
+        disableListenable.call();
         enabled = false;
     }
 
