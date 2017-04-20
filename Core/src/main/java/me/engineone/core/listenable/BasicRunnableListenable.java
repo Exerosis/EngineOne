@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * Created by BinaryBench on 4/20/2017.
  */
-public class BasicListenable implements Listenable {
+public class BasicRunnableListenable implements RunnableListenable {
 
     private final Set<Runnable> listeners = new HashSet<>();
 
@@ -25,7 +25,7 @@ public class BasicListenable implements Listenable {
         return listeners.contains(listener);
     }
 
-    public void call() {
+    public void run() {
         listeners.forEach(Runnable::run);
     }
 }

@@ -18,12 +18,12 @@ public abstract class MutablePartitionHolder<T> implements PartitionHolder<T>, M
     MutablePartitionHolder updater(Mutable<T> mutable) {
         getParent().addAddListener(element -> {
             if (getFilter().test(element))
-                getAddListenable().call(element);
+                getAddListenable().accept(element);
         });
 
         getParent().addRemoveListener(element -> {
             if (getFilter().test(element))
-                getRemoveListenable().call(element);
+                getRemoveListenable().accept(element);
         });
         return this;
     }

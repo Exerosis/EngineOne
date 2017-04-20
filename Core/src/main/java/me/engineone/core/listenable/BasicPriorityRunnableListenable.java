@@ -2,12 +2,11 @@ package me.engineone.core.listenable;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.function.Consumer;
 
 /**
  * Created by BinaryBench on 4/20/2017.
  */
-public class BasicPriorityListenable implements PriorityListenable {
+public class BasicPriorityRunnableListenable implements PriorityRunnableListenable {
 
     private Map<Runnable, Float> listeners = new HashMap<>();
 
@@ -31,7 +30,7 @@ public class BasicPriorityListenable implements PriorityListenable {
         return listeners.get(listener);
     }
 
-    public void call() {
+    public void run() {
         listeners
                 .entrySet()
                 .stream()

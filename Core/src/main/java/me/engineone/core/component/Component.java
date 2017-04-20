@@ -1,21 +1,18 @@
 package me.engineone.core.component;
 
 import me.engineone.core.enableable.Enableable;
-import me.engineone.core.listenable.BasicListenable;
-import me.engineone.core.listenable.Listenable;
-
-import java.util.Set;
+import me.engineone.core.listenable.*;
 
 public class Component implements Enableable {
     //TODO maybe make these lists, if removeChild and addChild io is faster that way?
-    private final Listenable enableListenable = new BasicListenable();
-    private final Listenable disableListenable = new BasicListenable();
+    private final PriorityRunnableListenable enableListenable = new BasicPriorityRunnableListenable();
+    private final PriorityRunnableListenable disableListenable = new BasicPriorityRunnableListenable();
     private boolean enabled = false;
 
     public void addEnableListener(Runnable listener) {
         enableListenable.addListener(listener);
     }
-
+    
     public void removeEnableListener(Runnable listener) {
         enableListenable.removeListener(listener);
     }
@@ -40,7 +37,7 @@ public class Component implements Enableable {
     public void enable() {
         if (enabled)
             return;
-        enableListenable.call();
+        enableListenable.run();
         enabled = true;
     }
 
@@ -48,7 +45,7 @@ public class Component implements Enableable {
     public void disable() {
         if (!enabled)
             return;
-        disableListenable.call();
+        disableListenable.run();
         enabled = false;
     }
 

@@ -9,9 +9,8 @@ import java.util.function.Consumer;
 /**
  * Created by BinaryBench on 4/20/2017.
  */
-public interface Listenable {
-    void addListener(Runnable listener);
-    void removeListener(Runnable listener);
-    boolean isRegistered(Runnable listener);
-    void call();
+public interface Listenable<T> {
+    void addListener(T listener);
+    void removeListener(T listener);
+    boolean isRegistered(T listener);
 }

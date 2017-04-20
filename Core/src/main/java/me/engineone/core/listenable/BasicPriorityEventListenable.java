@@ -1,6 +1,7 @@
 package me.engineone.core.listenable;
 
 import java.util.*;
+import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 /**
@@ -30,7 +31,7 @@ public class BasicPriorityEventListenable<T> implements PriorityEventListenable<
         return listeners.get(listener);
     }
 
-    public void call(T t) {
+    public void accept(T t) {
         listeners
                 .entrySet()
                 .stream()

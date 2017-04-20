@@ -25,7 +25,7 @@ public class BasicEventListenable<T> implements EventListenable<T> {
         return listeners.contains(listener);
     }
 
-    public void call(T t) {
+    public void accept(T t) {
         listeners.forEach(listener -> listener.accept(t));
     }
 }

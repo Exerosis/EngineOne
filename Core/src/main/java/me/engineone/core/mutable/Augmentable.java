@@ -14,6 +14,7 @@ public interface Augmentable<T> {
         return added;
     }
 
+    @SuppressWarnings("unchecked")
     default boolean add(T... elements) {
         boolean added = false;
         for (T element : elements)

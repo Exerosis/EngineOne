@@ -81,7 +81,7 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     @Override
     default boolean add(T element) {
         boolean result = getContents().add(element);
-        getAddListenable().call(element);
+        getAddListenable().accept(element);
         return result;
     }
 
@@ -89,7 +89,7 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     @Override
     default boolean remove(Object element) {
         boolean result = getContents().remove(element);
-        getRemoveListenable().call((T) element);
+        getRemoveListenable().accept((T) element);
         return result;
     }
 
