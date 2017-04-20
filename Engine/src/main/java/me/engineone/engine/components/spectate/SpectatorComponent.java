@@ -1,8 +1,8 @@
 package me.engineone.engine.components.spectate;
 
 import me.engineone.core.holder.CollectionHolder;
-import me.engineone.core.listenable.BasicPriorityListenable;
-import me.engineone.core.listenable.PriorityListenable;
+import me.engineone.core.listenable.BasicPriorityEventListenable;
+import me.engineone.core.listenable.PriorityEventListenable;
 import me.engineone.engine.components.base.ParentListenerComponent;
 import me.engineone.engine.components.disablers.*;
 import me.engineone.engine.utilites.ListUtilities;
@@ -25,8 +25,8 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
 
     private static final float SPEED_INCREMENT = 0.1f;
     private final Set<Player> spectators = new HashSet<>();
-    private final PriorityListenable<Player> removeListenable = new BasicPriorityListenable<>();
-    private final PriorityListenable<Player> addListenable = new BasicPriorityListenable<>();
+    private final PriorityEventListenable<Player> removeListenable = new BasicPriorityEventListenable<>();
+    private final PriorityEventListenable<Player> addListenable = new BasicPriorityEventListenable<>();
     private final List<Vector> spawns;
 
     public SpectatorComponent(List<Vector> spawns) {
@@ -94,12 +94,12 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
     }
 
     @Override
-    public PriorityListenable<Player> getAddListenable() {
+    public PriorityEventListenable<Player> getAddListenable() {
         return addListenable;
     }
 
     @Override
-    public PriorityListenable<Player> getRemoveListenable() {
+    public PriorityEventListenable<Player> getRemoveListenable() {
         return removeListenable;
     }
 

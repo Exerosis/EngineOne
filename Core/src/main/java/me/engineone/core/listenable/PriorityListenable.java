@@ -5,16 +5,17 @@ import java.util.function.Consumer;
 /**
  * Created by BinaryBench on 4/20/2017.
  */
-public interface PriorityListenable<T> extends Listenable<T> {
+public interface PriorityListenable extends Listenable {
 
-    default void addListener(Consumer<T> listener) {
+    default void addListener(Runnable listener) {
         addListener(listener, 1);
     }
 
-    void removeListener(Consumer<T> listener);
-    boolean isRegistered(Consumer<T> listener);
+    void removeListener(Runnable listener);
 
-    void addListener(Consumer<T> listener, float priority);
+    boolean isRegistered(Runnable listener);
 
-    float getPriority(Consumer<T> listener);
+    void addListener(Runnable listener, float priority);
+
+    float getPriority(Runnable listener);
 }

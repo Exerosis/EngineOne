@@ -1,8 +1,7 @@
 package me.engineone.core.mutable;
 
-import me.engineone.core.listenable.Listenable;
+import me.engineone.core.listenable.EventListenable;
 
-import java.util.Set;
 import java.util.function.Consumer;
 
 public interface Augmentable<T> {
@@ -22,7 +21,7 @@ public interface Augmentable<T> {
         return added;
     }
 
-    Listenable<T> getAddListenable();
+    EventListenable<T> getAddListenable();
 
 
     default void addAddListener(Consumer<T> listener) {

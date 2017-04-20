@@ -1,8 +1,7 @@
 package me.engineone.core.mutable;
 
-import me.engineone.core.listenable.Listenable;
+import me.engineone.core.listenable.EventListenable;
 
-import java.util.Set;
 import java.util.function.Consumer;
 
 public interface Reducible<T> {
@@ -22,7 +21,7 @@ public interface Reducible<T> {
         return removed;
     }
 
-    Listenable<T> getRemoveListenable();
+    EventListenable<T> getRemoveListenable();
 
     default void addRemoveListener(Consumer<T> listener) {
         getRemoveListenable().addListener(listener);

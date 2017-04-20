@@ -1,18 +1,15 @@
 package me.engineone.core.holder;
 
-import me.engineone.core.listenable.BasicListenable;
-import me.engineone.core.listenable.Listenable;
+import me.engineone.core.listenable.BasicEventListenable;
+import me.engineone.core.listenable.EventListenable;
 import me.engineone.core.mutable.Mutable;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public abstract class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHolder<T> {
 
-    private Listenable<T> addListenable = new BasicListenable<>();
-    private Listenable<T> removeListenable = new BasicListenable<>();
+    private EventListenable<T> addListenable = new BasicEventListenable<>();
+    private EventListenable<T> removeListenable = new BasicEventListenable<>();
 
     MutablePartitionHolder() {
         updater(getParent());
@@ -32,12 +29,12 @@ public abstract class MutablePartitionHolder<T> implements PartitionHolder<T>, M
     }
 
     @Override
-    public Listenable<T> getAddListenable() {
+    public EventListenable<T> getAddListenable() {
         return addListenable;
     }
 
     @Override
-    public Listenable<T> getRemoveListenable() {
+    public EventListenable<T> getRemoveListenable() {
         return removeListenable;
     }
 
