@@ -1,0 +1,6 @@
+name: Example
+version: 0.0.1
+description: This is the Game plugin for BinaryNetwork!
+load: STARTUP
+author: BinaryBench
+main: me.engineone.example.Example

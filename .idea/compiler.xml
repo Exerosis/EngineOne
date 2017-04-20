@@ -8,6 +8,8 @@
       <module name="Engine_test" target="1.8" />
       <module name="EngineOne_main" target="1.8" />
       <module name="EngineOne_test" target="1.8" />
+      <module name="Example_main" target="1.8" />
+      <module name="Example_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

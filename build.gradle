@@ -12,6 +12,14 @@ subprojects {
 
     repositories {
         mavenCentral()
+        maven {
+            //Paper spigot
+            url 'https://repo.destroystokyo.com/repository/maven-public/'
+        }
+        maven {
+            //Bungee
+            url 'https://oss.sonatype.org/content/groups/public/'
+        }
     }
 
     dependencies {

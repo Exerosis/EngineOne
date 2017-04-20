@@ -1,13 +1,15 @@
+libsDirName = '../../Server/plugins'
+
 configurations {
     includeInJar
 }
 
 dependencies {
-    includeInJar(project(':Core')) {
+    includeInJar(project(':Engine')) {
         transitive = false
     }
 
-    compile 'org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT'
+    compile(project(':Engine'))
 
     configurations.compile.extendsFrom(configurations.includeInJar)
 }

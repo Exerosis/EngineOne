@@ -1,8 +1,13 @@
 # Created by .ignore support plugin (hsz.mobi)
 
-/Servers/
-/server/
 
+Server/*
+!Server/windowsrun.bat
+!Server/eula.txt
+!Server/server.properties
+!Server/config.yml
+!Server/spigot.yml
+!Server/bukkit.yml
 
 ### Gradle template
 .gradle
