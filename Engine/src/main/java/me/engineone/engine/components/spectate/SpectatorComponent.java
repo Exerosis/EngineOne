@@ -1,17 +1,17 @@
 package me.engineone.engine.components.spectate;
 
 import me.engineone.core.holder.CollectionHolder;
+import me.engineone.core.listenable.BasicPriorityListenable;
+import me.engineone.core.listenable.PriorityListenable;
 import me.engineone.engine.components.base.ParentListenerComponent;
 import me.engineone.engine.components.disablers.*;
 import me.engineone.engine.utilites.ListUtilities;
 import me.engineone.engine.utilites.NumberUtilities;
 import org.bukkit.GameMode;
-import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
@@ -20,14 +20,13 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.function.Consumer;
 
 public class SpectatorComponent extends ParentListenerComponent implements CollectionHolder<Player> {
 
     private static final float SPEED_INCREMENT = 0.1f;
     private final Set<Player> spectators = new HashSet<>();
-    private final Set<Consumer<Player>> removeListeners = new HashSet<>();
-    private final Set<Consumer<Player>> addListeners = new HashSet<>();
+    private final PriorityListenable<Player> removeListenable = new BasicPriorityListenable<>();
+    private final PriorityListenable<Player> addListenable = new BasicPriorityListenable<>();
     private final List<Vector> spawns;
 
     public SpectatorComponent(List<Vector> spawns) {
@@ -38,8 +37,8 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
         addChild(new DropItemDisabledComponent(this));
         addChild(new PickUpDisabledComponent(this));
 
-        onAdd(this::addListener);
-        onRemove(this::removeListener);
+        addAddListener(this::addListener);
+        addRemoveListener(this::removeListener);
         onDisable(this::clear);
     }
 
@@ -94,15 +93,14 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
         player.setFlySpeed(NumberUtilities.bound(speed, 1f, 0.1f));
     }
 
-
     @Override
-    public Set<Consumer<Player>> getRemoveListeners() {
-        return removeListeners;
+    public PriorityListenable<Player> getAddListenable() {
+        return addListenable;
     }
 
     @Override
-    public Set<Consumer<Player>> getAddListeners() {
-        return addListeners;
+    public PriorityListenable<Player> getRemoveListenable() {
+        return removeListenable;
     }
 
     @Override

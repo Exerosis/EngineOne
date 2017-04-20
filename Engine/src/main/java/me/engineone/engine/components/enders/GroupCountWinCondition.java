@@ -20,14 +20,16 @@ public class GroupCountWinCondition extends CollectionHolderComponent<Holder<Pla
     public GroupCountWinCondition(MutableHolder<Player> players, Predicate<Holder> lost, int count, Consumer<Collection<Holder<Player>>> listener) {
 
         onEnable(() -> {
-            players.onAdd(player -> losers.forEach(group -> {
-                if (!lost.test(group)) {
-                    winners.add(group);
-                    losers.remove(group);
-                }
-            }));
+            players.addAddListener(
+                player -> losers.forEach(group -> {
+                    if (!lost.test(group)) {
+                        winners.add(group);
+                        losers.remove(group);
+                    }
+                })
+            );
 
-            players.onRemove(player -> winners.forEach(group -> {
+            players.addRemoveListener(player -> winners.forEach(group -> {
                 if (lost.test(group)) {
                     losers.add(group);
                     winners.remove(group);
@@ -39,7 +41,7 @@ public class GroupCountWinCondition extends CollectionHolderComponent<Holder<Pla
 
         onDisable(() -> listener.accept(getWinners()));
 
-        onAdd(group -> {
+        addAddListener(group -> {
             LiveHolder<Player> holder = group.difference(players);
             if (lost.test(holder))
                 losers.add(holder);
