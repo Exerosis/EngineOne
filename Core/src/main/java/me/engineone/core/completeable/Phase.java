@@ -1,23 +1,43 @@
 package me.engineone.core.completeable;
 
 import me.engineone.core.component.Component;
+import me.engineone.core.listenable.*;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class Phase extends Component implements Completeable {
-    private final Set<Runnable> completeListeners = new HashSet<>();
+public class Phase extends Component implements Completeable, PriorityListenable<Runnable> {
+    private final PriorityRunnableListenable completeListeners = new BasicPriorityRunnableListenable();
     private boolean complete = false;
 
-    public Runnable onComplete(Runnable listener) {
-        if (completeListeners.contains(listener))
-            completeListeners.remove(listener);
-        else
-            completeListeners.add(listener);
-        return listener;
+    @Override
+    public boolean isRegistered(Runnable listener) {
+        return getCompleteListeners().isRegistered(listener);
     }
 
-    public Set<Runnable> getCompleteListeners() {
+    @Override
+    public Phase add(Runnable listener) {
+        return (Phase) PriorityListenable.super.add(listener);
+    }
+
+    @Override
+    public Phase add(Runnable listener, float priority) {
+        getCompleteListeners().add(listener, priority);
+        return this;
+    }
+
+    @Override
+    public Phase remove(Runnable listener) {
+        getCompleteListeners().remove(listener);
+        return this;
+    }
+
+    @Override
+    public float getPriority(Runnable listener) {
+        return getCompleteListeners().getPriority(listener);
+    }
+
+    public PriorityRunnableListenable getCompleteListeners() {
         return completeListeners;
     }
 
@@ -32,7 +52,7 @@ public class Phase extends Component implements Completeable {
     public void complete() {
         if (complete || !isEnabled())
             return;
-        getCompleteListeners().forEach(Runnable::run);
+        getCompleteListeners().run();
         complete = true;
     }
 
