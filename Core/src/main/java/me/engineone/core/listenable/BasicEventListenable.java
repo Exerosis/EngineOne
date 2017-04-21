@@ -11,13 +11,13 @@ public class BasicEventListenable<T> implements EventListenable<T> {
     private final Set<Consumer<T>> listeners = new HashSet<>();
 
     @Override
-    public BasicEventListenable<T> addListener(Consumer<T> listener) {
+    public BasicEventListenable<T> add(Consumer<T> listener) {
         listeners.add(listener);
         return this;
     }
 
     @Override
-    public BasicEventListenable<T> removeListener(Consumer<T> listener) {
+    public BasicEventListenable<T> remove(Consumer<T> listener) {
         listeners.remove(listener);
         return this;
     }

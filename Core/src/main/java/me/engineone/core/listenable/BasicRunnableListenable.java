@@ -11,13 +11,13 @@ public class BasicRunnableListenable implements RunnableListenable {
     private final Set<Runnable> listeners = new HashSet<>();
 
     @Override
-    public BasicRunnableListenable addListener(Runnable listener) {
+    public BasicRunnableListenable add(Runnable listener) {
         listeners.add(listener);
         return this;
     }
 
     @Override
-    public BasicRunnableListenable removeListener(Runnable listener) {
+    public BasicRunnableListenable remove(Runnable listener) {
         listeners.remove(listener);
         return this;
     }

@@ -15,24 +15,24 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     PriorityEventListenable<T> getRemoveListenable();
 
     default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener) {
-        return getAddListenable().addListener(listener);
+        return getAddListenable().add(listener);
     }
     default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener, float priority) {
-        return getAddListenable().addListener(listener, priority);
+        return getAddListenable().add(listener, priority);
     }
     default PriorityListenable<Consumer<T>> removeAddListener(Consumer<T> listener) {
-        return getAddListenable().removeListener(listener);
+        return getAddListenable().remove(listener);
     }
 
 
     default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener) {
-        return getRemoveListenable().addListener(listener);
+        return getRemoveListenable().add(listener);
     }
     default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener, float priority) {
-        return getRemoveListenable().addListener(listener, priority);
+        return getRemoveListenable().add(listener, priority);
     }
     default PriorityListenable<Consumer<T>> removeRemoveListener(Consumer<T> listener) {
-        return getRemoveListenable().removeListener(listener);
+        return getRemoveListenable().remove(listener);
     }
 
 

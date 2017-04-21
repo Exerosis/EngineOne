@@ -12,7 +12,7 @@ public class ParentPhase extends Phase implements ParentEnableable {
     private final Set<Enableable> children = new HashSet<>();
 
     public ParentPhase() {
-        addEnableListener(runnable(System.out::println, "\nEnabled " + getClass().getSimpleName()));
+        addEnable(runnable(System.out::println, "\nEnabled " + getClass().getSimpleName()));
     }
 
     @Override

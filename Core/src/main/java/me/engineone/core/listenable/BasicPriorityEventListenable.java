@@ -1,7 +1,6 @@
 package me.engineone.core.listenable;
 
 import java.util.*;
-import java.util.concurrent.Callable;
 import java.util.function.Consumer;
 
 /**
@@ -12,18 +11,18 @@ public class BasicPriorityEventListenable<T> implements PriorityEventListenable<
     private Map<Consumer<T>, Float> listeners = new HashMap<>();
 
     @Override
-    public BasicPriorityEventListenable<T> addListener(Consumer<T> listener) {
-        return (BasicPriorityEventListenable<T>) PriorityEventListenable.super.addListener(listener);
+    public BasicPriorityEventListenable<T> add(Consumer<T> listener) {
+        return (BasicPriorityEventListenable<T>) PriorityEventListenable.super.add(listener);
     }
 
     @Override
-    public BasicPriorityEventListenable<T> removeListener(Consumer<T> listener) {
+    public BasicPriorityEventListenable<T> remove(Consumer<T> listener) {
         listeners.remove(listener);
         return this;
     }
 
     @Override
-    public BasicPriorityEventListenable<T> addListener(Consumer<T> listener, float priority) {
+    public BasicPriorityEventListenable<T> add(Consumer<T> listener, float priority) {
         listeners.put(listener, priority);
         return this;
     }

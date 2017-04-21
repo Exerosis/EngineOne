@@ -2,7 +2,6 @@ package me.engineone.engine.components.event;
 
 import me.engineone.core.listenable.BasicEventListenable;
 import me.engineone.core.listenable.EventListenable;
-import me.engineone.core.listenable.Listenable;
 import net.jodah.typetools.TypeResolver;
 import me.engineone.engine.components.base.ListenerComponent;
 import org.bukkit.Bukkit;
@@ -24,13 +23,13 @@ public class EventComponent<T extends Event> extends ListenerComponent implement
     }
 
     @Override
-    public EventComponent<T> addListener(Consumer<T> listener) {
-        getListenable().addListener(listener);
+    public EventComponent<T> add(Consumer<T> listener) {
+        getListenable().add(listener);
         return this;
     }
     @Override
-    public EventComponent<T> removeListener(Consumer<T> listener) {
-        getListenable().removeListener(listener);
+    public EventComponent<T> remove(Consumer<T> listener) {
+        getListenable().remove(listener);
         return this;
     }
     @Override
@@ -82,7 +81,7 @@ public class EventComponent<T extends Event> extends ListenerComponent implement
             throw new IllegalArgumentException("Sorry, couldn't resolve Event through method that returns functional interfaces.\n" +
                     "Please either use listen(Consumer<T> listener, Predicate<T> filter, Class<T> type) or use direct method references or lambdas");
         if (listener != null)
-            event.addListener(listener);
+            event.add(listener);
         return event;
     }
 

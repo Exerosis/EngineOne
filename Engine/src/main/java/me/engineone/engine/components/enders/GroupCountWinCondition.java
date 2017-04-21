@@ -19,7 +19,7 @@ public class GroupCountWinCondition extends CollectionHolderComponent<Holder<Pla
 
     public GroupCountWinCondition(MutableHolder<Player> players, Predicate<Holder> lost, int count, Consumer<Collection<Holder<Player>>> listener) {
 
-        addEnableListener(() -> {
+        addEnable(() -> {
             players.addAddListener(
                 player -> losers.forEach(group -> {
                     if (!lost.test(group)) {
@@ -39,7 +39,7 @@ public class GroupCountWinCondition extends CollectionHolderComponent<Holder<Pla
             }));
         });
 
-        addDisableListener(() -> listener.accept(getWinners()));
+        addDisable(() -> listener.accept(getWinners()));
 
         addAddListener(group -> {
             LiveHolder<Player> holder = group.difference(players);

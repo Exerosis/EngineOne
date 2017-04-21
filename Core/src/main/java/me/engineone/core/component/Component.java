@@ -4,25 +4,29 @@ import me.engineone.core.enableable.Enableable;
 import me.engineone.core.listenable.*;
 
 public class Component implements Enableable {
-    //TODO maybe make these lists, if removeChild and addChild io is faster that way?
+
     private final PriorityRunnableListenable enableListenable = new BasicPriorityRunnableListenable();
     private final PriorityRunnableListenable disableListenable = new BasicPriorityRunnableListenable();
     private boolean enabled = false;
 
-    public void addEnableListener(Runnable listener) {
-        enableListenable.addListener(listener);
+    public Component addEnable(Runnable listener) {
+        enableListenable.add(listener);
+        return this;
     }
 
-    public void removeEnableListener(Runnable listener) {
-        enableListenable.removeListener(listener);
+    public Component removeEnable(Runnable listener) {
+        enableListenable.remove(listener);
+        return this;
     }
 
-    public void addDisableListener(Runnable listener) {
-        disableListenable.addListener(listener);
+    public Component addDisable(Runnable listener) {
+        disableListenable.add(listener);
+        return this;
     }
 
-    public void removeDisableListener(Runnable listener) {
-        disableListenable.removeListener(listener);
+    public Component removeDisable(Runnable listener) {
+        disableListenable.remove(listener);
+        return this;
     }
 
     public PriorityRunnableListenable getEnableListenable() {
@@ -34,13 +38,13 @@ public class Component implements Enableable {
     }
 
     protected <T> void registerToListenable(Listenable<T> listenable, T t) {
-        getEnableListenable().addListener(() -> listenable.addListener(t));
-        getDisableListenable().addListener(() -> listenable.removeListener(t));
+        getEnableListenable().add(() -> listenable.add(t));
+        getDisableListenable().add(() -> listenable.remove(t));
     }
 
     protected <T> void registerToListenable(PriorityListenable<T> listenable, T t, float priority) {
-        getEnableListenable().addListener(() -> listenable.addListener(t, priority));
-        getDisableListenable().addListener(() -> listenable.removeListener(t));
+        getEnableListenable().add(() -> listenable.add(t, priority));
+        getDisableListenable().add(() -> listenable.remove(t));
     }
 
     @Override

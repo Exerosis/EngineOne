@@ -27,12 +27,12 @@ public interface Augmentable<T> {
 
 
     default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener) {
-        getAddListenable().addListener(listener);
+        getAddListenable().add(listener);
         return null;
     }
 
     default PriorityListenable<Consumer<T>> removeAddListener(Consumer<T> listener) {
-        getAddListenable().removeListener(listener);
+        getAddListenable().remove(listener);
         return null;
     }
 

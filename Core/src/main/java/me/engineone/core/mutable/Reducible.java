@@ -25,11 +25,11 @@ public interface Reducible<T> {
     EventListenable<T> getRemoveListenable();
 
     default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener) {
-        getRemoveListenable().addListener(listener);
+        getRemoveListenable().add(listener);
         return null;
     }
     default PriorityListenable<Consumer<T>> removeRemoveListener(Consumer<T> listener) {
-        getRemoveListenable().removeListener(listener);
+        getRemoveListenable().remove(listener);
         return null;
     }
 }
