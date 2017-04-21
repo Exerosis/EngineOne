@@ -12,7 +12,7 @@ public class Component implements Enableable {
     public void addEnableListener(Runnable listener) {
         enableListenable.addListener(listener);
     }
-    
+
     public void removeEnableListener(Runnable listener) {
         enableListenable.removeListener(listener);
     }
@@ -25,12 +25,22 @@ public class Component implements Enableable {
         disableListenable.removeListener(listener);
     }
 
-    public Listenable getEnableListenable() {
+    public PriorityRunnableListenable getEnableListenable() {
         return enableListenable;
     }
 
-    public Listenable getDisableListenable() {
+    public PriorityRunnableListenable getDisableListenable() {
         return disableListenable;
+    }
+
+    protected <T> void registerToListenable(Listenable<T> listenable, T t) {
+        getEnableListenable().addListener(() -> listenable.addListener(t));
+        getDisableListenable().addListener(() -> listenable.removeListener(t));
+    }
+
+    protected <T> void registerToListenable(PriorityListenable<T> listenable, T t, float priority) {
+        getEnableListenable().addListener(() -> listenable.addListener(t, priority));
+        getDisableListenable().addListener(() -> listenable.removeListener(t));
     }
 
     @Override
