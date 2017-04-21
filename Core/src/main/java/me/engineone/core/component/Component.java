@@ -13,38 +13,43 @@ public class Component implements Enableable {
         enableListenable.add(listener);
         return this;
     }
-
+    public Component addEnable(Runnable listener, float priority) {
+        enableListenable.add(listener, priority);
+        return this;
+    }
     public Component removeEnable(Runnable listener) {
         enableListenable.remove(listener);
         return this;
     }
-
     public Component addDisable(Runnable listener) {
         disableListenable.add(listener);
         return this;
     }
-
+    public Component addDisable(Runnable listener, float priority) {
+        disableListenable.add(listener, priority);
+        return this;
+    }
     public Component removeDisable(Runnable listener) {
         disableListenable.remove(listener);
         return this;
     }
-
     public PriorityRunnableListenable getEnableListenable() {
         return enableListenable;
     }
-
     public PriorityRunnableListenable getDisableListenable() {
         return disableListenable;
     }
 
-    protected <T> void registerToListenable(Listenable<T> listenable, T t) {
+    public <T> Component registerToListenable(Listenable<T> listenable, T t) {
         getEnableListenable().add(() -> listenable.add(t));
         getDisableListenable().add(() -> listenable.remove(t));
+        return this;
     }
 
-    protected <T> void registerToListenable(PriorityListenable<T> listenable, T t, float priority) {
+    public <T> Component registerToListenable(PriorityListenable<T> listenable, T t, float priority) {
         getEnableListenable().add(() -> listenable.add(t, priority));
         getDisableListenable().add(() -> listenable.remove(t));
+        return this;
     }
 
     @Override
