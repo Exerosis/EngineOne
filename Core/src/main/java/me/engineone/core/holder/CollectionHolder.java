@@ -1,6 +1,7 @@
 package me.engineone.core.holder;
 
 import me.engineone.core.listenable.PriorityEventListenable;
+import me.engineone.core.listenable.PriorityListenable;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -10,61 +11,30 @@ import java.util.stream.Stream;
 
 public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     Collection<T> getContents();
-
-    /**
-     * Alias for {@link PriorityEventListenable#addListener(Consumer) getAddListenable().addListener(Consumer)}
-     *
-     * @param listener listener to register
-     */
-    default void addAddListener(Consumer<T> listener) {
-        getAddListenable().addListener(listener);
-    }
-    /**
-     * Alias for {@link PriorityEventListenable#addListener(Consumer, float) getAddListenable().addListener(Consumer, float)}
-     *
-     * @param listener listener to register
-     * @param priority listener priority
-     */
-    default void addAddListener(Consumer<T> listener, float priority) {
-        getAddListenable().addListener(listener, priority);
-    }
-    /**
-     * Alias for {@link PriorityEventListenable#removeListener(Consumer) getAddListenable().removeListener(Consumer)}
-     *
-     * @param listener listener to register
-     */
-    default void removeAddListener(Consumer<T> listener) {
-        getAddListenable().removeListener(listener);
-    }
     PriorityEventListenable<T> getAddListenable();
-
-
-    /**
-     * Alias for {@link PriorityEventListenable#addListener(Consumer) getRemoveListenable().addListener(Consumer)}
-     *
-     * @param listener listener to register
-     */
-    default void addRemoveListener(Consumer<T> listener) {
-        getRemoveListenable().addListener(listener);
-    }
-    /**
-     * Alias for {@link PriorityEventListenable#addListener(Consumer, float) getRemoveListenable().addListener(Consumer, float)}
-     *
-     * @param listener listener to register
-     * @param priority listener priority
-     */
-    default void addRemoveListener(Consumer<T> listener, float priority) {
-        getRemoveListenable().addListener(listener, priority);
-    }
-    /**
-     * Alias for {@link PriorityEventListenable#removeListener(Consumer) getRemoveListenable().removeListener(Consumer)}
-     *
-     * @param listener listener to register
-     */
-    default void removeRemoveListener(Consumer<T> listener) {
-        getRemoveListenable().removeListener(listener);
-    }
     PriorityEventListenable<T> getRemoveListenable();
+
+    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener) {
+        return getAddListenable().addListener(listener);
+    }
+    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener, float priority) {
+        return getAddListenable().addListener(listener, priority);
+    }
+    default PriorityListenable<Consumer<T>> removeAddListener(Consumer<T> listener) {
+        return getAddListenable().removeListener(listener);
+    }
+
+
+    default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener) {
+        return getRemoveListenable().addListener(listener);
+    }
+    default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener, float priority) {
+        return getRemoveListenable().addListener(listener, priority);
+    }
+    default PriorityListenable<Consumer<T>> removeRemoveListener(Consumer<T> listener) {
+        return getRemoveListenable().removeListener(listener);
+    }
+
 
 
 

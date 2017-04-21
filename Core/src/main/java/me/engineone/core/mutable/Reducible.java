@@ -1,6 +1,7 @@
 package me.engineone.core.mutable;
 
 import me.engineone.core.listenable.EventListenable;
+import me.engineone.core.listenable.PriorityListenable;
 
 import java.util.function.Consumer;
 
@@ -23,10 +24,12 @@ public interface Reducible<T> {
 
     EventListenable<T> getRemoveListenable();
 
-    default void addRemoveListener(Consumer<T> listener) {
+    default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener) {
         getRemoveListenable().addListener(listener);
+        return null;
     }
-    default void removeRemoveListener(Consumer<T> listener) {
+    default PriorityListenable<Consumer<T>> removeRemoveListener(Consumer<T> listener) {
         getRemoveListenable().removeListener(listener);
+        return null;
     }
 }

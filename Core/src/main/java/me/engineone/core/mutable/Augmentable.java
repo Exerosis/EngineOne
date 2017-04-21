@@ -1,6 +1,7 @@
 package me.engineone.core.mutable;
 
 import me.engineone.core.listenable.EventListenable;
+import me.engineone.core.listenable.PriorityListenable;
 
 import java.util.function.Consumer;
 
@@ -25,12 +26,14 @@ public interface Augmentable<T> {
     EventListenable<T> getAddListenable();
 
 
-    default void addAddListener(Consumer<T> listener) {
+    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener) {
         getAddListenable().addListener(listener);
+        return null;
     }
 
-    default void removeAddListener(Consumer<T> listener) {
+    default PriorityListenable<Consumer<T>> removeAddListener(Consumer<T> listener) {
         getAddListenable().removeListener(listener);
+        return null;
     }
 
 }

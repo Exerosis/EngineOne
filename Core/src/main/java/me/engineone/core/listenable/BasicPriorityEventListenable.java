@@ -12,13 +12,20 @@ public class BasicPriorityEventListenable<T> implements PriorityEventListenable<
     private Map<Consumer<T>, Float> listeners = new HashMap<>();
 
     @Override
-    public void removeListener(Consumer<T> listener) {
-        listeners.remove(listener);
+    public BasicPriorityEventListenable<T> addListener(Consumer<T> listener) {
+        return (BasicPriorityEventListenable<T>) PriorityEventListenable.super.addListener(listener);
     }
 
     @Override
-    public void addListener(Consumer<T> listener, float priority) {
+    public BasicPriorityEventListenable<T> removeListener(Consumer<T> listener) {
+        listeners.remove(listener);
+        return this;
+    }
+
+    @Override
+    public BasicPriorityEventListenable<T> addListener(Consumer<T> listener, float priority) {
         listeners.put(listener, priority);
+        return this;
     }
 
     @Override

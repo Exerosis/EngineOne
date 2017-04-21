@@ -8,11 +8,15 @@ import java.util.function.Consumer;
 public interface PriorityListenable<T> extends Listenable<T> {
 
     @Override
-    default void addListener(T listener) {
+    default PriorityListenable<T> addListener(T listener) {
         addListener(listener, 1);
+        return this;
     }
 
-    void addListener(T listener, float priority);
+    PriorityListenable<T> addListener(T listener, float priority);
+
+    @Override
+    PriorityListenable<T> removeListener(T listener);
 
     float getPriority(T listener);
 }

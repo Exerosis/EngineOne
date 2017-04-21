@@ -11,13 +11,20 @@ public class BasicPriorityRunnableListenable implements PriorityRunnableListenab
     private Map<Runnable, Float> listeners = new HashMap<>();
 
     @Override
-    public void removeListener(Runnable listener) {
-        listeners.remove(listener);
+    public BasicPriorityRunnableListenable addListener(Runnable listener) {
+        return (BasicPriorityRunnableListenable) PriorityRunnableListenable.super.addListener(listener);
     }
 
     @Override
-    public void addListener(Runnable listener, float priority) {
+    public BasicPriorityRunnableListenable removeListener(Runnable listener) {
+        listeners.remove(listener);
+        return this;
+    }
+
+    @Override
+    public BasicPriorityRunnableListenable addListener(Runnable listener, float priority) {
         listeners.put(listener, priority);
+        return this;
     }
 
     @Override

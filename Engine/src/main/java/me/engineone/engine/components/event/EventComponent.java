@@ -10,7 +10,6 @@ import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 
 import java.util.function.Consumer;
-import java.util.function.Predicate;
 
 @SuppressWarnings("unchecked")
 public class EventComponent<T extends Event> extends ListenerComponent implements EventListenable<T> {
@@ -25,12 +24,14 @@ public class EventComponent<T extends Event> extends ListenerComponent implement
     }
 
     @Override
-    public void addListener(Consumer<T> listener) {
+    public EventComponent<T> addListener(Consumer<T> listener) {
         getListenable().addListener(listener);
+        return this;
     }
     @Override
-    public void removeListener(Consumer<T> listener) {
+    public EventComponent<T> removeListener(Consumer<T> listener) {
         getListenable().removeListener(listener);
+        return this;
     }
     @Override
     public boolean isRegistered(Consumer<T> listener) {
