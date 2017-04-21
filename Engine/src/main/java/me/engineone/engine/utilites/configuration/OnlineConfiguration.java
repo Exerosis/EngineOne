@@ -1,6 +1,6 @@
 package me.engineone.engine.utilites.configuration;
 
-import me.engineone.engine.utilites.StreamUtilities;
+import me.engineone.engine.utilites.StreamUtil;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.IOException;
@@ -47,6 +47,6 @@ public class OnlineConfiguration implements Configuration {
     }
 
     public void reloadConfig() throws IOException {
-        config = YamlConfiguration.loadConfiguration(StreamUtilities.readFromURL(url));
+        config = YamlConfiguration.loadConfiguration(StreamUtil.readFromURL(url));
     }
 }

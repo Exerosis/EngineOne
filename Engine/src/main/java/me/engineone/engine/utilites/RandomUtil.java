@@ -11,10 +11,10 @@ import java.util.function.Predicate;
 
 import static me.engineone.core.Extensions.range;
 
-public final class RandomUtilities {
+public final class RandomUtil {
     private static final Random RANDOM = new Random();
 
-    private RandomUtilities() {
+    private RandomUtil() {
 
     }
 

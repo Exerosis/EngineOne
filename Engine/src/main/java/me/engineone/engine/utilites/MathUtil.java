@@ -4,8 +4,8 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
-public final class MathUtilities {
-    private MathUtilities() {
+public final class MathUtil {
+    private MathUtil() {
     }
 
     public static double distance(Player one, Player two) {

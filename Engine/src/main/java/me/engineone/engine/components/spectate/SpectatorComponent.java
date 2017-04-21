@@ -5,8 +5,8 @@ import me.engineone.core.listenable.BasicPriorityEventListenable;
 import me.engineone.core.listenable.PriorityEventListenable;
 import me.engineone.engine.components.base.ParentListenerComponent;
 import me.engineone.engine.components.disablers.*;
-import me.engineone.engine.utilites.ListUtilities;
-import me.engineone.engine.utilites.NumberUtilities;
+import me.engineone.engine.utilites.ListUtil;
+import me.engineone.engine.utilites.NumberUtil;
 import org.bukkit.GameMode;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -64,7 +64,7 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
         player.setVelocity(new Vector());
         player.setAllowFlight(false);
         player.setFlying(false);
-        player.teleport(ListUtilities.getRandom(spawns).toLocation(player.getWorld()));
+        player.teleport(ListUtil.getRandom(spawns).toLocation(player.getWorld()));
         for (PotionEffect potionEffect : player.getActivePotionEffects())
             player.removePotionEffect(potionEffect.getType());
 
@@ -90,7 +90,7 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
         }
 
         //player.getInventory().getItemInOffHand().setAmount((int) (speed * 10));
-        player.setFlySpeed(NumberUtilities.bound(speed, 1f, 0.1f));
+        player.setFlySpeed(NumberUtil.bound(speed, 1f, 0.1f));
     }
 
     @Override

@@ -9,8 +9,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.function.Predicate;
 
-public final class PartitionUtilities {
-    private PartitionUtilities() {
+public final class PartitionUtil {
+    private PartitionUtil() {
     }
 
     public static <T> Pair<PartitionHolder<T>, PartitionHolder<T>> splitPartition(Collection<T> list, Predicate<T> split) {

@@ -12,9 +12,9 @@ import java.util.function.Predicate;
  * Durpped in to existence by Exerosis on 3/17/2016.
  */
 @SuppressWarnings("ALL")
-public class BlockUtilities {
+public class BlockUtil {
 
-    private BlockUtilities() {
+    private BlockUtil() {
     }
 
     public static ItemStack toItemStack(Block block) {

@@ -11,7 +11,7 @@ import java.util.zip.ZipOutputStream;
 /**
  * Created by Exerosis.
  */
-public class FileUtilities {
+public class FileUtil {
 
     public static void createZip(File directory, File zipFile) throws IOException {
         createZip(mapDirectory(directory), zipFile);
@@ -51,11 +51,11 @@ public class FileUtilities {
                     outputStream = new BufferedOutputStream(outputStream);
                     // IOUtils.copy(inputStream, outputStream);
                 } finally {
-                    StreamUtilities.closeQuietly(outputStream);
+                    StreamUtil.closeQuietly(outputStream);
                 }
             }
         } finally {
-            StreamUtilities.closeQuietly(inputStream);
+            StreamUtil.closeQuietly(inputStream);
         }
     }
 
@@ -82,12 +82,12 @@ public class FileUtilities {
                     //   IOUtils.copy(inputStream, outputStream);
                     ((ZipOutputStream) outputStream).closeEntry();
                 } finally {
-                    StreamUtilities.closeQuietly(inputStream);
+                    StreamUtil.closeQuietly(inputStream);
                 }
             }
 
         } finally {
-            StreamUtilities.closeQuietly(outputStream);
+            StreamUtil.closeQuietly(outputStream);
         }
     }
 

@@ -4,7 +4,7 @@ import me.engineone.core.printer.ConsolePrinter;
 import me.engineone.core.printer.PrintLevel;
 import me.engineone.engine.components.base.ListenerComponent;
 import me.engineone.engine.components.scheduler.SchedulerComponent;
-import me.engineone.engine.utilites.FileUtilities;
+import me.engineone.engine.utilites.FileUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
@@ -68,7 +68,7 @@ public class WorldComponent extends ListenerComponent {
     public void backup() {
         try {
             backupFile = File.createTempFile("backup", ".tmp", worldFile);
-            FileUtilities.createZip(worldFile, backupFile);
+            FileUtil.createZip(worldFile, backupFile);
             onBackup();
         } catch (IOException e) {
             e.printStackTrace();
@@ -80,7 +80,7 @@ public class WorldComponent extends ListenerComponent {
             return;
         try {
             // FileUtils.deleteDirectory(worldFile);
-            FileUtilities.unzip(backupFile, worldFile);
+            FileUtil.unzip(backupFile, worldFile);
             onRevert();
         } catch (IOException e) {
             e.printStackTrace();

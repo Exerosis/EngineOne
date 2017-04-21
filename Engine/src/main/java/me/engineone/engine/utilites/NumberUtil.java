@@ -3,8 +3,8 @@ package me.engineone.engine.utilites;
 /**
  * Created by Exerosis.
  */
-public final class NumberUtilities {
-    private NumberUtilities() {
+public final class NumberUtil {
+    private NumberUtil() {
     }
 
     //Float Bound.

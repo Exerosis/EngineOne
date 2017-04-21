@@ -4,9 +4,9 @@ package me.engineone.engine.utilites;
 import java.io.*;
 import java.net.URL;
 
-public final class StreamUtilities {
+public final class StreamUtil {
 
-    private StreamUtilities() {
+    private StreamUtil() {
     }
 
     //New
@@ -36,9 +36,9 @@ public final class StreamUtilities {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            StreamUtilities.closeQuietly(fileOutputStream);
+            StreamUtil.closeQuietly(fileOutputStream);
             if (close)
-                StreamUtilities.closeQuietly(stream);
+                StreamUtil.closeQuietly(stream);
         }
     }
 
@@ -54,9 +54,9 @@ public final class StreamUtilities {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            StreamUtilities.closeQuietly(outputStream);
+            StreamUtil.closeQuietly(outputStream);
             if (close)
-                StreamUtilities.closeQuietly(inputStream);
+                StreamUtil.closeQuietly(inputStream);
         }
     }
 

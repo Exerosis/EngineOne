@@ -5,8 +5,8 @@ import org.bukkit.entity.Player;
 
 import java.util.function.Predicate;
 
-public final class PredicateUtilities {
-    private PredicateUtilities() {
+public final class PredicateUtil {
+    private PredicateUtil() {
     }
 
     //--Player--

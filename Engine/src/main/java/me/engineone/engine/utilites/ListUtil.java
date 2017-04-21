@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public final class ListUtilities {
-    private ListUtilities() {
+public final class ListUtil {
+    private ListUtil() {
     }
 
     public static <T> T getRandom(List<T> list) {
