@@ -20,11 +20,11 @@ public class TeamComponent extends ListenerComponent {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-        if (players.test(event.getPlayer())) team.add(event.getPlayer());
+        if (players.test(event.getPlayer())) team.addSilently(event.getPlayer());
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        if (players.test(event.getPlayer())) team.remove(event.getPlayer());
+        if (players.test(event.getPlayer())) team.removeSilently(event.getPlayer());
     }
 }

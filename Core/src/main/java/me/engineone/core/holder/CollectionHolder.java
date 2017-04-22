@@ -1,12 +1,11 @@
 package me.engineone.core.holder;
 
-import com.sun.deploy.net.socket.UnixDomainSocketException;
 import me.engineone.core.listenable.PriorityEventListenable;
-import me.engineone.core.mutable.Reducible;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Spliterator;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
@@ -27,18 +26,23 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
     }
 
     @Override
-    default boolean add(T element) {
-        boolean result = getContents().add(element);
-        getAddListenable().accept(element);
-        return result;
+    default boolean addSilently(T element) {
+        return getContents().add(element);
     }
 
-    @SuppressWarnings("unchecked")
+    @Override
+    default boolean removeSilently(T element) {
+        return getContents().remove(element);
+    }
+
+    @Override
+    default boolean add(T element) {
+        return MutableHolder.super.add(element);
+    }
+
     @Override
     default boolean remove(Object element) {
-        boolean result = getContents().remove(element);
-        getRemoveListenable().accept((T) element);
-        return result;
+        return MutableHolder.super.remove(element);
     }
 
     @Override

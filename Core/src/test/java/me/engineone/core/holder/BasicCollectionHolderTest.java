@@ -50,7 +50,7 @@ public class BasicCollectionHolderTest {
         mutable2Holder.addAddListener(mutable2AddCounter);
         mutable2Holder.addRemoveListener(mutable2RemoveCounter);
 
-        List<String> testData = new ArrayList<String>(Arrays.asList(
+        List<String> testData = new ArrayList<>(Arrays.asList(
                 "Potato",
                 "Apple",
                 "Mushroom",
@@ -61,7 +61,7 @@ public class BasicCollectionHolderTest {
 
         holder.addAll(testData);
         //FixMe
-        testData.forEach(holder::remove);
+        testData.forEach(holder::removeSilently);
 
         assertEquals(holderAddCounter.count(), count(testData, s -> true));
         assertEquals(holderAddCounter.count(), holderRemoveCounter.count());

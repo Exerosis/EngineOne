@@ -17,11 +17,11 @@ public class OnlinePlayerHolder extends PlayerHolder implements EventManager, Li
 
     @EventHandler
     private void onJoin(PlayerJoinEvent event) {
-        add(event.getPlayer());
+        addSilently(event.getPlayer());
     }
 
     @EventHandler
     private void onQuit(PlayerQuitEvent event) {
-        remove(event.getPlayer());
+        removeSilently(event.getPlayer());
     }
 }

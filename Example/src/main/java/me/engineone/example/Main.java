@@ -1,9 +1,7 @@
 package me.engineone.example;
 
-import com.google.common.collect.Lists;
 import me.engineone.core.holder.BasicCollectionHolder;
 import me.engineone.core.holder.CollectionHolder;
-import me.engineone.core.holder.LiveHolder;
 import me.engineone.core.holder.MutableHolder;
 
 
@@ -21,7 +19,7 @@ public class Main {
         holder.addAddListener(s -> System.out.format("Holder received: %s", s));
 
 
-        holder.add("Potato");
+        holder.addSilently("Potato");
 
     }
 

@@ -1,7 +1,15 @@
 package me.engineone.core.mutable;
 
 public interface Reducible<T> extends RemoveListenable<T> {
-    boolean remove(Object element);
+    boolean removeSilently(T element);
+
+    @SuppressWarnings("unchecked")
+    default boolean remove(Object element) {
+        boolean result = removeSilently((T) element);
+        if (result)
+            getRemoveListenable().accept((T) element);
+        return result;
+    }
 
     default boolean remove(Iterable<Object> elements) {
         boolean removed = false;

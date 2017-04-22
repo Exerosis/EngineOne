@@ -1,13 +1,10 @@
 package me.engineone.core.holder;
 
-import lombok.NonNull;
 import me.engineone.core.listenable.BasicPriorityEventListenable;
 import me.engineone.core.listenable.Listenable;
 import me.engineone.core.listenable.PriorityEventListenable;
-import me.engineone.core.mutable.Mutable;
 import org.javatuples.Pair;
 
-import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -61,13 +58,13 @@ public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHol
     }
 
     @Override
-    public boolean add(T element) {
-        return getParent().add(element);
+    public boolean addSilently(T element) {
+        return getParent().addSilently(element);
     }
 
     @Override
-    public boolean remove(Object element) {
-        return getParent().remove(element);
+    public boolean removeSilently(T element) {
+        return getParent().removeSilently(element);
     }
 
     @Override

@@ -15,6 +15,6 @@ public class QuitComponent extends ListenerHolderComponent<Pair<Predicate<Player
     public void onQuit(PlayerQuitEvent event) {
         for (Pair<Predicate<Player>, Mutable<Player>> pair : getContents())
             if (pair.getKey().test(event.getPlayer()))
-                pair.getValue().add(event.getPlayer());
+                pair.getValue().addSilently(event.getPlayer());
     }
 }
