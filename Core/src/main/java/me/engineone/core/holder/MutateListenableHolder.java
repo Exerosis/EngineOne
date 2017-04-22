@@ -1,10 +1,8 @@
 package me.engineone.core.holder;
 
-import me.engineone.core.holder.liveholders.DifferenceHolder;
-import me.engineone.core.holder.liveholders.MutableDifferenceHolder;
+import me.engineone.core.holder.liveholders.MutateListenableDifferenceHolder;
 import me.engineone.core.holder.liveholders.MutateListenableUnionHolder;
 import me.engineone.core.listenable.Listenable;
-import me.engineone.core.mutable.Mutable;
 import me.engineone.core.mutable.MutateListenable;
 import org.javatuples.Pair;
 
@@ -27,8 +25,8 @@ public interface MutateListenableHolder<T> extends Holder<T>, MutateListenable<T
     }
 
     @Override
-    default MutableDifferenceHolder<T> difference(Holder<T> holder) {
-        return new MutableDifferenceHolder<>(this, holder);
+    default MutateListenableDifferenceHolder<T> difference(Holder<T> holder) {
+        return new MutateListenableDifferenceHolder<>(this, holder);
     }
 
     @Override

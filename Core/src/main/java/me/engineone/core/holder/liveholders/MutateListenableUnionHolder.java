@@ -1,9 +1,6 @@
 package me.engineone.core.holder.liveholders;
 
-import me.engineone.core.holder.Holder;
-import me.engineone.core.holder.Iterators;
-import me.engineone.core.holder.LiveHolder;
-import me.engineone.core.holder.MutateListenableHolder;
+import me.engineone.core.holder.*;
 import me.engineone.core.listenable.BasicPriorityEventListenable;
 import me.engineone.core.listenable.PriorityEventListenable;
 
@@ -12,10 +9,7 @@ import java.util.Iterator;
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class MutateListenableUnionHolder<T> implements LiveHolder<T>, MutateListenableHolder<T> {
-
-    private PriorityEventListenable<T> addListenable = new BasicPriorityEventListenable<>();
-    private PriorityEventListenable<T> removeListenable = new BasicPriorityEventListenable<>();
+public class MutateListenableUnionHolder<T> extends BaseMutateListenableHolder<T> implements LiveHolder<T> {
 
     private MutateListenableHolder<T> primary;
     private Holder<T> secondary;
@@ -76,15 +70,5 @@ public class MutateListenableUnionHolder<T> implements LiveHolder<T>, MutateList
     @Override
     public Iterator<T> iterator() {
         return Iterators.union(getPrimary().iterator(), getSecondary().iterator());
-    }
-
-    @Override
-    public PriorityEventListenable<T> getAddListenable() {
-        return addListenable;
-    }
-
-    @Override
-    public PriorityEventListenable<T> getRemoveListenable() {
-        return removeListenable;
     }
 }

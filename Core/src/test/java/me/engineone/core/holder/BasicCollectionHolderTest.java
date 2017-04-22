@@ -3,10 +3,7 @@ package me.engineone.core.holder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import com.google.common.collect.Lists;
-import me.engineone.core.holder.liveholders.MutableDifferenceHolder;
 import me.engineone.core.mutable.Mutable;
-import me.engineone.core.mutable.MutateListenable;
 import org.junit.Before;
 import org.junit.Test;
 

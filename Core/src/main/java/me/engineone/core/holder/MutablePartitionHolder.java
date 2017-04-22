@@ -8,10 +8,7 @@ import org.javatuples.Pair;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutateListenableHolder<T> {
-
-    private PriorityEventListenable<T> addListenable = new BasicPriorityEventListenable<>();
-    private PriorityEventListenable<T> removeListenable = new BasicPriorityEventListenable<>();
+public class MutablePartitionHolder<T> extends BaseMutateListenableHolder<T> implements PartitionHolder<T> {
 
     private MutateListenableHolder<T> parent;
     private Predicate<T> filter;
@@ -45,21 +42,6 @@ public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutateList
                     else
                         getRemoveListenable().accept(element);
             });
-    }
-
-    @Override
-    public PriorityEventListenable<T> getAddListenable() {
-        return addListenable;
-    }
-
-    @Override
-    public PriorityEventListenable<T> getRemoveListenable() {
-        return removeListenable;
-    }
-
-    @Override
-    public MutablePartitionHolder<T> partition(Predicate<T> filter) {
-        return MutateListenableHolder.super.partition(filter);
     }
 
     @Override

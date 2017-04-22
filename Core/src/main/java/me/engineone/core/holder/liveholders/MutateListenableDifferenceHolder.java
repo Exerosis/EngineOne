@@ -10,16 +10,12 @@ import java.util.Iterator;
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class MutableDifferenceHolder<T> implements LiveHolder<T>, MutateListenableHolder<T> {
-
-    private PriorityEventListenable<T> addListenable = new BasicPriorityEventListenable<>();
-    private PriorityEventListenable<T> removeListenable = new BasicPriorityEventListenable<>();
-
+public class MutateListenableDifferenceHolder<T> extends BaseMutateListenableHolder<T> implements LiveHolder<T> {
 
     private MutateListenableHolder<T> primary;
     private Holder<T> secondary;
 
-    public MutableDifferenceHolder(MutateListenableHolder<T> primary, Holder<T> secondary) {
+    public MutateListenableDifferenceHolder(MutateListenableHolder<T> primary, Holder<T> secondary) {
         this.primary = primary;
         this.secondary = secondary;
 
@@ -74,15 +70,5 @@ public class MutableDifferenceHolder<T> implements LiveHolder<T>, MutateListenab
     @Override
     public Iterator<T> iterator() {
         return Iterators.difference(getPrimary().iterator(), getSecondary());
-    }
-
-    @Override
-    public PriorityEventListenable<T> getAddListenable() {
-        return addListenable;
-    }
-
-    @Override
-    public PriorityEventListenable<T> getRemoveListenable() {
-        return removeListenable;
     }
 }
