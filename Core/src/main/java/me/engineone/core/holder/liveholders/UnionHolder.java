@@ -1,6 +1,7 @@
 package me.engineone.core.holder.liveholders;
 
 import me.engineone.core.holder.Holder;
+import me.engineone.core.holder.Iterators;
 import me.engineone.core.holder.LiveHolder;
 
 import java.util.Iterator;
@@ -44,24 +45,6 @@ public class UnionHolder<T> implements LiveHolder<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            private final Iterator<T> first = getSecondary().iterator();
-            private final Iterator<T> second = getPrimary().iterator();
-            private T next;
-
-            @Override
-            public boolean hasNext() {
-                return next != null;
-            }
-
-            @Override
-            public T next() {
-                if (this.next == null)
-                    return null;
-                T next = this.next;
-                this.next = first.hasNext() ? first.next() : second.hasNext() ? second.next() : null;
-                return next;
-            }
-        };
+        return Iterators.union(getPrimary().iterator(), getSecondary().iterator());
     }
 };

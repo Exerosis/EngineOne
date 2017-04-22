@@ -1,6 +1,7 @@
 package me.engineone.core.holder.liveholders;
 
 import me.engineone.core.holder.Holder;
+import me.engineone.core.holder.Iterators;
 import me.engineone.core.holder.LiveHolder;
 
 import java.util.Iterator;
@@ -43,28 +44,6 @@ public class DifferenceHolder<T> implements LiveHolder<T> {
 
     @Override
     public Iterator<T> iterator() {
-        return new Iterator<T>() {
-            private final Iterator<T> iterator = getPrimary().iterator();
-            private T next = iterator.hasNext() ? iterator.next() : null;
-
-            @Override
-            public boolean hasNext() {
-                return next != null;
-            }
-
-            @Override
-            public T next() {
-                T next = this.next;
-                do {
-                    if (iterator.hasNext())
-                        this.next = iterator.next();
-                    else {
-                        this.next = null;
-                        break;
-                    }
-                } while (getSecondary().test(this.next));
-                return next;
-            }
-        };
+        return Iterators.difference(getPrimary().iterator(), getSecondary());
     }
 }

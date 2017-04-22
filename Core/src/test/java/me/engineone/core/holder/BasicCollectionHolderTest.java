@@ -3,6 +3,9 @@ package me.engineone.core.holder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+import com.google.common.collect.Lists;
+import me.engineone.core.holder.liveholders.MutableDifferenceHolder;
+import me.engineone.core.mutable.Mutable;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,41 +19,13 @@ import java.util.function.Predicate;
  */
 public class BasicCollectionHolderTest {
 
+    private CollectionHolder<String> holder;
+    private List<String> testData;
+
     @Before
     public void setUp() throws Exception {
-
-    }
-
-    @Test
-    public void listeners() throws Exception {
-        ConsumerCallCounter<String> holderAddCounter = new ConsumerCallCounter<>();
-        ConsumerCallCounter<String> holderRemoveCounter = new ConsumerCallCounter<>();
-
-        ConsumerCallCounter<String> mutableAddCounter = new ConsumerCallCounter<>();
-        ConsumerCallCounter<String> mutableRemoveCounter = new ConsumerCallCounter<>();
-        Predicate<String> mutablePredicate = s -> s.toLowerCase().startsWith("a");
-
-        ConsumerCallCounter<String> mutable2AddCounter = new ConsumerCallCounter<>();
-        ConsumerCallCounter<String> mutable2RemoveCounter = new ConsumerCallCounter<>();
-        Predicate<String> mutable2Predicate = s -> s.toLowerCase().startsWith("apple");
-
-
-        CollectionHolder<String> holder = new BasicCollectionHolder<>();
-        MutableHolder<String> mutableHolder = holder.partition(mutablePredicate);
-        MutableHolder<String> mutable2Holder = mutableHolder.partition(mutable2Predicate);
-
-        holder.addAddListener(holderAddCounter);
-        holder.addRemoveListener(holderRemoveCounter);
-
-        mutableHolder.addAddListener(s -> assertTrue(mutablePredicate.test(s)));
-        mutableHolder.addAddListener(mutableAddCounter);
-        mutableHolder.addRemoveListener(mutableRemoveCounter);
-
-        mutable2Holder.addAddListener(s -> assertTrue(mutable2Predicate.test(s)));
-        mutable2Holder.addAddListener(mutable2AddCounter);
-        mutable2Holder.addRemoveListener(mutable2RemoveCounter);
-
-        List<String> testData = new ArrayList<>(Arrays.asList(
+        holder = new BasicCollectionHolder<>();
+        testData = new ArrayList<>(Arrays.asList(
                 "Potato",
                 "Apple",
                 "Mushroom",
@@ -58,17 +33,67 @@ public class BasicCollectionHolderTest {
                 "Dogfood",
                 "Apple Pie"
         ));
+    }
 
-        holder.addAll(testData);
+    @Test
+    public void partitions() throws Exception {
+        checkPartitions(holder);
+    }
+
+    @Test
+    public void difference() throws Exception {
+        CollectionHolder<String> otherHolder = new BasicCollectionHolder<>();
+
+        holder.add("Potato");
+        holder.add("Apple");
+        otherHolder.add("Potato");
+
+        MutableDifferenceHolder<String> difference = holder.difference(otherHolder);
+        difference.addAddListener(s -> assertTrue(holder.test(s) && !otherHolder.test(s)));
+        difference.addRemoveListener(s -> assertTrue(!holder.test(s) || otherHolder.test(s)));
+
+        assertEquals("MutableHolder.Difference did not split the holder correctly.",1, difference.size());
+        holder.add("OtherPotato");
+        otherHolder.add("OtherPotato");
+        otherHolder.remove("OtherPotato");
+
+        checkPartitions(difference, holder);
+    }
+
+
+    public void checkPartitions(MutableHolder<String> holder) {
+        checkPartitions(holder, holder);
+    }
+
+    public void checkPartitions(MutateListenableHolder<String> holder, Mutable<String> master) {
+
+        ConsumerCallCounter<String> addCounter = new ConsumerCallCounter<>();
+        ConsumerCallCounter<String> removeCounter = new ConsumerCallCounter<>();
+        Predicate<String> predicate = s -> s.toLowerCase().startsWith("a");
+
+        MutateListenableHolder<String> partition = holder.partition(predicate);
+
+        partition.addAddListener(s -> {
+            assertTrue(holder.getClass().getSimpleName() + ".partition() allowed '" + s + "' in, a string that does not fit in the predicate. : " + (holder == this.holder), predicate.test(s));
+        });
+        partition.addAddListener(addCounter);
+        partition.addRemoveListener(removeCounter);
+
+        List<String> testData = new ArrayList<>(Arrays.asList(
+                "Potato-checkPartitions",
+                "Apple-checkPartitions",
+                "Mushroom-checkPartitions",
+                "Apricot-checkPartitions",
+                "Dogfood-checkPartitions",
+                "Apple Pie-checkPartitions"
+        ));
+
+        master.add(testData);
         //FixMe
-        testData.forEach(holder::removeSilently);
+        testData.forEach(master::remove);
 
-        assertEquals(holderAddCounter.count(), count(testData, s -> true));
-        assertEquals(holderAddCounter.count(), holderRemoveCounter.count());
-        assertEquals(mutableAddCounter.count(), count(testData, mutablePredicate));
-        assertEquals(mutableAddCounter.count(), mutableRemoveCounter.count());
-        assertEquals(mutable2AddCounter.count(), count(testData, mutable2Predicate));
-        assertEquals(mutable2AddCounter.count(), mutable2RemoveCounter.count());
+        assertEquals(addCounter.count(), count(testData, predicate));
+        assertEquals(addCounter.count(), removeCounter.count());
 
     }
 

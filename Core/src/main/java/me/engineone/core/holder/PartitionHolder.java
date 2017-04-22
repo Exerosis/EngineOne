@@ -25,7 +25,7 @@ public interface PartitionHolder<T> extends Holder<T> {
 
     @Override
     default PartitionHolder<T> partition(Predicate<T> filter) {
-        return Holder.super.partition(getFilter().and(filter));
+        return Holder.super.partition(filter);
     }
 
     Predicate<T> getFilter();

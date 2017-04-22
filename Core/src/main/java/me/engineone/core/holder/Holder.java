@@ -12,11 +12,11 @@ import java.util.stream.StreamSupport;
 public interface Holder<T> extends Predicate<T>, Iterable<T> {
     int size();
 
-    default Holder<T> union(Holder<T> holder) {
+    default LiveHolder<T> union(Holder<T> holder) {
         return new UnionHolder<>(this, holder);
     }
 
-    default DifferenceHolder<T> difference(Holder<T> holder) {
+    default LiveHolder<T> difference(Holder<T> holder) {
         return new DifferenceHolder<>(this, holder);
     }
 

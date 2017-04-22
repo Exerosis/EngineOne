@@ -8,23 +8,23 @@ import org.javatuples.Pair;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHolder<T> {
+public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutateListenableHolder<T> {
 
     private PriorityEventListenable<T> addListenable = new BasicPriorityEventListenable<>();
     private PriorityEventListenable<T> removeListenable = new BasicPriorityEventListenable<>();
 
-    private MutableHolder<T> parent;
+    private MutateListenableHolder<T> parent;
     private Predicate<T> filter;
 
-    public MutablePartitionHolder(MutableHolder<T> parent, Predicate<T> filter) {
+    public MutablePartitionHolder(MutateListenableHolder<T> parent, Predicate<T> filter) {
         this(parent, filter, null);
     }
 
-    public MutablePartitionHolder(MutableHolder<T> parent, Pair<Predicate<T>, Listenable<Consumer<T>>> filter) {
+    public MutablePartitionHolder(MutateListenableHolder<T> parent, Pair<Predicate<T>, Listenable<Consumer<T>>> filter) {
         this(parent, filter.getValue0(), filter.getValue1());
     }
 
-    public MutablePartitionHolder(MutableHolder<T> parent, Predicate<T> filter, Listenable<Consumer<T>> updater) {
+    public MutablePartitionHolder(MutateListenableHolder<T> parent, Predicate<T> filter, Listenable<Consumer<T>> updater) {
         this.parent = parent;
         this.filter = filter;
         // Add Parent Listeners
@@ -58,18 +58,8 @@ public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHol
     }
 
     @Override
-    public boolean addSilently(T element) {
-        return getParent().addSilently(element);
-    }
-
-    @Override
-    public boolean removeSilently(T element) {
-        return getParent().removeSilently(element);
-    }
-
-    @Override
     public MutablePartitionHolder<T> partition(Predicate<T> filter) {
-        return MutableHolder.super.partition(filter);
+        return MutateListenableHolder.super.partition(filter);
     }
 
     @Override
@@ -78,7 +68,7 @@ public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHol
     }
 
     @Override
-    public MutableHolder<T> getParent() {
+    public MutateListenableHolder<T> getParent() {
         return parent;
     }
 }
