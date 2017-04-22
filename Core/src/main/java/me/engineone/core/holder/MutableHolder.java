@@ -1,22 +1,24 @@
 package me.engineone.core.holder;
 
+import me.engineone.core.listenable.Listenable;
 import me.engineone.core.mutable.Mutable;
+import org.javatuples.Pair;
 
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
 public interface MutableHolder<T> extends Holder<T>, Mutable<T> {
+
+    default MutablePartitionHolder<T> partition(Pair<Predicate<T>, Listenable<Consumer<T>>> filter) {
+        return new MutablePartitionHolder<T>(this, filter);
+    }
+
+    default MutablePartitionHolder<T> partition(Predicate<T> filter, Listenable<Consumer<T>> updater) {
+        return new MutablePartitionHolder<>(this, filter, updater);
+    }
+
     @Override
     default MutablePartitionHolder<T> partition(Predicate<T> filter) {
-        return new MutablePartitionHolder<T>() {
-            @Override
-            public Predicate<T> getFilter() {
-                return filter;
-            }
-
-            @Override
-            public MutableHolder<T> getParent() {
-                return MutableHolder.this;
-            }
-        };
+        return new MutablePartitionHolder<>(this, filter);
     }
 }

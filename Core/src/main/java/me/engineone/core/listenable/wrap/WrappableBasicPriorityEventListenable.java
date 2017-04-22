@@ -1,4 +1,7 @@
-package me.engineone.core.listenable;
+package me.engineone.core.listenable.wrap;
+
+import me.engineone.core.listenable.BasicPriorityEventListenable;
+import me.engineone.core.listenable.PriorityListenable;
 
 import java.util.function.Consumer;
 

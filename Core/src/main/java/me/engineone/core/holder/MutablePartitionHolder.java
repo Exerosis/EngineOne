@@ -1,40 +1,62 @@
 package me.engineone.core.holder;
 
-import me.engineone.core.listenable.BasicEventListenable;
-import me.engineone.core.listenable.EventListenable;
+import lombok.NonNull;
+import me.engineone.core.listenable.BasicPriorityEventListenable;
+import me.engineone.core.listenable.Listenable;
+import me.engineone.core.listenable.PriorityEventListenable;
 import me.engineone.core.mutable.Mutable;
+import org.javatuples.Pair;
 
+import java.util.List;
+import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public abstract class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHolder<T> {
+public class MutablePartitionHolder<T> implements PartitionHolder<T>, MutableHolder<T> {
 
-    private EventListenable<T> addListenable = new BasicEventListenable<>();
-    private EventListenable<T> removeListenable = new BasicEventListenable<>();
+    private PriorityEventListenable<T> addListenable = new BasicPriorityEventListenable<>();
+    private PriorityEventListenable<T> removeListenable = new BasicPriorityEventListenable<>();
 
-    MutablePartitionHolder() {
-        updater(getParent());
+    private MutableHolder<T> parent;
+    private Predicate<T> filter;
+
+    public MutablePartitionHolder(MutableHolder<T> parent, Predicate<T> filter) {
+        this(parent, filter, null);
     }
 
-    MutablePartitionHolder updater(Mutable<T> mutable) {
+    public MutablePartitionHolder(MutableHolder<T> parent, Pair<Predicate<T>, Listenable<Consumer<T>>> filter) {
+        this(parent, filter.getValue0(), filter.getValue1());
+    }
+
+    public MutablePartitionHolder(MutableHolder<T> parent, Predicate<T> filter, Listenable<Consumer<T>> updater) {
+        this.parent = parent;
+        this.filter = filter;
+        // Add Parent Listeners
         getParent().addAddListener(element -> {
             if (getFilter().test(element))
                 getAddListenable().accept(element);
         });
-
         getParent().addRemoveListener(element -> {
             if (getFilter().test(element))
                 getRemoveListenable().accept(element);
         });
-        return this;
+        // Add update listener
+        if (updater != null)
+            updater.add(element -> {
+                if (getParent().test(element))
+                    if (getFilter().test(element))
+                        getAddListenable().accept(element);
+                    else
+                        getRemoveListenable().accept(element);
+            });
     }
 
     @Override
-    public EventListenable<T> getAddListenable() {
+    public PriorityEventListenable<T> getAddListenable() {
         return addListenable;
     }
 
     @Override
-    public EventListenable<T> getRemoveListenable() {
+    public PriorityEventListenable<T> getRemoveListenable() {
         return removeListenable;
     }
 
@@ -50,9 +72,16 @@ public abstract class MutablePartitionHolder<T> implements PartitionHolder<T>, M
 
     @Override
     public MutablePartitionHolder<T> partition(Predicate<T> filter) {
-        return MutableHolder.super.partition(getFilter().and(filter));
+        return MutableHolder.super.partition(filter);
     }
 
     @Override
-    public abstract MutableHolder<T> getParent();
+    public Predicate<T> getFilter() {
+        return filter;
+    }
+
+    @Override
+    public MutableHolder<T> getParent() {
+        return parent;
+    }
 }

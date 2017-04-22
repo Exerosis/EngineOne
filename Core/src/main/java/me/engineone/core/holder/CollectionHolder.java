@@ -1,41 +1,19 @@
 package me.engineone.core.holder;
 
+import com.sun.deploy.net.socket.UnixDomainSocketException;
 import me.engineone.core.listenable.PriorityEventListenable;
-import me.engineone.core.listenable.PriorityListenable;
+import me.engineone.core.mutable.Reducible;
 
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Spliterator;
-import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
+
     Collection<T> getContents();
     PriorityEventListenable<T> getAddListenable();
     PriorityEventListenable<T> getRemoveListenable();
-
-    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener) {
-        return getAddListenable().add(listener);
-    }
-    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener, float priority) {
-        return getAddListenable().add(listener, priority);
-    }
-    default PriorityListenable<Consumer<T>> removeAddListener(Consumer<T> listener) {
-        return getAddListenable().remove(listener);
-    }
-
-
-    default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener) {
-        return getRemoveListenable().add(listener);
-    }
-    default PriorityListenable<Consumer<T>> addRemoveListener(Consumer<T> listener, float priority) {
-        return getRemoveListenable().add(listener, priority);
-    }
-    default PriorityListenable<Consumer<T>> removeRemoveListener(Consumer<T> listener) {
-        return getRemoveListenable().remove(listener);
-    }
-
-
 
 
     @Override
@@ -75,7 +53,7 @@ public interface CollectionHolder<T> extends MutableHolder<T>, Collection<T> {
 
     @Override
     default boolean removeAll(Collection<?> c) {
-        return remove(c);
+        throw new UnsupportedOperationException("removeAll not yet supported!");
     }
 
     @Override
