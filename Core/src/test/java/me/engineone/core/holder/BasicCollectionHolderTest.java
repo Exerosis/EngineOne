@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import com.google.common.collect.Lists;
 import me.engineone.core.holder.liveholders.MutableDifferenceHolder;
 import me.engineone.core.mutable.Mutable;
+import me.engineone.core.mutable.MutateListenable;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -48,18 +49,40 @@ public class BasicCollectionHolderTest {
         holder.add("Apple");
         otherHolder.add("Potato");
 
-        MutableDifferenceHolder<String> difference = holder.difference(otherHolder);
+        MutateListenableHolder<String> difference = holder.difference(otherHolder);
         difference.addAddListener(s -> assertTrue(holder.test(s) && !otherHolder.test(s)));
         difference.addRemoveListener(s -> assertTrue(!holder.test(s) || otherHolder.test(s)));
 
-        assertEquals("MutableHolder.Difference did not split the holder correctly.",1, difference.size());
+        assertEquals("MutableHolder.difference() did not split the holder correctly.",1, difference.size());
         holder.add("OtherPotato");
         otherHolder.add("OtherPotato");
         otherHolder.remove("OtherPotato");
+        assertEquals("MutableHolder.difference() did not handle adding and removing correctly.",2, difference.size());
 
         checkPartitions(difference, holder);
     }
 
+    @Test
+    public void union() throws Exception {
+        CollectionHolder<String> otherHolder = new BasicCollectionHolder<>();
+
+        holder.add("Potato");
+        holder.add("Apple");
+        otherHolder.add("Mushroom");
+
+        MutateListenableHolder<String> union = holder.union(otherHolder);
+        union.addAddListener(s -> assertTrue(holder.test(s) || otherHolder.test(s)));
+        union.addRemoveListener(s -> assertTrue(!holder.test(s) && !otherHolder.test(s)));
+
+        assertEquals("MutableHolder.union() did not add the holders correctly.",3, union.size());
+        holder.add("OtherPotato");
+        otherHolder.add("OtherPotato");
+        otherHolder.remove("OtherPotato");
+
+        assertEquals("MutableHolder.union() did not handle adding and removing correctly.",4, union.size());
+
+        checkPartitions(union, holder);
+    }
 
     public void checkPartitions(MutableHolder<String> holder) {
         checkPartitions(holder, holder);

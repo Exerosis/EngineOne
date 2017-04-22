@@ -47,4 +47,4 @@ public class UnionHolder<T> implements LiveHolder<T> {
     public Iterator<T> iterator() {
         return Iterators.union(getPrimary().iterator(), getSecondary().iterator());
     }
-};
+}
