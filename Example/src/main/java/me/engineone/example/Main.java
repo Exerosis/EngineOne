@@ -1,7 +1,12 @@
 package me.engineone.example;
 
+import me.engineone.core.holder.BasicCollectionHolder;
+import me.engineone.core.mutable.MutateListenable;
+
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.SimpleTimeZone;
 
 
 /**
@@ -11,25 +16,21 @@ public class Main {
 
 
     public static void main(String[] args) {
-        List<Runnable> list = new ArrayList<>();
 
-        Runnable runnable = () -> System.out.println("Potato");
+        BasicCollectionHolder<String> allPlayers = new BasicCollectionHolder<>();
+        BasicCollectionHolder<String> spectatePlayers = new BasicCollectionHolder<>();
+        MutateListenable<String> gamePlayers = allPlayers.difference(spectatePlayers);
+        gamePlayers.onAdd(s -> System.out.format("Game received: %s\n", s));
+        gamePlayers.onRemove(s -> System.out.format("Game lost: %s\n", s));
 
-        list.add(new Runnable() {
-            @Override
-            public void run() {
-                runnable.run();
-            }
-        });
+        allPlayers.add("player1");
+        allPlayers.add("player2");
 
-        list.remove(new Runnable() {
-            @Override
-            public void run() {
-                runnable.run();
-            }
-        });
+        allPlayers.getAddListeners().add(0, spectatePlayers::add);
 
-        System.out.println(list);
+        allPlayers.add("player3");
+        allPlayers.add("player4");
+
     }
 
     public static void print() {

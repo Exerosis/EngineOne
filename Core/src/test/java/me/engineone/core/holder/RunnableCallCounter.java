@@ -14,4 +14,8 @@ public class RunnableCallCounter implements Runnable {
     public int count() {
         return counter;
     }
+
+    public void reset() {
+        counter = 0;
+    }
 }
