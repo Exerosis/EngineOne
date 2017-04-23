@@ -1,17 +1,21 @@
 package me.engineone.engine.components.event;
 
+import me.engineone.core.component.ParentComponent;
+import me.engineone.engine.components.base.ListenerEnableable;
+import me.engineone.engine.utilites.EventManager;
 import net.jodah.typetools.TypeResolver;
 import me.engineone.engine.components.base.ListenerComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.Listener;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unchecked")
-public class EventComponent<T extends Event> extends ListenerComponent {
+public class EventComponent<T extends Event> extends ParentComponent implements EventManager, Listener{
 
     private final List<Consumer<T>> eventListeners = new ArrayList<>();
     private final Class<T> type;

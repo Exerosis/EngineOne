@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class CollectionHolderComponent<T> extends Component implements CollectionHolder<T> {
+public class CollectionHolderComponent<T> extends ParentComponent implements CollectionHolder<T> {
 
     private final List<Consumer<T>> removeListenable = new ArrayList<>();
     private final List<Consumer<T>> addListenable = new ArrayList<>();
