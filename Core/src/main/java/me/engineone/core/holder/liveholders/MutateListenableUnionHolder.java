@@ -1,15 +1,13 @@
 package me.engineone.core.holder.liveholders;
 
 import me.engineone.core.holder.*;
-import me.engineone.core.listenable.BasicPriorityEventListenable;
-import me.engineone.core.listenable.PriorityEventListenable;
 
 import java.util.Iterator;
 
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class MutateListenableUnionHolder<T> extends BaseMutateListenableHolder<T> implements LiveHolder<T> {
+public class MutateListenableUnionHolder<T> extends BaseMutateListenableHolder<T> {
 
     private MutateListenableHolder<T> primary;
     private Holder<T> secondary;
@@ -43,21 +41,17 @@ public class MutateListenableUnionHolder<T> extends BaseMutateListenableHolder<T
 
     }
 
-    @Override
     public MutateListenableHolder<T> getPrimary() {
         return primary;
     }
 
-    @Override
     public Holder<T> getSecondary() {
         return secondary;
     }
-
     @Override
     public boolean test(T element) {
         return getPrimary().test(element) || getSecondary().test(element);
     }
-
     @Override
     public int size() {
         int size = getSecondary().size();
@@ -66,7 +60,6 @@ public class MutateListenableUnionHolder<T> extends BaseMutateListenableHolder<T
                 size++;
         return size;
     }
-
     @Override
     public Iterator<T> iterator() {
         return Iterators.union(getPrimary().iterator(), getSecondary().iterator());

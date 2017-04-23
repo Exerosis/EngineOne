@@ -9,7 +9,7 @@ import java.util.Iterator;
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class UnionHolder<T> implements LiveHolder<T> {
+public class UnionHolder<T> implements Holder<T> {
 
     private Holder<T> primary;
     private Holder<T> secondary;
@@ -19,12 +19,10 @@ public class UnionHolder<T> implements LiveHolder<T> {
         this.secondary = secondary;
     }
 
-    @Override
     public Holder<T> getPrimary() {
         return primary;
     }
 
-    @Override
     public Holder<T> getSecondary() {
         return secondary;
     }

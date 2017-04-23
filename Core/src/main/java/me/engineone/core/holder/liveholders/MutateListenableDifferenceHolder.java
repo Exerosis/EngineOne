@@ -1,16 +1,13 @@
 package me.engineone.core.holder.liveholders;
 
 import me.engineone.core.holder.*;
-import me.engineone.core.listenable.BasicPriorityEventListenable;
-import me.engineone.core.listenable.PriorityEventListenable;
-import me.engineone.core.mutable.Mutable;
 
 import java.util.Iterator;
 
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class MutateListenableDifferenceHolder<T> extends BaseMutateListenableHolder<T> implements LiveHolder<T> {
+public class MutateListenableDifferenceHolder<T> extends BaseMutateListenableHolder<T> {
 
     private MutateListenableHolder<T> primary;
     private Holder<T> secondary;
@@ -43,12 +40,10 @@ public class MutateListenableDifferenceHolder<T> extends BaseMutateListenableHol
         }
     }
 
-    @Override
     public MutateListenableHolder<T> getPrimary() {
         return primary;
     }
 
-    @Override
     public Holder<T> getSecondary() {
         return secondary;
     }

@@ -9,7 +9,7 @@ import java.util.Iterator;
 /**
  * Created by BinaryBench on 4/21/2017.
  */
-public class DifferenceHolder<T> implements LiveHolder<T> {
+public class DifferenceHolder<T> implements Holder<T>{
     private Holder<T> primary;
     private Holder<T> secondary;
 
@@ -18,17 +18,17 @@ public class DifferenceHolder<T> implements LiveHolder<T> {
         this.secondary = secondary;
     }
 
-    @Override
+
     public Holder<T> getPrimary() {
         return primary;
     }
 
-    @Override
+
     public Holder<T> getSecondary() {
         return secondary;
     }
 
-    @Override
+
     public boolean test(T element) {
         return !getPrimary().test(element) && getPrimary().test(element);
     }
