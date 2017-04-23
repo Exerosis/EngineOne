@@ -1,7 +1,5 @@
 package me.engineone.core.holder;
 
-import me.engineone.core.listenable.RunnableListenable;
-
 /**
  * Created by BinaryBench on 4/22/2017.
  */

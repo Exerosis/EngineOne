@@ -1,19 +1,15 @@
 package me.engineone.core.holder;
 
-import me.engineone.core.listenable.BasicPriorityEventListenable;
-import me.engineone.core.listenable.PriorityEventListenable;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Consumer;
 
 /**
  * Created by BinaryBench on 4/20/2017.
  */
 public class BasicCollectionHolder<T> implements CollectionHolder<T> {
 
-    private PriorityEventListenable<T> removeListenable = new BasicPriorityEventListenable<>();
-    private PriorityEventListenable<T> addListenable = new BasicPriorityEventListenable<>();
+    private List<Consumer<T>> removeListenable = new ArrayList<>();
+    private List<Consumer<T>> addListenable = new ArrayList<>();
     private Set<T> contents = new HashSet<>();
 
     @Override
@@ -22,12 +18,12 @@ public class BasicCollectionHolder<T> implements CollectionHolder<T> {
     }
 
     @Override
-    public PriorityEventListenable<T> getAddListenable() {
+    public List<Consumer<T>> getAddListeners() {
         return addListenable;
     }
 
     @Override
-    public PriorityEventListenable<T> getRemoveListenable() {
+    public List<Consumer<T>> getRemoveListeners() {
         return removeListenable;
     }
 }

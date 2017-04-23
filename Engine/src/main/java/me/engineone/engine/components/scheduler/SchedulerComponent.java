@@ -13,7 +13,7 @@ public class SchedulerComponent extends Component {
     private ExecutorService executor = Executors.newFixedThreadPool(10);
 
     public SchedulerComponent() {
-        addEnable(() -> {
+        onEnable(() -> {
             if (executor.isShutdown())
                 executor = Executors.newFixedThreadPool(10);
             executor.execute(() -> {
@@ -41,7 +41,7 @@ public class SchedulerComponent extends Component {
             });
         });
 
-        addDisable(() -> {
+        onDisable(() -> {
             executor.shutdown();
             tasks.clear();
         });

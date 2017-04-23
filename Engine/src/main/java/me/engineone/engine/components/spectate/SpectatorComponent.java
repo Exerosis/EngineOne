@@ -1,8 +1,6 @@
 package me.engineone.engine.components.spectate;
 
 import me.engineone.core.holder.CollectionHolder;
-import me.engineone.core.listenable.BasicPriorityEventListenable;
-import me.engineone.core.listenable.PriorityEventListenable;
 import me.engineone.engine.components.base.ParentListenerComponent;
 import me.engineone.engine.components.disablers.*;
 import me.engineone.engine.utilites.ListUtil;
@@ -16,17 +14,15 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.function.Consumer;
 
 public class SpectatorComponent extends ParentListenerComponent implements CollectionHolder<Player> {
 
     private static final float SPEED_INCREMENT = 0.1f;
     private final Set<Player> spectators = new HashSet<>();
-    private final PriorityEventListenable<Player> removeListenable = new BasicPriorityEventListenable<>();
-    private final PriorityEventListenable<Player> addListenable = new BasicPriorityEventListenable<>();
+    private final List<Consumer<Player>> removeListenable = new ArrayList<>();
+    private final List<Consumer<Player>> addListenable = new ArrayList<>();
     private final List<Vector> spawns;
 
     public SpectatorComponent(List<Vector> spawns) {
@@ -37,9 +33,10 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
         addChild(new DropItemDisabledComponent(this));
         addChild(new PickUpDisabledComponent(this));
 
-        addAddListener(this::addListener);
-        addRemoveListener(this::removeListener);
-        addDisable(this::clear);
+
+        onAdd(this::addListener);
+        onRemove(this::removeListener);
+        onDisable(this::clear);
     }
 
     private void addListener(Player player) {
@@ -94,12 +91,12 @@ public class SpectatorComponent extends ParentListenerComponent implements Colle
     }
 
     @Override
-    public PriorityEventListenable<Player> getAddListenable() {
+    public List<Consumer<Player>> getAddListeners() {
         return addListenable;
     }
 
     @Override
-    public PriorityEventListenable<Player> getRemoveListenable() {
+    public List<Consumer<Player>> getRemoveListeners() {
         return removeListenable;
     }
 

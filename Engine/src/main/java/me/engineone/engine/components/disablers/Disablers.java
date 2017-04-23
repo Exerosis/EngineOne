@@ -123,6 +123,7 @@ public class Disablers {
         return damage(players, EntityDamageEvent.DamageCause.FALL);
     }
 
+    /*
     // Hunger
     static EventComponent hunger(CollectionHolder<Player> players) {
         return hunger(players, 20);
@@ -130,9 +131,10 @@ public class Disablers {
     static EventComponent hunger(CollectionHolder<Player> players, int foodLevel) {
         return (EventComponent)
                 hungerChange(players)
-                .registerToListenable(players.getAddListenable(), player -> player.setFoodLevel(foodLevel))
+                .registerToListenable(players.getAddListeners(), player -> player.setFoodLevel(foodLevel))
                 .addEnable(() -> players.forEach(player -> player.setFoodLevel(foodLevel)));
     }
+
     //     Hunger Change
     static EventComponent hungerChange(Predicate<Player> players) {
         return EventComponent.listen(FoodLevelChangeEvent.class, event -> {
@@ -140,7 +142,7 @@ public class Disablers {
                 event.setCancelled(true);
         });
     }
-
+    */
     // Bow
     static EventComponent bowShoot(Predicate<Player> players) {
         return EventComponent.listen(EntityShootBowEvent.class, event -> {

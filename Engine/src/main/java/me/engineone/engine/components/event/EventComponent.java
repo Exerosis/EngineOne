@@ -1,18 +1,19 @@
 package me.engineone.engine.components.event;
 
-import me.engineone.core.listenable.*;
 import net.jodah.typetools.TypeResolver;
 import me.engineone.engine.components.base.ListenerComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unchecked")
 public class EventComponent<T extends Event> extends ListenerComponent {
 
-    private final PriorityEventListenable<T> eventListenable = new BasicPriorityEventListenable<>();
+    private final List<Consumer<T>> eventListeners = new ArrayList<>();
     private final Class<T> type;
     private final EventPriority priority;
 
@@ -21,33 +22,24 @@ public class EventComponent<T extends Event> extends ListenerComponent {
         this.priority = priority;
     }
 
+    public EventComponent onEvent(Consumer<T> listener) {
+        getEventListeners().add(listener);
+        return this;
+    }
 
-    public EventComponent<T> addEvent(Consumer<T> listener) {
-        getEventListenable().add(listener);
+    public EventComponent unregisterEvent(Consumer<T> listener) {
+        getEventListeners().remove(listener);
         return this;
     }
-    public EventComponent<T> addEvent(Consumer<T> listener, float priority) {
-        getEventListenable().add(listener, priority);
-        return this;
-    }
-    public EventComponent<T> removeEvent(Consumer<T> listener) {
-        getEventListenable().remove(listener);
-        return this;
-    }
-    public boolean isEventRegistered(Consumer<T> listener) {
-        return getEventListenable().isRegistered(listener);
-    }
-    public float getEventPriority(Consumer<T> listener) {
-        return getEventListenable().getPriority(listener);
-    }
-    public PriorityEventListenable<T> getEventListenable() {
-        return eventListenable;
+
+    public List<Consumer<T>> getEventListeners() {
+        return eventListeners;
     }
 
     @Override
     public void enable() {
         Bukkit.getPluginManager().registerEvent(type, this, priority, (listener, event) -> {
-            getEventListenable().accept((T) event);
+            getEventListeners().forEach(tConsumer -> tConsumer.accept((T) event));
         }, Bukkit.getPluginManager().getPlugins()[0]);
 
         super.enable();
@@ -81,7 +73,7 @@ public class EventComponent<T extends Event> extends ListenerComponent {
             throw new IllegalArgumentException("Sorry, couldn't resolve Event through method that returns functional interfaces.\n" +
                     "Please either use listen(Consumer<T> listener, Predicate<T> filter, Class<T> type) or use direct method references or lambdas");
         if (listener != null)
-            event.addEvent(listener);
+            event.onEvent(listener);
         return event;
     }
 

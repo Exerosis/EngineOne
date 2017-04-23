@@ -7,7 +7,7 @@ public interface Reducible<T> extends RemoveListenable<T> {
     default boolean remove(Object element) {
         boolean result = removeSilently((T) element);
         if (result)
-            getRemoveListenable().accept((T) element);
+            getRemoveListeners().forEach(tConsumer -> tConsumer.accept((T) element));
         return result;
     }
 

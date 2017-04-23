@@ -10,8 +10,8 @@ public class TaskComponent extends Component {
 
     public TaskComponent(@NonNull Runnable task, double delay, int times, boolean sync, @NonNull SchedulerComponent scheduler) {
         data = new TaskData(delay, times, sync);
-        addEnable(runnable(scheduler::task, task, data));
-        addDisable(runnable(scheduler::cancelTask, task));
+        onEnable(runnable(scheduler::task, task, data));
+        onDisable(runnable(scheduler::cancelTask, task));
     }
 
     public static TaskComponent delay(@NonNull Runnable task, double delay, @NonNull SchedulerComponent scheduler) {

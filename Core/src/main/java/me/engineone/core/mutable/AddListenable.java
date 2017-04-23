@@ -1,8 +1,6 @@
 package me.engineone.core.mutable;
 
-import me.engineone.core.listenable.PriorityEventListenable;
-import me.engineone.core.listenable.PriorityListenable;
-
+import java.util.List;
 import java.util.function.Consumer;
 
 /**
@@ -10,16 +8,15 @@ import java.util.function.Consumer;
  */
 public interface AddListenable<T> {
 
-    PriorityEventListenable<T> getAddListenable();
+    List<Consumer<T>> getAddListeners();
     
-    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener) {
-        return getAddListenable().add(listener);
-    }
-    default PriorityListenable<Consumer<T>> addAddListener(Consumer<T> listener, float priority) {
-        return getAddListenable().add(listener, priority);
+    default AddListenable<T> onAdd(Consumer<T> listener) {
+        getAddListeners().add(listener);
+        return this;
     }
 
-    default PriorityListenable<Consumer<T>> removeAddListener(Consumer<T> listener) {
-        return getAddListenable().remove(listener);
+    default AddListenable<T> unregisterAdd(Consumer<T> listener) {
+        getAddListeners().remove(listener);
+        return this;
     }
 }

@@ -1,62 +1,45 @@
 package me.engineone.core.component;
 
 import me.engineone.core.enableable.Enableable;
-import me.engineone.core.listenable.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Component implements Enableable {
 
-    private final PriorityRunnableListenable enableListenable = new BasicPriorityRunnableListenable();
-    private final PriorityRunnableListenable disableListenable = new BasicPriorityRunnableListenable();
+    private final List<Runnable> enableListenable = new ArrayList<>();
+    private final List<Runnable> disableListenable = new ArrayList<>();
     private boolean enabled = false;
 
-    public Component addEnable(Runnable listener) {
-        enableListenable.add(listener);
+    public Component onEnable(Runnable listener) {
+        getEnableListenable().add(listener);
         return this;
     }
-    public Component addEnable(Runnable listener, float priority) {
-        enableListenable.add(listener, priority);
+    public Component unregisterEnable(Runnable listener) {
+        getEnableListenable().remove(listener);
         return this;
     }
-    public Component removeEnable(Runnable listener) {
-        enableListenable.remove(listener);
+    public Component onDisable(Runnable listener) {
+        getDisableListenable().add(listener);
         return this;
     }
-    public Component addDisable(Runnable listener) {
-        disableListenable.add(listener);
+    public Component unregisterDisable(Runnable listener) {
+        getDisableListenable().remove(listener);
         return this;
     }
-    public Component addDisable(Runnable listener, float priority) {
-        disableListenable.add(listener, priority);
-        return this;
-    }
-    public Component removeDisable(Runnable listener) {
-        disableListenable.remove(listener);
-        return this;
-    }
-    public PriorityRunnableListenable getEnableListenable() {
+
+    public List<Runnable> getEnableListenable() {
         return enableListenable;
     }
-    public PriorityRunnableListenable getDisableListenable() {
+    public List<Runnable> getDisableListenable() {
         return disableListenable;
-    }
-
-    public <T> Component registerToListenable(Listenable<T> listenable, T t) {
-        getEnableListenable().add(() -> listenable.add(t));
-        getDisableListenable().add(() -> listenable.remove(t));
-        return this;
-    }
-
-    public <T> Component registerToListenable(PriorityListenable<T> listenable, T t, float priority) {
-        getEnableListenable().add(() -> listenable.add(t, priority));
-        getDisableListenable().add(() -> listenable.remove(t));
-        return this;
     }
 
     @Override
     public void enable() {
         if (enabled)
             return;
-        enableListenable.run();
+        enableListenable.forEach(Runnable::run);
         enabled = true;
     }
 
@@ -64,7 +47,7 @@ public class Component implements Enableable {
     public void disable() {
         if (!enabled)
             return;
-        disableListenable.run();
+        disableListenable.forEach(Runnable::run);
         enabled = false;
     }
 

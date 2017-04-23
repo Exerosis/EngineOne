@@ -1,11 +1,7 @@
 package me.engineone.example;
 
-import me.engineone.core.holder.BasicCollectionHolder;
-import me.engineone.core.holder.CollectionHolder;
-import me.engineone.core.holder.MutableHolder;
-import me.engineone.core.holder.MutateListenableHolder;
-
-import javax.print.DocFlavor;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -15,17 +11,25 @@ public class Main {
 
 
     public static void main(String[] args) {
-        CollectionHolder<String> holder = new BasicCollectionHolder<>();
+        List<Runnable> list = new ArrayList<>();
 
-        MutateListenableHolder<String> mutableHolder = holder.partition(s -> s.toLowerCase().startsWith("a"));
-        MutateListenableHolder<String> mutableHolder1 = mutableHolder.partition(s -> s.toLowerCase().startsWith("a"));
+        Runnable runnable = () -> System.out.println("Potato");
 
-        holder.addAddListener(s -> System.out.format("Holder received: %s", s));
-        mutableHolder.addAddListener(s -> System.out.format("MutableHolder received: %s", s));
-        mutableHolder1.addAddListener(s -> System.out.format("MutableHolder received: %s", s));
+        list.add(new Runnable() {
+            @Override
+            public void run() {
+                runnable.run();
+            }
+        });
 
-        holder.add("Potato");
+        list.remove(new Runnable() {
+            @Override
+            public void run() {
+                runnable.run();
+            }
+        });
 
+        System.out.println(list);
     }
 
     public static void print() {

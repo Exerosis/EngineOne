@@ -1,43 +1,25 @@
 package me.engineone.core.completeable;
 
 import me.engineone.core.component.Component;
-import me.engineone.core.listenable.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Phase extends Component implements Completeable, PriorityListenable<Runnable> {
-    private final PriorityRunnableListenable completeListeners = new BasicPriorityRunnableListenable();
+public class Phase extends Component implements Completeable {
+    private final List<Runnable> completeListeners = new ArrayList<>();
     private boolean complete = false;
 
-    @Override
-    public boolean isRegistered(Runnable listener) {
-        return getCompleteListeners().isRegistered(listener);
-    }
-
-    @Override
-    public Phase add(Runnable listener) {
-        return (Phase) PriorityListenable.super.add(listener);
-    }
-
-    @Override
-    public Phase add(Runnable listener, float priority) {
-        getCompleteListeners().add(listener, priority);
+    public Phase onComplete(Runnable runnable) {
+        getCompleteListeners().add(runnable);
         return this;
     }
 
-    @Override
-    public Phase remove(Runnable listener) {
-        getCompleteListeners().remove(listener);
+    public Phase unregisterComplete(Runnable runnable) {
+        getCompleteListeners().add(runnable);
         return this;
     }
 
-    @Override
-    public float getPriority(Runnable listener) {
-        return getCompleteListeners().getPriority(listener);
-    }
-
-    public PriorityRunnableListenable getCompleteListeners() {
+    public List<Runnable> getCompleteListeners() {
         return completeListeners;
     }
 
@@ -52,7 +34,7 @@ public class Phase extends Component implements Completeable, PriorityListenable
     public void complete() {
         if (complete || !isEnabled())
             return;
-        getCompleteListeners().run();
+        getCompleteListeners().forEach(Runnable::run);
         complete = true;
     }
 
