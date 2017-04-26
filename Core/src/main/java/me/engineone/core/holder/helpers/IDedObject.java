@@ -39,5 +39,5 @@ public abstract class IDedObject<T> {
         return id;
     }
 
-    abstract T getWrapper();
+    abstract T getSelf();
 }
