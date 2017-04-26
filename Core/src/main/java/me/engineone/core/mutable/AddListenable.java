@@ -9,6 +9,7 @@ import java.util.function.Consumer;
 public interface AddListenable<T> {
 
     List<Consumer<T>> getAddListeners();
+    List<Consumer<T>> getAddedListeners();
     
     default AddListenable<T> onAdd(Consumer<T> listener) {
         getAddListeners().add(listener);
@@ -17,6 +18,16 @@ public interface AddListenable<T> {
 
     default AddListenable<T> unregisterAdd(Consumer<T> listener) {
         getAddListeners().remove(listener);
+        return this;
+    }
+
+    default AddListenable<T> onAdded(Consumer<T> listener) {
+        getAddedListeners().add(listener);
+        return this;
+    }
+
+    default AddListenable<T> unregisterAdded(Consumer<T> listener) {
+        getAddedListeners().remove(listener);
         return this;
     }
 }

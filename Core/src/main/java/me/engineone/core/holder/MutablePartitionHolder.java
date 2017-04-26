@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
-public class MutablePartitionHolder<T> implements MutateHolder<T>, PartitionHolder<T> {
+public class MutablePartitionHolder<T>  {
+    /*
 
     private List<Consumer<T>> addListeners;
     private List<Consumer<T>> removeListeners;
@@ -85,5 +86,5 @@ public class MutablePartitionHolder<T> implements MutateHolder<T>, PartitionHold
         }
 
     }
-
+    */
 }

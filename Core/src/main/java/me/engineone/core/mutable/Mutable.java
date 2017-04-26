@@ -10,8 +10,18 @@ public interface Mutable<T> extends MutateListenable<T>, Augmentable<T>, Reducib
     }
 
     @Override
+    default Mutable<T> onAdded(Consumer<T> listener) {
+        return (Mutable<T>) MutateListenable.super.onAdded(listener);
+    }
+
+    @Override
     default Mutable<T> onRemove(Consumer<T> listener) {
         return (Mutable<T>) MutateListenable.super.onRemove(listener);
+    }
+
+    @Override
+    default Mutable<T> onRemoved(Consumer<T> listener) {
+        return (Mutable<T>) MutateListenable.super.onRemoved(listener);
     }
 
     @Override

@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.function.Predicate;
 
 public final class PartitionUtil {
+    /*
     private PartitionUtil() {
     }
 
@@ -74,5 +75,5 @@ public final class PartitionUtil {
                 return list.contains(element);
             }
         }.partition(filter);
-    }
+    }*/
 }

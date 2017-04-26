@@ -5,9 +5,9 @@ public interface Augmentable<T> extends AddListenable<T> {
     boolean addSilently(T element);
 
     default boolean add(T element) {
+        getAddListeners().forEach(tConsumer -> tConsumer.accept(element));
         boolean result = addSilently(element);
-        if (result)
-            getAddListeners().forEach(tConsumer -> tConsumer.accept(element));
+        getAddedListeners().forEach(tConsumer -> tConsumer.accept(element));
         return result;
     }
 

@@ -10,8 +10,11 @@ import java.util.function.Consumer;
 
 public class CollectionHolderComponent<T> extends ParentComponent implements CollectionHolder<T> {
 
-    private final List<Consumer<T>> removeListenable = new ArrayList<>();
-    private final List<Consumer<T>> addListenable = new ArrayList<>();
+    private final List<Consumer<T>> removeListeners = new ArrayList<>();
+    private final List<Consumer<T>> addListeners = new ArrayList<>();
+    private final List<Consumer<T>> removedListeners = new ArrayList<>();
+    private final List<Consumer<T>> addedListeners = new ArrayList<>();
+
     private final Collection<T> contents;
 
     public CollectionHolderComponent() {
@@ -29,13 +32,21 @@ public class CollectionHolderComponent<T> extends ParentComponent implements Col
 
     @Override
     public List<Consumer<T>> getAddListeners() {
-        return removeListenable;
+        return removeListeners;
     }
 
     @Override
     public List<Consumer<T>> getRemoveListeners() {
-        return addListenable;
+        return addListeners;
     }
 
+    @Override
+    public List<Consumer<T>> getRemovedListeners() {
+        return removedListeners;
+    }
 
+    @Override
+    public List<Consumer<T>> getAddedListeners() {
+        return addedListeners;
+    }
 }

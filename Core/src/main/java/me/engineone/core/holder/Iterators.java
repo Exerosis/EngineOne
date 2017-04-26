@@ -57,7 +57,7 @@ public final class Iterators {
     }
 
     public static <T> Iterator<T> difference(Iterator<T> primary, Predicate<T> secondary) {
-        return  new Iterator<T>() {
+        return new Iterator<T>() {
             private final Iterator<T> iterator = primary;
             private T next = iterator.hasNext() ? iterator.next() : null;
 

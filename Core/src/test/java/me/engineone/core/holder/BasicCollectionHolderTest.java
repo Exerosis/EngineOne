@@ -34,9 +34,8 @@ public class BasicCollectionHolderTest {
     }
 
     @Test
-    public void partitions() throws Exception {
+    public void basic() throws Exception {
         checkMutateListenableHolder(holder);
-        checkMutateListenableHolder(holder.partition(s -> true), holder);
     }
 
     @Test
@@ -48,8 +47,8 @@ public class BasicCollectionHolderTest {
         otherHolder.add("Potato");
 
         MutateHolder<String> difference = holder.difference(otherHolder);
-        difference.onAdd(s -> assertTrue(holder.test(s) && !otherHolder.test(s)));
-        difference.onRemove(s -> assertTrue(!holder.test(s) || otherHolder.test(s)));
+        difference.onAdded(s -> assertTrue("Item added to difference that's not the difference.", holder.test(s) && !otherHolder.test(s)));
+        difference.onRemoved(s -> assertTrue("Item added to difference that's not the difference.", !holder.test(s) || otherHolder.test(s)));
 
         assertEquals("MutableHolder.difference() did not split the holder correctly.",1, difference.size());
         holder.add("OtherPotato");
@@ -70,8 +69,8 @@ public class BasicCollectionHolderTest {
         otherHolder.add("Mushroom");
 
         MutateHolder<String> union = holder.union(otherHolder);
-        union.onAdd(s -> assertTrue(holder.test(s) || otherHolder.test(s)));
-        union.onRemove(s -> assertTrue(!holder.test(s) && !otherHolder.test(s)));
+        union.onAdded(s -> assertTrue("Item added to union that's not the union.", holder.test(s) || otherHolder.test(s)));
+        union.onRemoved(s -> assertTrue("Item removed from union that's in union.", !holder.test(s) && !otherHolder.test(s)));
 
         assertEquals("MutableHolder.union() did not add the holders correctly.",3, union.size());
         holder.add("OtherPotato");
@@ -83,9 +82,6 @@ public class BasicCollectionHolderTest {
     }
 
 
-
-
-
     public void checkMutateListenableHolder(MutableHolder<String> holder) {
         checkMutateListenableHolder(holder, holder);
     }
@@ -95,59 +91,50 @@ public class BasicCollectionHolderTest {
         // Add & Remove
         ConsumerCallCounter<String> addCounter = new ConsumerCallCounter<>();
         ConsumerCallCounter<String> removeCounter = new ConsumerCallCounter<>();
+        ConsumerCallCounter<String> addedCounter = new ConsumerCallCounter<>();
+        ConsumerCallCounter<String> removedCounter = new ConsumerCallCounter<>();
 
         holder.onAdd(addCounter);
         holder.onRemove(removeCounter);
+        holder.onAdded(addedCounter);
+        holder.onRemoved(removedCounter);
 
         master.add("Potato-checkAddAndRemove");
         master.remove("Potato-checkAddAndRemove");
 
         holder.unregisterAdd(addCounter);
         holder.unregisterRemove(removeCounter);
+        holder.unregisterAdded(addedCounter);
+        holder.unregisterRemoved(removedCounter);
 
         master.add("Mushroom-checkAddAndRemove");
         master.remove("Mushroom-checkAddAndRemove");
 
         assertEquals(holder.getClass().getSimpleName() + " is not registering/unregistering add listeners properly", 1, addCounter.count());
         assertEquals(holder.getClass().getSimpleName() + " is not registering/unregistering remove listeners properly", 1, removeCounter.count());
-
-        //Partitions
-        addCounter = new ConsumerCallCounter<>();
-        removeCounter = new ConsumerCallCounter<>();
-        Predicate<String> predicate = s -> s.toLowerCase().startsWith("a");
-
-        MutateHolder<String> partition = holder.partition(predicate);
-
-        partition.onAdd(s -> {
-            assertTrue(holder.getClass().getSimpleName() + ".partition() allowed '" + s + "' in, a string that does not fit in the predicate. : " + (holder == this.holder), predicate.test(s));
-        });
-        partition.onAdd(addCounter);
-        partition.onRemove(removeCounter);
-
-        List<String> testData = new ArrayList<>(Arrays.asList(
-                "Potato-checkMutateListenableHolder",
-                "Apple-checkMutateListenableHolder",
-                "Mushroom-checkMutateListenableHolder",
-                "Apricot-checkMutateListenableHolder",
-                "Dogfood-checkMutateListenableHolder",
-                "Apple Pie-checkMutateListenableHolder"
-        ));
-
-        master.add(testData);
-        //FixMe
-        testData.forEach(master::remove);
-
-        assertEquals(addCounter.count(), count(testData, predicate));
-        assertEquals(addCounter.count(), removeCounter.count());
+        assertEquals(holder.getClass().getSimpleName() + " is not registering/unregistering added listeners properly", 1, addedCounter.count());
+        assertEquals(holder.getClass().getSimpleName() + " is not registering/unregistering removed listeners properly", 1, removedCounter.count());
 
 
         // Check preserve order
         ConsumerWasCalled<String> addWasCalled = new ConsumerWasCalled<>();
         ConsumerWasCalled<String> removeWasCalled = new ConsumerWasCalled<>();
+        ConsumerWasCalled<String> addedWasCalled = new ConsumerWasCalled<>();
+        ConsumerWasCalled<String> removedWasCalled = new ConsumerWasCalled<>();
+
+
         holder.onAdd(addWasCalled);
         holder.onAdd(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve add Listeners order correctly", addWasCalled.wasCalled()));
+
+        holder.onAdded(addedWasCalled);
+        holder.onAdded(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve added Listeners order correctly", addedWasCalled.wasCalled()));
+
         holder.onRemove(removeWasCalled);
-        holder.onRemove(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve remove Listeners order correctly", addWasCalled.wasCalled()));
+        holder.onRemove(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve remove Listeners order correctly", removeWasCalled.wasCalled()));
+
+        holder.onRemoved(removedWasCalled);
+        holder.onRemoved(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve removed Listeners order correctly", removedWasCalled.wasCalled()));
+
         master.add("Preserve order check");
         master.remove("Preserve order check");
 
@@ -155,27 +142,12 @@ public class BasicCollectionHolderTest {
         // Check priority
         addWasCalled.reset();
         removeWasCalled.reset();
-
         holder.onAdd(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve add Listeners order correctly", addWasCalled.wasCalled()));
         holder.getAddListeners().add(0, addWasCalled);
-
         holder.onRemove(s -> assertTrue(holder.getClass().getSimpleName() + " does not preserve remove Listeners order correctly", addWasCalled.wasCalled()));
         holder.getRemoveListeners().add(0, removeWasCalled);
         master.add("Priority Check");
         master.remove("Priority Check");
 
-    }
-
-    public <T> int count(Iterable<T> data, Predicate<T> predicate) {
-        int counter = 0;
-        for (T datum : data) {
-            if (predicate.test(datum))
-                counter++;
-        }
-        return counter;
-    }
-
-    public static void print() {
-        //System.out.printf("Holder:\t %s\nMutable:\t %s\nDifference:\t %s\n", Lists.newArrayList(holder), Lists.newArrayList(mutable), Lists.newArrayList(difference));
     }
 }

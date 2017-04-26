@@ -13,8 +13,18 @@ public interface MutateListenable<T> extends AddListenable<T>, RemoveListenable<
     }
 
     @Override
+    default MutateListenable<T> onAdded(Consumer<T> listener) {
+        return (MutateListenable<T>) AddListenable.super.onAdded(listener);
+    }
+
+    @Override
     default MutateListenable<T> onRemove(Consumer<T> listener) {
         return (MutateListenable<T>) RemoveListenable.super.onRemove(listener);
+    }
+
+    @Override
+    default MutateListenable<T> onRemoved(Consumer<T> listener) {
+        return (MutateListenable<T>) RemoveListenable.super.onRemoved(listener);
     }
 
     @Override

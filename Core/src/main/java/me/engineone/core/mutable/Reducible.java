@@ -5,9 +5,9 @@ public interface Reducible<T> extends RemoveListenable<T> {
 
     @SuppressWarnings("unchecked")
     default boolean remove(Object element) {
+        getRemoveListeners().forEach(tConsumer -> tConsumer.accept((T) element));
         boolean result = removeSilently((T) element);
-        if (result)
-            getRemoveListeners().forEach(tConsumer -> tConsumer.accept((T) element));
+        getRemovedListeners().forEach(tConsumer -> tConsumer.accept((T) element));
         return result;
     }
 

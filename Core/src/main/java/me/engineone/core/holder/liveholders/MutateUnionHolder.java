@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class MutateUnionHolder<T> implements MutateHolder<T> {
-
+public class MutateUnionHolder<T> {
+    /*
 
     private List<Consumer<T>> addListeners;
     private List<Consumer<T>> removeListeners;
@@ -130,5 +130,5 @@ public class MutateUnionHolder<T> implements MutateHolder<T> {
                 secondary.remove(getSecondaryIDedFilter(element));
         }
     }
-
+    */
 }

@@ -11,8 +11,8 @@ import java.util.function.Consumer;
 /**
  * Created by BinaryBench on 4/22/2017.
  */
-public class MutateDifferenceHolder<T> implements MutateHolder<T> {
-
+public class MutateDifferenceHolder<T> {
+    /*
     private List<Consumer<T>> addListeners;
     private List<Consumer<T>> removeListeners;
 
@@ -131,4 +131,5 @@ public class MutateDifferenceHolder<T> implements MutateHolder<T> {
                 secondary.remove(getSecondaryIDedFilter(element));
         }
     }
+    */
 }
