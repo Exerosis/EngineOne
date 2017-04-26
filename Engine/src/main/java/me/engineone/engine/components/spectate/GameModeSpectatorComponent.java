@@ -10,9 +10,9 @@ import java.util.function.Consumer;
 
 public class GameModeSpectatorComponent extends CollectionHolderComponent<Player> {
 
-    private Consumer<Player> joinSpectate;
-
     public GameModeSpectatorComponent() {
+        onAdd(this::enableSpectate);
+        onRemove(this::disableSpectate);
     }
 
     public void enableSpectate(Player player) {
