@@ -11,6 +11,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="Engine_main" />
     <orderEntry type="library" name="Gradle: org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="module" module-name="Core_main" />
     <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
     <orderEntry type="library" name="Gradle: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
@@ -22,6 +23,5 @@
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.3.1" level="project" />
     <orderEntry type="library" name="Gradle: com.google.guava:guava:18.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.javatuples:javatuples:1.2" level="project" />
   </component>
 </module>

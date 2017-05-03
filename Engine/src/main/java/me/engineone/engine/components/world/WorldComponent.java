@@ -1,128 +1,62 @@
 package me.engineone.engine.components.world;
 
-import me.engineone.core.printer.ConsolePrinter;
-import me.engineone.core.printer.PrintLevel;
-import me.engineone.engine.components.base.ListenerComponent;
-import me.engineone.engine.components.scheduler.SchedulerComponent;
-import me.engineone.engine.utilites.FileUtil;
-import org.bukkit.Bukkit;
+import me.engineone.core.component.CollectionHolderComponent;
+import me.engineone.core.component.Component;
+import me.engineone.engine.utilites.WorldUtil;
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
-import org.bukkit.WorldType;
-import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.world.WorldLoadEvent;
 
 import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Consumer;
 
 /**
- * Created by Exerosis.
+ * Created by BinaryBench on 5/2/2017.
  */
-public class WorldComponent extends ListenerComponent {
+public class WorldComponent extends CollectionHolderComponent<World> {
 
-    public static final String WORLD_PATH = "path";
-    public static final String KICK_MESSAGE = "BYE";
-    private final ConsolePrinter consolePrinter;
-    private final SchedulerComponent scheduler;
-    private final File worldFile;
-    private File backupFile;
+    private File saveFile;
+    private Object idObject;
 
-    public WorldComponent(ConsolePrinter consolePrinter, SchedulerComponent scheduler) {
-        this.consolePrinter = consolePrinter;
-        this.scheduler = scheduler;
+    public WorldComponent(File saveFile) {
+        this.saveFile = saveFile;
 
-        //TODO Use new sectioning!
-        worldFile = new File(WORLD_PATH);
-        backupFile = new File(WORLD_PATH + "/backup.tmp");
-    }
+        onEnable(() -> {
+            if (idObject != null)
+                throw new IllegalStateException("IdObject is not null! (this probably means WorldComponent was enabled twice before being disabled)");
+            idObject = new Object();
 
-    public void load() {
-        print("Trying to load world.");
+            WorldUtil.deleteWorld(getWorldName(), aBoolean -> {
+                WorldUtil.createWorld(saveFile, getWorldName(), world -> {
+                    if (world != null)
+                        add(world);
+                });
+            });
 
-        if (!worldFile.getPath().startsWith(Bukkit.getWorldContainer().getParent()))
-            print("Failed to load world! '" + worldFile.getPath() + "' is not in the server folder.");
-        if (!worldFile.exists())
-            print("Failed to load world! No such file or directory: '" + worldFile.getPath() + "'.");
-        if (!worldFile.isDirectory())
-            print("Failed to load world! Could not find world at '" + worldFile.getPath() + "'.");
 
-        File worldData = new File(worldFile.getPath() + "/level.dat");
+        });
 
-        if (!worldData.exists())
-            print("Failed to load world! Could not find expected 'level.dat' in directory '" + worldFile.getPath() + "'.");
-
-        WorldCreator worldCreator = new WorldCreator("");
-        worldCreator.type(WorldType.FLAT);
-        Bukkit.createWorld(worldCreator);
-
-        print("World can be loaded. Loading world.");
-    }
-
-    @EventHandler
-    public void onWorldLoadEvent(WorldLoadEvent event) {
-        if (event.getWorld().getWorldFolder().equals(worldFile))
-            onLoad();
-    }
-
-    public void backup() {
-        try {
-            backupFile = File.createTempFile("backup", ".tmp", worldFile);
-            FileUtil.createZip(worldFile, backupFile);
-            onBackup();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void revert() {
-        if (!backupFile.isFile())
-            return;
-        try {
-            // FileUtils.deleteDirectory(worldFile);
-            FileUtil.unzip(backupFile, worldFile);
-            onRevert();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void unload() {
-        print("Trying to unload world!");
-        World world = Bukkit.getWorld(worldFile.getName());
-
-        if (world == null)
-            return;
-
-        //Remove players
-        for (Player player : world.getPlayers())
-            player.kickPlayer(KICK_MESSAGE);
-
-        //Wait 1 second before unloading the world
-        scheduler.task(() -> {
-            if (!Bukkit.unloadWorld(world, false))
-                throw new RuntimeException("[WorldComponent] Unable to unload world, please fix the problem!");
-            onUnload();
-        }, 400);
-    }
-
-    private void print(Object message) {
-        consolePrinter.print("[WorldComponent] " + message, PrintLevel.HIGH);
-    }
-
-    protected void onUnload() {
+        onDisable(() -> {
+            if (idObject == null)
+                throw new IllegalStateException("IdObject is null! (this probably means WorldComponent was disabled before being enabled)");
+            World world = WorldUtil.getWorld(getWorldName());
+            if (world != null)
+                remove(world);
+            WorldUtil.deleteWorld(getWorldName());
+            idObject = null;
+        });
 
     }
 
-    protected void onLoad() {
-
+    public String getWorldName() {
+        return saveFile.getName() + "-" + idObject.hashCode();
     }
 
-    protected void onRevert() {
-
+    public List<Consumer<World>> getOnLoadListeners() {
+        return getAddListeners();
     }
 
-    protected void onBackup() {
-
+    public List<Consumer<World>> getOnUnloadListeners() {
+        return getRemoveListeners();
     }
 }
