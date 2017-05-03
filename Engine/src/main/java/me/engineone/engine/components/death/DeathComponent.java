@@ -2,6 +2,7 @@ package me.engineone.engine.components.death;
 
 import me.engineone.engine.components.base.ListenerComponent;
 import me.engineone.engine.components.death.event.PlayerDeathEvent;
+import me.engineone.engine.utilites.ServerUtil;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.EntityDeathEvent;
@@ -45,7 +46,7 @@ public class DeathComponent extends ListenerComponent {
 
     public void killPlayer(Player player, int exp, List<ItemStack> drops) {
         EntityDeathEvent deathEvent = new EntityDeathEvent(player, Arrays.asList(player.getInventory().getContents()), player.getTotalExperience());
-        callEvent(new PlayerDeathEvent(deathEvent));
+        ServerUtil.callEvent(new PlayerDeathEvent(deathEvent));
     }
 
     @EventHandler
@@ -61,7 +62,7 @@ public class DeathComponent extends ListenerComponent {
 
         player.resetMaxHealth();
         player.setHealth(20);
-        callEvent(new PlayerDeathEvent(event));
+        ServerUtil.callEvent(new PlayerDeathEvent(event));
     }
 
 }

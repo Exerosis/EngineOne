@@ -1,27 +1,27 @@
 package me.engineone.engine.holder;
 
-import me.engineone.engine.utilites.EventManager;
+import me.engineone.engine.utilites.ServerUtil;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-public class OnlinePlayerHolder extends PlayerHolder implements EventManager, Listener {
+public class OnlinePlayerHolder extends PlayerHolder implements Listener {
     public OnlinePlayerHolder() {
-        registerListener(this);
+        ServerUtil.registerListener(this);
     }
 
     public void unregister() {
-        unregisterListener(this);
+        ServerUtil.unregisterListener(this);
     }
 
     @EventHandler
     private void onJoin(PlayerJoinEvent event) {
-        addSilently(event.getPlayer());
+        add(event.getPlayer());
     }
 
     @EventHandler
     private void onQuit(PlayerQuitEvent event) {
-        removeSilently(event.getPlayer());
+        remove(event.getPlayer());
     }
 }

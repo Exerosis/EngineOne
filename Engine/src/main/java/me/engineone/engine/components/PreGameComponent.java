@@ -1,6 +1,7 @@
 package me.engineone.engine.components;
 
 import me.engineone.core.component.ParentComponent;
+import me.engineone.core.holder.CollectionHolder;
 import me.engineone.engine.components.disablers.*;
 import org.bukkit.entity.Player;
 
@@ -8,15 +9,17 @@ import java.util.function.Predicate;
 
 public class PreGameComponent extends ParentComponent {
 
-    public PreGameComponent(Predicate<Player> players) {
-        addChild(new BlockBreakDisabledComponent(players));
-        addChild(new BlockPlaceDisabledComponent(players));
-        addChild(new DropItemDisabledComponent(players));
-        addChild(new HungerDisabledComponent(players));
+    public PreGameComponent(CollectionHolder<Player> players) {
+        addChild(Disablers.blockBreak(players));
+        addChild(Disablers.blockPlace(players));
+        addChild(Disablers.dropItem(players));
+        addChild(Disablers.itemPickup(players));
+
+        addChild(Disablers.hunger(players));
         addChild(new MovementDisabledComponent(players));
-        addChild(new PickUpDisabledComponent(players));
-        addChild(new PvEDisabledComponent(players));
-        addChild(new PvPDisabledComponent(players));
+
+        addChild(Disablers.pvp(players));
+        addChild(Disablers.damage(players));
     }
 
     @Override

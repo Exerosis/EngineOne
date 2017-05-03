@@ -1,10 +1,8 @@
 package me.engineone.engine.components.event;
 
 import me.engineone.core.component.ParentComponent;
-import me.engineone.engine.components.base.ListenerEnableable;
-import me.engineone.engine.utilites.EventManager;
+import me.engineone.engine.utilites.ServerUtil;
 import net.jodah.typetools.TypeResolver;
-import me.engineone.engine.components.base.ListenerComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
@@ -15,7 +13,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 @SuppressWarnings("unchecked")
-public class EventComponent<T extends Event> extends ParentComponent implements EventManager, Listener{
+public class EventComponent<T extends Event> extends ParentComponent implements Listener {
 
     private final List<Consumer<T>> eventListeners = new ArrayList<>();
     private final Class<T> type;
@@ -51,7 +49,7 @@ public class EventComponent<T extends Event> extends ParentComponent implements 
 
     @Override
     public void disable() {
-        unregisterListener(this);
+        ServerUtil.unregisterListener(this);
         super.disable();
     }
 

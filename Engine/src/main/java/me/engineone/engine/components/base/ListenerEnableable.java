@@ -1,19 +1,19 @@
 package me.engineone.engine.components.base;
 
 import me.engineone.core.enableable.Enableable;
-import me.engineone.engine.utilites.EventManager;
+import me.engineone.engine.utilites.ServerUtil;
 import org.bukkit.event.Listener;
 
-public interface ListenerEnableable extends Enableable, EventManager, Listener {
+public interface ListenerEnableable extends Enableable, Listener {
 
     @Override
     default void enable() {
-        registerListener(this);
+        ServerUtil.registerListener(this);
     }
 
     @Override
     default void disable() {
-        unregisterListener(this);
+        ServerUtil.unregisterListener(this);
     }
 
 }

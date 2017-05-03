@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
@@ -88,11 +89,15 @@ public class ServerUtil {
         return plugin;
     }
 
-    public static void registerEvents(Listener listener) {
+    public static void registerListener(Listener listener) {
         Bukkit.getPluginManager().registerEvents(listener, getPlugin());
     }
 
-    public static void unregisterEvents(Listener listener) {
+    public static void unregisterListener(Listener listener) {
         HandlerList.unregisterAll(listener);
+    }
+
+    public static void callEvent(Event event) {
+        Bukkit.getPluginManager().callEvent(event);
     }
 }
