@@ -1,14 +1,10 @@
 package me.engineone.engine.components.disablers;
 
-import me.engineone.core.Parent;
-import me.engineone.core.component.Component;
-import me.engineone.core.component.KeepInListComponent;
+import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.component.ParentComponent;
-import me.engineone.core.enableable.Enableable;
 import me.engineone.core.holder.CollectionHolder;
 import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.utilites.BlockUtil;
-import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Item;
@@ -24,9 +20,7 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -34,6 +28,8 @@ import java.util.function.Predicate;
  * Created by BinaryBench on 4/20/2017.
  */
 public class Disablers {
+
+    // ---=== COMPONENTS ===---
 
     // Block Break
     public static EventComponent blockBreak(Predicate<Player> players) {
@@ -127,7 +123,6 @@ public class Disablers {
         return damage(players, EntityDamageEvent.DamageCause.FALL);
     }
 
-
     // Hunger
     public static ParentComponent hunger(CollectionHolder<Player> players) {
         return hunger(players, 20);
@@ -136,7 +131,7 @@ public class Disablers {
 
         return new ParentComponent(
                 hungerChange(players),
-                new KeepInListComponent<>(players.getAddListeners(), player -> player.setFoodLevel(foodLevel))
+                new AddToListComponent<>(players.getAddListeners(), player -> player.setFoodLevel(foodLevel))
         ).onEnable(() -> players.forEach(player -> player.setFoodLevel(foodLevel)));
     }
 
@@ -155,4 +150,49 @@ public class Disablers {
                 event.setCancelled(true);
         });
     }
+
+
+    // ---=== LISTENERS ===---
+
+    // World
+
+    //     GameRule
+    public static void gameRule(List<Consumer<World>> worldListeners, String gameRule, String value) {
+        worldListeners.add(world -> world.setGameRuleValue(gameRule, value));
+    }
+    public static void gameRule(List<Consumer<World>> worldListeners, String gameRule) {
+        gameRule(worldListeners, gameRule, "false");
+    }
+    public static void time(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "doDaylightCycle");
+    }
+    public static void time(List<Consumer<World>> worldListeners, long time) {
+        worldListeners.add(world -> world.setTime(time));
+        time(worldListeners);
+    }
+    public static void entityDrops(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "doEntityDrops");
+    }
+    public static void fireSpread(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "doFireTick");
+    }
+    public static void mobLoot(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "doMobLoot");
+    }
+    public static void mobSpawning(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "doMobSpawning");
+    }
+    public static void mobGriefing(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "mobGriefing");
+    }
+    public static void naturalRegeneration(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "naturalRegeneration");
+    }
+    public static void randomTickSpeed(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "randomTickSpeed", "0");
+    }
+    public static void deathMessages(List<Consumer<World>> worldListeners) {
+        gameRule(worldListeners, "showDeathMessages");
+    }
+
 }

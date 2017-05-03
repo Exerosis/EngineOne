@@ -39,7 +39,7 @@ public class WorldComponent extends CollectionHolderComponent<World> {
         onDisable(() -> {
             if (idObject == null)
                 throw new IllegalStateException("IdObject is null! (this probably means WorldComponent was disabled before being enabled)");
-            World world = WorldUtil.getWorld(getWorldName());
+            World world = getWorld();
             if (world != null)
                 remove(world);
             WorldUtil.deleteWorld(getWorldName());
@@ -50,6 +50,10 @@ public class WorldComponent extends CollectionHolderComponent<World> {
 
     public String getWorldName() {
         return saveFile.getName() + "-" + idObject.hashCode();
+    }
+
+    public World getWorld() {
+        return WorldUtil.getWorld(getWorldName());
     }
 
     public List<Consumer<World>> getOnLoadListeners() {
