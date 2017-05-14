@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 public class SchedulerComponent extends Component {
     private final Map<Runnable, TaskData> tasks = new ConcurrentHashMap<>();
@@ -46,6 +48,219 @@ public class SchedulerComponent extends Component {
             tasks.clear();
         });
     }
+
+    public TaskBuilder every(int time, TimeUnit unit) {
+        return new TaskBuilder(time, unit);
+    }
+
+    public TimeBuilder every(int time) {
+        return new TimeBuilder(time);
+    }
+
+    public UnitBuilder every() {
+        return new UnitBuilder();
+    }
+
+    public class TaskBuilder {
+        private final int time;
+        private final TimeUnit unit;
+        private Runnable task;
+        private boolean sync = false;
+        private long startTime;
+        private Supplier<Boolean> condition;
+
+        private TaskBuilder(int time, TimeUnit unit) {
+            this.time = time;
+            this.unit = unit;
+        }
+
+        public TaskBuilder run(Runnable... tasks) {
+            task = tasks.length > 1 ? () -> {
+                for (Runnable task : tasks) task.run();
+            } : tasks[0];
+            return this;
+        }
+
+        public TaskBuilder synchronously() {
+            sync ^= true;
+            return this;
+        }
+
+        public TaskBuilder forNext(int time, TimeUnit unit) {
+            condition = () -> startTime + unit.toMillis(time) < System.currentTimeMillis();
+            return this;
+        }
+
+        public ConditionBuilder forNext(int number) {
+            return (ConditionBuilder) (condition = new ConditionBuilder(number));
+        }
+
+        public UnitConditionBuilder forNext() {
+            return (UnitConditionBuilder) (condition = new UnitConditionBuilder());
+        }
+
+        public class ConditionBuilder extends TimeBuilder implements Supplier<Boolean> {
+            private boolean times = false;
+
+            private ConditionBuilder(int time) {
+                super(time);
+            }
+
+            public TaskBuilder times() {
+                times ^= true;
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder milliseconds() {
+                super.milliseconds();
+                startTime = System.currentTimeMillis();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder seconds() {
+                super.seconds();
+                startTime = System.currentTimeMillis();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder minutes() {
+                super.minutes();
+                startTime = System.currentTimeMillis();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder hours() {
+                super.hours();
+                startTime = System.currentTimeMillis();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder days() {
+                super.days();
+                startTime = System.currentTimeMillis();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public Boolean get() {
+                if (times)
+                    return time-- > 0;
+                return startTime + unit.toMillis(time) < System.currentTimeMillis();
+            }
+        }
+
+        public class UnitConditionBuilder extends UnitBuilder implements Supplier<Boolean> {
+
+            @Override
+            public TaskBuilder millisecond() {
+                super.millisecond();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder second() {
+                super.second();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder minute() {
+                super.minute();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder hour() {
+                super.hour();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public TaskBuilder day() {
+                super.day();
+                return TaskBuilder.this;
+            }
+
+            @Override
+            public Boolean get() {
+                return startTime + unit.toMillis(time) < System.currentTimeMillis();
+            }
+        }
+    }
+
+    public class TimeBuilder {
+        int time;
+        TimeUnit unit = TimeUnit.SECONDS;
+
+        private TimeBuilder(int time) {
+            this.time = time;
+        }
+
+        //--Plural--
+        public TaskBuilder milliseconds() {
+            unit = TimeUnit.MILLISECONDS;
+            return new TaskBuilder(time, unit);
+        }
+
+        public TaskBuilder seconds() {
+            unit = TimeUnit.SECONDS;
+            return new TaskBuilder(time, unit);
+        }
+
+        public TaskBuilder minutes() {
+            unit = TimeUnit.MINUTES;
+            return new TaskBuilder(time, unit);
+        }
+
+        public TaskBuilder hours() {
+            unit = TimeUnit.HOURS;
+            return new TaskBuilder(time, unit);
+        }
+
+        public TaskBuilder days() {
+            unit = TimeUnit.DAYS;
+            return new TaskBuilder(time, unit);
+        }
+    }
+
+    public class UnitBuilder {
+        private TimeUnit unit = TimeUnit.SECONDS;
+
+        private UnitBuilder() {
+        }
+
+        //--Single--
+        public TaskBuilder millisecond() {
+            unit = TimeUnit.MILLISECONDS;
+            return new TaskBuilder(1, unit);
+        }
+
+        public TaskBuilder second() {
+            unit = TimeUnit.SECONDS;
+            return new TaskBuilder(1, unit);
+        }
+
+        public TaskBuilder minute() {
+            unit = TimeUnit.MINUTES;
+            return new TaskBuilder(1, unit);
+        }
+
+        public TaskBuilder hour() {
+            unit = TimeUnit.HOURS;
+            return new TaskBuilder(1, unit);
+        }
+
+        public TaskBuilder day() {
+            unit = TimeUnit.DAYS;
+            return new TaskBuilder(1, unit);
+        }
+    }
+
 
     public Runnable task(Runnable task, boolean sync) {
         if (sync)

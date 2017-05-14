@@ -2,14 +2,14 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core.iml" group="Core" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core.iml" group="Core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core_main.iml" group="Core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Core/Core_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Core/Core_test.iml" group="Core" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine.iml" group="Engine" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/EngineOne.iml" filepath="$PROJECT_DIR$/.idea/modules/EngineOne.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine_main.iml" group="Engine" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine_test.iml" group="Engine" />
-      <module fileurl="file://$PROJECT_DIR$/../untitled1/.idea/modules/Example.iml" filepath="$PROJECT_DIR$/../untitled1/.idea/modules/Example.iml" group="Example" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Example/Example.iml" filepath="$PROJECT_DIR$/.idea/modules/Example/Example.iml" group="Example" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Example/Example_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Example/Example_main.iml" group="Example" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Example/Example_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Example/Example_test.iml" group="Example" />
     </modules>
