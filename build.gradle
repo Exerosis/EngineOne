@@ -23,6 +23,10 @@ subprojects {
         maven {
             url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         }
+        maven {
+            // ProtocolLib
+            url 'http://repo.dmulloy2.net/nexus/repository/public/'
+        }
     }
 
     dependencies {

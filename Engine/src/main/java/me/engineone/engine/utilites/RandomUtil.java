@@ -5,14 +5,21 @@ import me.engineone.engine.utilites.color.Palette;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import static me.engineone.core.Extensions.range;
 
 public final class RandomUtil {
     private static final Random RANDOM = new Random();
+
+    public static Random getRandom()
+    {
+        return RANDOM;
+    }
 
     private RandomUtil() {
 
@@ -98,4 +105,34 @@ public final class RandomUtil {
     public static int random(int min, int max) {
         return RANDOM.nextInt(max - min + 1) + min;
     }
+
+    public static double randomDouble(double min, double max)
+    {
+        return min + (getRandom().nextDouble() * Math.abs(max - min));
+    }
+
+    public static <T> T randomElement(List<T> list)
+    {
+        return list.get(getRandom().nextInt(list.size()));
+    }
+
+    public static <T> T randomElement(Set<T> set)
+    {
+        int item = getRandom().nextInt(set.size());
+        int i = 0;
+        for(T obj : set)
+        {
+            if (i == item)
+                return obj;
+            i++;
+        }
+        //Should never happen!
+        return null;
+    }
+
+    public static <T> T randomElement(T[] array)
+    {
+        return array[getRandom().nextInt(array.length)];
+    }
+
 }

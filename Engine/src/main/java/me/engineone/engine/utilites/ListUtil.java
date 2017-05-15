@@ -1,6 +1,7 @@
 package me.engineone.engine.utilites;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -17,4 +18,13 @@ public final class ListUtil {
         list.addAll(two);
         return list;
     }
+
+    public static boolean containsIgnoreCase(Collection<String> collection, String search) {
+        for (String string : collection) {
+            if (string.equalsIgnoreCase(search))
+                return true;
+        }
+        return false;
+    }
+
 }
