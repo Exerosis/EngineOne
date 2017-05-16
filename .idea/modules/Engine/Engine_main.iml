@@ -10,6 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Gradle: com.comphenix.protocol:ProtocolLib-API:4.2.1" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="module" module-name="Core_main" />
     <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
@@ -17,6 +18,8 @@
     <orderEntry type="library" name="Gradle: org.avaje:ebean:2.8.1" level="project" />
     <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.15" level="project" />
     <orderEntry type="library" name="Gradle: net.md-5:bungeecord-chat:1.8-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Gradle: cglib:cglib-nodep:2.2.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.comphenix.executors:BukkitExecutors:1.1-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Gradle: javax.persistence:persistence-api:1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.1" level="project" />

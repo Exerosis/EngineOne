@@ -5,16 +5,16 @@ import me.engineone.core.component.ParentComponent;
 import me.engineone.core.holder.CollectionHolder;
 import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.utilites.BlockUtil;
+import org.bukkit.Effect;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityShootBowEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.ItemStack;
@@ -151,48 +151,70 @@ public class Disablers {
         });
     }
 
+    // Falling Blocks
+    public static EventComponent fallingBlocks(Predicate<World> worldPredicate) {
+        return EventComponent.listen(EntityChangeBlockEvent.class, event -> {
+            if (event.getEntityType().equals(EntityType.FALLING_BLOCK)) {
+
+                if (!worldPredicate.test(event.getBlock().getWorld()))
+                    return;
+
+                if (event.getEntity() instanceof FallingBlock) {
+                    FallingBlock block = (FallingBlock) event.getEntity();
+
+                    block.getWorld().playEffect(block.getLocation(), Effect.STEP_SOUND, block.getMaterial());
+                }
+                event.getEntity().remove();
+                event.setCancelled(true);
+            }
+        });
+    }
 
     // ---=== LISTENERS ===---
 
     // World
 
     //     GameRule
-    public static void gameRule(List<Consumer<World>> worldListeners, String gameRule, String value) {
-        worldListeners.add(world -> world.setGameRuleValue(gameRule, value));
+    public static Consumer<World> gameRule(String gameRule, String value) {
+        return world -> world.setGameRuleValue(gameRule, value);
     }
-    public static void gameRule(List<Consumer<World>> worldListeners, String gameRule) {
-        gameRule(worldListeners, gameRule, "false");
+    public static Consumer<World> gameRule(String gameRule) {
+        return gameRule(gameRule, "false");
     }
-    public static void time(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "doDaylightCycle");
+    
+    public static Consumer<World> time() {
+        return gameRule("doDaylightCycle");
     }
-    public static void time(List<Consumer<World>> worldListeners, long time) {
-        worldListeners.add(world -> world.setTime(time));
-        time(worldListeners);
+    public static Consumer<World> time(long time) {
+        Consumer<World> stopTime = time();
+        return world -> {
+            world.setTime(time);
+            stopTime.accept(world);
+        };
     }
-    public static void entityDrops(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "doEntityDrops");
+    public static Consumer<World> entityDrops() {
+        return gameRule("doEntityDrops");
     }
-    public static void fireSpread(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "doFireTick");
+    public static Consumer<World> fireSpread() {
+        return gameRule("doFireTick");
     }
-    public static void mobLoot(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "doMobLoot");
+    public static Consumer<World> mobLoot() {
+        return gameRule("doMobLoot");
     }
-    public static void mobSpawning(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "doMobSpawning");
+    public static Consumer<World> mobSpawning() {
+        return gameRule("doMobSpawning");
     }
-    public static void mobGriefing(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "mobGriefing");
+    public static Consumer<World> mobGriefing() {
+        return gameRule("mobGriefing");
     }
-    public static void naturalRegeneration(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "naturalRegeneration");
+    public static Consumer<World> naturalRegeneration() {
+        return gameRule("naturalRegeneration");
     }
-    public static void randomTickSpeed(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "randomTickSpeed", "0");
+    public static Consumer<World> randomTickSpeed() {
+        return gameRule("randomTickSpeed", "0");
     }
-    public static void deathMessages(List<Consumer<World>> worldListeners) {
-        gameRule(worldListeners, "showDeathMessages");
+    public static Consumer<World> deathMessages() {
+        return gameRule("showDeathMessages");
     }
 
 }

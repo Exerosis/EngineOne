@@ -56,7 +56,7 @@ public class WorldComponent extends CollectionHolderComponent<World> {
         return WorldUtil.getWorld(getWorldName());
     }
 
-    public List<Consumer<World>> getOnLoadListeners() {
+    public List<Consumer<World>> getLoadListeners() {
         return getAddListeners();
     }
 
