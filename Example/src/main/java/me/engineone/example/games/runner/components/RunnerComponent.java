@@ -1,13 +1,12 @@
 package me.engineone.example.games.runner.components;
 
 import me.engineone.core.component.Component;
-import me.engineone.core.holder.CollectionHolder;
+import me.engineone.core.holder.MutateHolder;
 import me.engineone.engine.utilites.scheduler.SyncRunnable;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.material.MaterialData;
@@ -20,28 +19,29 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by BinaryBench on 5/3/2017.
  */
+@SuppressWarnings("deprecation")
 public class RunnerComponent extends Component implements SyncRunnable {
 
     //not static in case I want to have it per-map at some point in the future
+
     private MaterialData[] dropBlockDatas = new MaterialData[]{
             new MaterialData(Material.STAINED_CLAY, (byte) 5),
             new MaterialData(Material.STAINED_CLAY, (byte) 4),
-            new MaterialData(Material.STAINED_CLAY, (byte) 1),
             new MaterialData(Material.STAINED_CLAY, (byte) 14)
     };
 
-    private CollectionHolder<Player> playerHolder;
-    private ScheduledExecutorService scheduledExecutorService;
+    private MutateHolder<Player> playerHolder;
+    private ScheduledExecutorService scheduler;
     private ScheduledFuture scheduledFuture;
 
     private Map<Block, Byte> blocks = new HashMap<>();
 
-    public RunnerComponent(CollectionHolder<Player> playerHolder, ScheduledExecutorService scheduledExecutorService) {
+    public RunnerComponent(MutateHolder<Player> playerHolder, ScheduledExecutorService scheduler) {
         this.playerHolder = playerHolder;
-        this.scheduledExecutorService = scheduledExecutorService;
+        this.scheduler = scheduler;
 
         onEnable(() -> {
-            this.scheduledFuture = getScheduledExecutorService().scheduleAtFixedRate(this, 100, 100, TimeUnit.MILLISECONDS);
+            this.scheduledFuture = getScheduler().scheduleAtFixedRate(this, 200, 200, TimeUnit.MILLISECONDS);
         });
 
         onDisable(() -> {
@@ -131,8 +131,8 @@ public class RunnerComponent extends Component implements SyncRunnable {
         return dropBlockDatas;
     }
 
-    public ScheduledExecutorService getScheduledExecutorService() {
-        return scheduledExecutorService;
+    public ScheduledExecutorService getScheduler() {
+        return scheduler;
     }
 
     public ScheduledFuture getScheduledFuture() {

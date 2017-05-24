@@ -1,13 +1,15 @@
 package me.engineone.core.mutable;
 
+import com.google.common.collect.ImmutableList;
+
 public interface Reducible<T> extends RemoveListenable<T> {
     boolean removeSilently(T element);
 
     @SuppressWarnings("unchecked")
     default boolean remove(Object element) {
-        getRemoveListeners().forEach(tConsumer -> tConsumer.accept((T) element));
+        ImmutableList.copyOf(getRemoveListeners()).forEach(tConsumer -> tConsumer.accept((T) element));
         boolean result = removeSilently((T) element);
-        getRemovedListeners().forEach(tConsumer -> tConsumer.accept((T) element));
+        ImmutableList.copyOf(getRemovedListeners()).forEach(tConsumer -> tConsumer.accept((T) element));
         return result;
     }
 

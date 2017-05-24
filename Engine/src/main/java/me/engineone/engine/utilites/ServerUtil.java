@@ -42,6 +42,7 @@ public class ServerUtil {
     }
 
     public static void broadcast(String message, Iterable<Player> players) {
+        System.out.println(message);
         for (Player player : players)
             player.sendMessage(message);
     }

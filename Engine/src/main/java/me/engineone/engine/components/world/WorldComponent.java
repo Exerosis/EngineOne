@@ -2,7 +2,9 @@ package me.engineone.engine.components.world;
 
 import me.engineone.core.component.CollectionHolderComponent;
 import me.engineone.core.component.Component;
+import me.engineone.engine.utilites.ServerUtil;
 import me.engineone.engine.utilites.WorldUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.World;
 
 import java.io.File;
@@ -21,6 +23,7 @@ public class WorldComponent extends CollectionHolderComponent<World> {
     public WorldComponent(File saveFile) {
         this.saveFile = saveFile;
 
+
         onEnable(() -> {
             if (idObject != null)
                 throw new IllegalStateException("IdObject is not null! (this probably means WorldComponent was enabled twice before being disabled)");
@@ -33,7 +36,6 @@ public class WorldComponent extends CollectionHolderComponent<World> {
                 });
             });
 
-
         });
 
         onDisable(() -> {
@@ -42,8 +44,14 @@ public class WorldComponent extends CollectionHolderComponent<World> {
             World world = getWorld();
             if (world != null)
                 remove(world);
-            WorldUtil.deleteWorld(getWorldName());
+            final String name = getWorldName();
+
             idObject = null;
+
+
+
+            Bukkit.getScheduler().runTaskLater(ServerUtil.getPlugin(), () -> WorldUtil.deleteWorld(name), 20L * 5);
+
         });
 
     }
@@ -60,7 +68,16 @@ public class WorldComponent extends CollectionHolderComponent<World> {
         return getAddListeners();
     }
 
-    public List<Consumer<World>> getOnUnloadListeners() {
+    public List<Consumer<World>> getUnloadListeners() {
         return getRemoveListeners();
     }
+
+    public void onLoad(Consumer<World> listener) {
+        getLoadListeners().add(listener);
+    }
+
+    public void onUnload(Consumer<World> listener) {
+        getUnloadListeners().add(listener);
+    }
+
 }
