@@ -1,4 +1,4 @@
-package me.engineone.example.countdown;
+package me.engineone.engine.components.countdown;
 
 import me.engineone.core.completeable.ParentPhase;
 import me.engineone.core.completeable.Phase;

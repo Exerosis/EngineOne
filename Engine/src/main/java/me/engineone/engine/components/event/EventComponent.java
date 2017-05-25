@@ -2,7 +2,6 @@ package me.engineone.engine.components.event;
 
 import me.engineone.core.component.ParentComponent;
 import me.engineone.engine.utilites.ServerUtil;
-import net.jodah.typetools.TypeResolver;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventPriority;
@@ -41,7 +40,11 @@ public class EventComponent<T extends Event> extends ParentComponent implements 
     @Override
     public void enable() {
         Bukkit.getPluginManager().registerEvent(type, this, priority, (listener, event) -> {
-            getEventListeners().forEach(tConsumer -> tConsumer.accept((T) event));
+            if (event != null) {
+                getEventListeners().forEach(tConsumer -> tConsumer.accept((T) event));
+            }
+
+
         }, Bukkit.getPluginManager().getPlugins()[0]);
 
         super.enable();
@@ -77,14 +80,5 @@ public class EventComponent<T extends Event> extends ParentComponent implements 
         if (listener != null)
             event.onEvent(listener);
         return event;
-    }
-
-
-    public static <T extends Event> EventComponent<T> listen(Consumer<T> listener) {
-        return listen((Class<T>) TypeResolver.resolveRawArgument(Consumer.class, listener.getClass()), null, listener);
-    }
-
-    public static <T extends Event> EventComponent<T> listen(Consumer<T> listener, EventPriority priority) {
-        return listen((Class<T>) TypeResolver.resolveRawArgument(Consumer.class, listener.getClass()), priority, listener);
     }
 }

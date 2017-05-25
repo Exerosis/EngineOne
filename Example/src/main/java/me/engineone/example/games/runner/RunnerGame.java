@@ -1,32 +1,26 @@
 package me.engineone.example.games.runner;
 
 import me.engineone.core.completeable.ParentPhase;
-import me.engineone.core.completeable.Phase;
 import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.component.Component;
-import me.engineone.core.enableable.Enableable;
 import me.engineone.core.holder.MutateHolder;
 import me.engineone.engine.components.VoidKiller;
 import me.engineone.engine.components.disablers.Disablers;
 import me.engineone.engine.components.enders.LMSVictoryCondition;
-import me.engineone.engine.components.enders.PlayerCountWinCondition;
 import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.components.spectate.GameModeSpectatorComponent;
 import me.engineone.engine.components.world.WorldComponent;
 import me.engineone.engine.utilites.ServerUtil;
-import me.engineone.example.countdown.CountdownPhase;
-import me.engineone.example.countdown.HolderCountCountdownPhase;
+import me.engineone.engine.components.countdown.CountdownPhase;
+import me.engineone.engine.components.countdown.HolderCountCountdownPhase;
 import me.engineone.example.games.runner.components.RunnerComponent;
 import me.engineone.example.games.world.GameWorldComponent;
 import me.engineone.example.games.world.LobbyWorldComponent;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import java.util.Arrays;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.function.Consumer;
 
 /**
  * Created by BinaryBench on 5/3/2017.
@@ -147,37 +141,23 @@ public class RunnerGame extends ParentPhase {
         );
 
         onEnable(() -> {
-            if (!lobbyPhase.isEnabled())
-                lobbyPhase.enable();
+            addChild(lobbyPhase);
         });
         lobbyPhase.onComplete(() -> {
-            if (lobbyPhase.isEnabled())
-                lobbyPhase.disable();
-            if (!preGamePhase.isEnabled())
-                preGamePhase.enable();
+            removeChild(lobbyPhase);
+            addChild(preGamePhase);
         });
         preGamePhase.onComplete(() -> {
-            if (preGamePhase.isEnabled())
-                preGamePhase.disable();
-            if (!gamePhase.isEnabled())
-                gamePhase.enable();
+            removeChild(preGamePhase);
+            addChild(gamePhase);
         });
         gamePhase.onComplete(() -> {
-            if (gamePhase.isEnabled())
-                gamePhase.disable();
-            if (!postGamePhase.isEnabled())
-                postGamePhase.enable();
+            removeChild(gamePhase);
+            addChild(postGamePhase);
         });
         postGamePhase.onComplete(() -> {
-            if (postGamePhase.isEnabled())
-                postGamePhase.disable();
+            removeChild(postGamePhase);
             complete();
-        });
-        onDisable(() -> {
-            for (Enableable enableable: Arrays.asList(lobbyPhase, preGamePhase, gamePhase, postGamePhase)) {
-                if (enableable.isEnabled())
-                    enableable.disable();
-            }
         });
 
     }

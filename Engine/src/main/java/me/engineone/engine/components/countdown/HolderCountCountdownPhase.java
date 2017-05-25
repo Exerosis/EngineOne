@@ -1,4 +1,4 @@
-package me.engineone.example.countdown;
+package me.engineone.engine.components.countdown;
 
 import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.holder.MutateHolder;
