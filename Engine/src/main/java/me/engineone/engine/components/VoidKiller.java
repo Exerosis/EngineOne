@@ -15,20 +15,24 @@ import java.util.Iterator;
  * Created by BinaryBench on 5/23/2017.
  */
 public class VoidKiller extends Component {
-    private static final int DEFAULT_HEIGHT = 0;
+
     private int id = -1;
-    private int height = DEFAULT_HEIGHT;
+    private int height;
 
 
     public VoidKiller(Iterable<Player> players) {
+        this(players, 0);
+    }
+
+    public VoidKiller(Iterable<Player> players, int height) {
+        this.height = height;
 
         onEnable(() -> {
             this.id = Bukkit.getScheduler().runTaskTimer(ServerUtil.getPlugin(), () -> {
                 ImmutableList.copyOf(players).forEach(player -> {
-                    if (player.getLocation().getBlockY() < height)
+                    if (player.getLocation().getBlockY() < this.height)
                         PlayerUtil.killPlayer(player);
                 });
-
             }, 4L, 4L).getTaskId();
         });
 
@@ -38,6 +42,9 @@ public class VoidKiller extends Component {
                 this.id = -1;
             }
         });
+    }
 
+    public void setHeight(int height) {
+        this.height = height;
     }
 }
