@@ -1,11 +1,11 @@
-package me.engineone.core.holder;
+package me.engineone.core.utilites;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 
-public final class Iterators {
-    private Iterators() {
+public final class IteratorUtil {
+    private IteratorUtil() {
     }
 
     public static <E> Iterator<E> filter(Iterator<E> iterator, Predicate<E> filter) {

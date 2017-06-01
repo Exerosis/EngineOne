@@ -1,6 +1,7 @@
 package me.engineone.engine.components.world;
 
 import me.engineone.core.component.CollectionHolderComponent;
+import me.engineone.core.component.SingleHolderComponent;
 import me.engineone.core.observable.Observable;
 import me.engineone.engine.utilites.ServerUtil;
 import me.engineone.engine.utilites.WorldUtil;
@@ -14,7 +15,7 @@ import java.util.function.Consumer;
 /**
  * Created by BinaryBench on 5/2/2017.
  */
-public class WorldComponent extends CollectionHolderComponent<World> {
+public class WorldComponent extends SingleHolderComponent<World> {
 
     private File saveFile;
     private Object idObject;
@@ -32,7 +33,7 @@ public class WorldComponent extends CollectionHolderComponent<World> {
             WorldUtil.deleteWorld(getWorldName(), aBoolean -> {
                 WorldUtil.createWorld(saveFile, getWorldName(), world -> {
                     if (world != null)
-                        add(world);
+                        setValue(world);
                 });
             });
 
@@ -44,7 +45,7 @@ public class WorldComponent extends CollectionHolderComponent<World> {
 
                 World world = getWorld();
                 if (world != null) {
-                    remove(world);
+                    setValue(null);
                     final String name = getWorldName();
 
                     Bukkit.getScheduler().runTaskLater(ServerUtil.getPlugin(), () -> WorldUtil.deleteWorld(name), 20L * 5);

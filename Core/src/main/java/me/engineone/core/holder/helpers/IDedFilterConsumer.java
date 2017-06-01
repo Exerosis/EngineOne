@@ -30,7 +30,7 @@ public class IDedFilterConsumer<T> extends IDedObject<Consumer<T>> implements Co
     }
 
     @Override
-    Consumer<T> getSelf() {
+    protected Consumer<T> getSelf() {
         return this;
     }
 }

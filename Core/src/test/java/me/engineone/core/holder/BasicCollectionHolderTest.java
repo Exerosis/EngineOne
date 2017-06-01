@@ -18,19 +18,10 @@ import java.util.function.Predicate;
 public class BasicCollectionHolderTest {
 
     private CollectionHolder<String> holder;
-    private List<String> testData;
 
     @Before
     public void setUp() throws Exception {
         holder = new BasicCollectionHolder<>();
-        testData = new ArrayList<>(Arrays.asList(
-                "Potato",
-                "Apple",
-                "Mushroom",
-                "Apricot",
-                "Dogfood",
-                "Apple Pie"
-        ));
     }
 
     @Test
@@ -82,11 +73,11 @@ public class BasicCollectionHolderTest {
     }
 
 
-    public void checkMutateListenableHolder(MutableHolder<String> holder) {
+    public static void checkMutateListenableHolder(MutableHolder<String> holder) {
         checkMutateListenableHolder(holder, holder);
     }
 
-    public void checkMutateListenableHolder(MutateHolder<String> holder, Mutable<String> master) {
+    public static void checkMutateListenableHolder(MutateHolder<String> holder, Mutable<String> master) {
 
         // Add & Remove
         ConsumerCallCounter<String> addCounter = new ConsumerCallCounter<>();
