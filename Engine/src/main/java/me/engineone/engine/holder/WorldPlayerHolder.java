@@ -46,10 +46,6 @@ public class WorldPlayerHolder extends CollectionHolderComponent<Player> {
 
         addChild(EventComponent.listen(PlayerTeleportEvent.class, EventPriority.HIGH, event -> {
 
-            System.out.println("From: " + event.getFrom().getWorld().getName());
-            System.out.println("To: " + event.getTo().getWorld().getName());
-            System.out.println("ToInPred: " + worldPredicate.test(event.getTo().getWorld()));
-
             if (worldPredicate.test(event.getTo().getWorld())) {
                 if (!contains(event.getPlayer()))
                     add(event.getPlayer());

@@ -43,7 +43,10 @@ public class LMSVictoryCondition extends ParentPhase {
             checkEnd();
         }));
 
-        onEnable(this::checkEnd);
+        onEnable(() -> {
+            rank.clear();
+            checkEnd();
+        });
 
         onDisable(this::sendWinners);
     }

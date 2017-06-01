@@ -1,14 +1,13 @@
 package me.engineone.engine.components.world;
 
 import me.engineone.core.component.CollectionHolderComponent;
-import me.engineone.core.component.Component;
+import me.engineone.core.observable.Observable;
 import me.engineone.engine.utilites.ServerUtil;
 import me.engineone.engine.utilites.WorldUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -20,11 +19,12 @@ public class WorldComponent extends CollectionHolderComponent<World> {
     private File saveFile;
     private Object idObject;
 
-    public WorldComponent(File saveFile) {
-        this.saveFile = saveFile;
 
+    public WorldComponent(Observable<File> fileObservable) {
 
-        onEnable(() -> {
+        addChild(Observable.observe(fileObservable, file -> {
+            this.saveFile = file;
+
             if (idObject != null)
                 throw new IllegalStateException("IdObject is not null! (this probably means WorldComponent was enabled twice before being disabled)");
             idObject = new Object();
@@ -36,21 +36,23 @@ public class WorldComponent extends CollectionHolderComponent<World> {
                 });
             });
 
-        });
+        }));
 
         onDisable(() -> {
-            if (idObject == null)
-                throw new IllegalStateException("IdObject is null! (this probably means WorldComponent was disabled before being enabled)");
-            World world = getWorld();
-            if (world != null)
-                remove(world);
-            final String name = getWorldName();
+
+            if (idObject != null) {
+
+                World world = getWorld();
+                if (world != null) {
+                    remove(world);
+                    final String name = getWorldName();
+
+                    Bukkit.getScheduler().runTaskLater(ServerUtil.getPlugin(), () -> WorldUtil.deleteWorld(name), 20L * 5);
+                }
+            }
 
             idObject = null;
-
-
-
-            Bukkit.getScheduler().runTaskLater(ServerUtil.getPlugin(), () -> WorldUtil.deleteWorld(name), 20L * 5);
+            saveFile = null;
 
         });
 

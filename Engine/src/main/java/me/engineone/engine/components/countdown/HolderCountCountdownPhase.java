@@ -18,7 +18,6 @@ public class HolderCountCountdownPhase extends CountdownPhase {
 
     private int startThreshold;
     private int stopThreshold;
-    private int startCount;
     private MutateHolder<?> holder;
 
     public HolderCountCountdownPhase(ScheduledExecutorService scheduler, int count, int startThreshold, int stopThreshold, MutateHolder<?> holder) {
@@ -29,7 +28,6 @@ public class HolderCountCountdownPhase extends CountdownPhase {
         super(scheduler, count, period, timeUnit);
         this.startThreshold = startThreshold;
         this.stopThreshold = stopThreshold;
-        this.startCount = count;
         this.holder = holder;
 
         //FIX ME
@@ -46,7 +44,7 @@ public class HolderCountCountdownPhase extends CountdownPhase {
         if (holderCount >= this.startThreshold) {
             if (!isRunning()) {
                 stop();
-                setCount(startCount);
+                reset();
                 start();
             }
         }

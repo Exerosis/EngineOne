@@ -1,8 +1,6 @@
 package me.engineone.example;
 
-import me.engineone.core.completeable.Phase;
 import me.engineone.core.holder.MutateHolder;
-import me.engineone.engine.components.enders.PlayerCountWinCondition;
 import me.engineone.engine.holder.OnlinePlayerHolder;
 import me.engineone.example.games.runner.RunnerGame;
 import me.engineone.example.games.world.LobbyWorldComponent;
@@ -18,31 +16,28 @@ import java.util.concurrent.ScheduledExecutorService;
 public class Example extends JavaPlugin {
 
 
-    private MutateHolder<Player> onlinePlayers;
-    private ScheduledExecutorService scheduler;
-    private LobbyWorldComponent lobbyWorld;
+    private RunnerGame game;
 
     @Override
     public void onEnable() {
         System.out.println("EngineOne example plugin is alive and kicking!");
 
-        onlinePlayers = new OnlinePlayerHolder();
-        scheduler = Executors.newScheduledThreadPool(10);
-        lobbyWorld = new LobbyWorldComponent();
+        MutateHolder<Player> onlinePlayers = new OnlinePlayerHolder();
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(10);
+        LobbyWorldComponent lobbyWorld = new LobbyWorldComponent();
         lobbyWorld.enable();
 
-        startGame();
 
-    }
+        this.game = new RunnerGame(onlinePlayers, scheduler, lobbyWorld);
 
-    public void startGame() {
-        Phase game = new RunnerGame(onlinePlayers, scheduler, lobbyWorld);
-        game.enable();
         game.onComplete(() -> {
-            if (game.isEnabled())
-                game.disable();
-            startGame();
+            System.err.println("PreDisable: " + game.isComplete());
+            game.disable();
+            System.err.println("PreEnable: " + game.isComplete());
+            game.enable();
+            System.err.println("PostEnable: " + game.isComplete());
         });
+        game.enable();
     }
 
 }

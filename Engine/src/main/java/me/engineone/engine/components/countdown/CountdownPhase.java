@@ -21,6 +21,7 @@ public class CountdownPhase extends ParentPhase {
     private ScheduledExecutorService scheduler;
     private ScheduledFuture<?> futureTask;
 
+    private final int startCount;
     private int count;
     private long period;
     private TimeUnit timeUnit;
@@ -29,14 +30,22 @@ public class CountdownPhase extends ParentPhase {
         this(scheduler, count, 1, TimeUnit.SECONDS);
     }
 
-    public CountdownPhase(ScheduledExecutorService scheduler, int count, long period, TimeUnit timeUnit) {
+    public CountdownPhase(ScheduledExecutorService scheduler, int startCount, long period, TimeUnit timeUnit) {
         this.scheduler = scheduler;
-        this.count = count;
+        this.startCount = startCount;
+        this.count = startCount;
         this.period = period;
         this.timeUnit = timeUnit;
 
-        onEnable(this::start);
+        onEnable(() -> {
+            reset();
+            start();
+        });
         onDisable(this::stop);
+    }
+
+    public void reset() {
+        setCount(getStartCount());
     }
 
     public boolean start() {
@@ -93,5 +102,9 @@ public class CountdownPhase extends ParentPhase {
 
     public List<Consumer<Integer>> getCountListeners() {
         return countListeners;
+    }
+
+    public int getStartCount() {
+        return startCount;
     }
 }

@@ -1,5 +1,6 @@
 package me.engineone.example.games.world;
 
+import me.engineone.core.observable.StaticObservable;
 import me.engineone.engine.components.world.WorldComponent;
 import me.engineone.engine.utilites.*;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -14,14 +15,13 @@ import java.util.List;
 public class GameWorldComponent extends WorldComponent {
 
     public GameWorldComponent(String gameName) {
-        super(getSaveFile(gameName));
+        super(new StaticObservable<>(() -> getSaveFile(gameName)));
     }
 
     private static File getSaveFile(String gameName) {
 
         File dataFolder = ServerUtil.getPlugin().getDataFolder();
-        if (!dataFolder.isDirectory())
-        {
+        if (!dataFolder.isDirectory()) {
             System.err.println("Could not find plugin data folder!");
             return null;
         }

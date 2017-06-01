@@ -1,5 +1,6 @@
 package me.engineone.example.games.runner;
 
+import com.comphenix.protocol.PacketType;
 import me.engineone.core.completeable.ParentPhase;
 import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.component.Component;
@@ -19,6 +20,7 @@ import me.engineone.example.games.world.LobbyWorldComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.spigotmc.event.entity.EntityMountEvent;
 
 import java.util.concurrent.ScheduledExecutorService;
 
@@ -33,7 +35,8 @@ public class RunnerGame extends ParentPhase {
 
         // Spectators
         GameModeSpectatorComponent spectators = new GameModeSpectatorComponent();
-        addChild(spectators);
+        onEnable(spectators::clear);
+
         MutateHolder<Player> gamePlayers = allPlayers.difference(spectators);
 
         // World
@@ -45,10 +48,11 @@ public class RunnerGame extends ParentPhase {
         worldComponent.onLoad(Disablers.fireSpread());
 
         // Lobby
-        HolderCountCountdownPhase lobbyPhase = new HolderCountCountdownPhase(scheduler, 20, 1, 1, allPlayers);
-        lobbyPhase.onCount(count ->
-            ServerUtil.broadcast(ChatColor.GREEN + "Lobby ending in " + ChatColor.DARK_GREEN + count + ChatColor.GREEN + " seconds!", allPlayers)
-        );
+        HolderCountCountdownPhase lobbyPhase = new HolderCountCountdownPhase(scheduler, 10, 1, 1, allPlayers);
+        lobbyPhase.onCount(count -> {
+            if (count <= 5 || count%10 == 0)
+                ServerUtil.broadcast(ChatColor.GREEN + "Lobby ending in " + ChatColor.DARK_GREEN + count + ChatColor.GREEN + " seconds!", allPlayers);
+        });
         lobbyPhase.onWaiting((playerCount, startThresh) ->
             ServerUtil.broadcast(ChatColor.GREEN + "Waiting for players... (" + playerCount + "/" + startThresh + ")!", allPlayers)
         );
@@ -73,6 +77,8 @@ public class RunnerGame extends ParentPhase {
         Component joinSpectate = new AddToListComponent<>(allPlayers.getAddListeners(), spectators::add);
         Component deathSpectate = EventComponent.listen(PlayerDeathEvent.class, event -> spectators.add(event.getEntity()));
 
+
+
         // Pre Game
         CountdownPhase preGamePhase = new CountdownPhase(scheduler, 5);
 
@@ -82,7 +88,7 @@ public class RunnerGame extends ParentPhase {
 
         preGamePhase.addChild(
                 Disablers.blockPlace(allPlayers),
-                Disablers.blockPlace(allPlayers),
+                Disablers.blockBreak(allPlayers),
 
                 Disablers.dropItem(allPlayers),
                 Disablers.itemPickup(allPlayers),
@@ -103,7 +109,7 @@ public class RunnerGame extends ParentPhase {
         LMSVictoryCondition gamePhase = new LMSVictoryCondition(gamePlayers, allPlayers);
         gamePhase.addChild(
                 Disablers.blockPlace(allPlayers),
-                Disablers.blockPlace(allPlayers),
+                Disablers.blockBreak(allPlayers),
 
                 Disablers.dropItem(allPlayers),
                 Disablers.itemPickup(allPlayers),
@@ -120,13 +126,19 @@ public class RunnerGame extends ParentPhase {
                 new VoidKiller(gamePlayers)
         );
 
+        gamePhase.addChild(EventComponent.listen(EntityMountEvent.class, event -> {
+            if (event.getEntity() instanceof Player && gamePlayers.test((Player) event.getEntity())) {
+                event.setCancelled(true);
+            }
+        }));
+
 
         // Post Game
         CountdownPhase postGamePhase = new CountdownPhase(scheduler, 5);
         postGamePhase.onCount(count -> allPlayers.forEach(player -> player.sendMessage(ChatColor.GREEN + "Game ending in " + ChatColor.DARK_GREEN + count + ChatColor.GREEN + " seconds!")));
         postGamePhase.addChild(
                 Disablers.blockPlace(allPlayers),
-                Disablers.blockPlace(allPlayers),
+                Disablers.blockBreak(allPlayers),
 
                 Disablers.dropItem(allPlayers),
                 Disablers.itemPickup(allPlayers),
@@ -141,23 +153,31 @@ public class RunnerGame extends ParentPhase {
         );
 
         onEnable(() -> {
-            addChild(lobbyPhase);
+            //noinspection Convert2MethodRef
+            lobbyPhase.enable();
         });
         lobbyPhase.onComplete(() -> {
-            removeChild(lobbyPhase);
-            addChild(preGamePhase);
+            lobbyPhase.disable();
+            preGamePhase.enable();
         });
         preGamePhase.onComplete(() -> {
-            removeChild(preGamePhase);
-            addChild(gamePhase);
+            preGamePhase.disable();
+            gamePhase.enable();
         });
         gamePhase.onComplete(() -> {
-            removeChild(gamePhase);
-            addChild(postGamePhase);
+            gamePhase.disable();
+            postGamePhase.enable();
         });
         postGamePhase.onComplete(() -> {
-            removeChild(postGamePhase);
+            postGamePhase.disable();
             complete();
+        });
+
+        onDisable(() -> {
+            lobbyPhase.disable();
+            preGamePhase.disable();
+            gamePhase.disable();
+            postGamePhase.disable();
         });
 
     }

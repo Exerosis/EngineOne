@@ -3,6 +3,7 @@ package me.engineone.example.games.world;
 import me.engineone.core.component.CollectionHolderComponent;
 import me.engineone.core.holder.BasicCollectionHolder;
 import me.engineone.core.holder.CollectionHolder;
+import me.engineone.core.observable.StaticObservable;
 import me.engineone.engine.components.disablers.Disablers;
 import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.components.world.WorldComponent;
@@ -33,7 +34,7 @@ public class LobbyWorldComponent extends WorldComponent {
     private WorldPlayerHolder players;
 
     public LobbyWorldComponent() {
-        super(new File(ServerUtil.getPlugin().getDataFolder(), "LobbyWorld"));
+        super(new StaticObservable<File>(new File(ServerUtil.getPlugin().getDataFolder(), "LobbyWorld")));
 
         players = new WorldPlayerHolder(this);
         addChild(players);

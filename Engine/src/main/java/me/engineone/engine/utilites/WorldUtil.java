@@ -182,7 +182,7 @@ public class WorldUtil {
                     if (callback != null)
                         Bukkit.getScheduler().runTask(ServerUtil.getPlugin(), () -> callback.accept(true));
                 } catch (Exception e) {
-                    System.err.println(String.format("FAILED TO DELETE %s!", world.getName()));
+                    System.err.println(String.format("Failed to delete %s!", world.getName()));
                     e.printStackTrace();
                     if (callback != null)
                         Bukkit.getScheduler().runTask(ServerUtil.getPlugin(), () -> callback.accept(false));
@@ -190,7 +190,7 @@ public class WorldUtil {
 
             });
         })) {
-            System.err.println(String.format("Successfully started to unload %s", world.getName()));
+            System.out.println(String.format("Successfully started to unload %s", world.getName()));
             return true;
         } else {
             System.err.println(String.format("Bukkit cowardly refused to unload the world: %s", world.getName()));
