@@ -4,6 +4,7 @@ import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import me.engineone.core.completeable.ParentPhase;
 import me.engineone.core.completeable.Phase;
+import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.holder.CollectionHolder;
 import me.engineone.core.holder.MutateHolder;
 import me.engineone.engine.utilites.ServerUtil;
@@ -36,21 +37,23 @@ public class LMSVictoryCondition extends ParentPhase {
         this.endPlayersAmount = endPlayersAmount;
         this.broadcast = broadcast;
 
-        players.onAdded(player -> {
+        addChild(new AddToListComponent<>(players.getRemovedListeners(), player -> {
             rank.remove(player);
             rank.add(player);
-            checkEnd(players.size());
-        });
+            checkEnd();
+        }));
 
         onEnable(() -> {
-            checkEnd(getPlayers().size());
+            rank.clear();
+            checkEnd();
         });
 
         onDisable(this::sendWinners);
     }
 
-    public void checkEnd(int playerCount) {
-        if (playerCount <= getEndPlayersAmount())
+    public void checkEnd() {
+        System.out.println("GamePlayer count: " + getPlayers().size());
+        if (getPlayers().size() <= getEndPlayersAmount())
             complete();
     }
 

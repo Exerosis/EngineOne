@@ -12,26 +12,26 @@ public class Component implements Enableable {
     private boolean enabled = false;
 
     public Component onEnable(Runnable listener) {
-        getEnableListenable().add(listener);
+        getEnableListeners().add(listener);
         return this;
     }
     public Component unregisterEnable(Runnable listener) {
-        getEnableListenable().remove(listener);
+        getEnableListeners().remove(listener);
         return this;
     }
     public Component onDisable(Runnable listener) {
-        getDisableListenable().add(listener);
+        getDisableListeners().add(listener);
         return this;
     }
     public Component unregisterDisable(Runnable listener) {
-        getDisableListenable().remove(listener);
+        getDisableListeners().remove(listener);
         return this;
     }
 
-    public List<Runnable> getEnableListenable() {
+    public List<Runnable> getEnableListeners() {
         return enableListenable;
     }
-    public List<Runnable> getDisableListenable() {
+    public List<Runnable> getDisableListeners() {
         return disableListenable;
     }
 

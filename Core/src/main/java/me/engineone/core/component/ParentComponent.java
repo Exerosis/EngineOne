@@ -36,17 +36,8 @@ public class ParentComponent extends Component implements ParentEnableable {
     }
 
     @Override
-    public ParentComponent unregisterEnable(Runnable listener) {
-        return (ParentComponent) super.unregisterEnable(listener);
-    }
-
-    @Override
     public ParentComponent onDisable(Runnable listener) {
         return (ParentComponent) super.onDisable(listener);
     }
 
-    @Override
-    public ParentComponent unregisterDisable(Runnable listener) {
-        return (ParentComponent) super.unregisterDisable(listener);
-    }
 }

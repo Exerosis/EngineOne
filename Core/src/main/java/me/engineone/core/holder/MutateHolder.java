@@ -1,11 +1,7 @@
 package me.engineone.core.holder;
 
-import me.engineone.core.holder.liveholders.MutateDifferenceHolder;
 import me.engineone.core.holder.liveholders.MutateOperatorHolder;
-import me.engineone.core.holder.liveholders.MutateUnionHolder;
 import me.engineone.core.mutable.MutateListenable;
-
-import java.util.function.Predicate;
 
 public interface MutateHolder<T> extends Holder<T>, MutateListenable<T> {
 

@@ -1,7 +1,11 @@
 package me.engineone.example.games.world;
 
+import me.engineone.core.component.CollectionHolderComponent;
+import me.engineone.core.holder.BasicCollectionHolder;
 import me.engineone.core.holder.CollectionHolder;
+import me.engineone.core.observable.StaticObservable;
 import me.engineone.engine.components.disablers.Disablers;
+import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.components.world.WorldComponent;
 import me.engineone.engine.holder.WorldPlayerHolder;
 import me.engineone.engine.utilites.PlayerUtil;
@@ -10,23 +14,30 @@ import me.engineone.engine.utilites.ServerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventPriority;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.PlayerTeleportEvent;
 
 import java.io.File;
 import java.util.Arrays;
+import java.util.function.Predicate;
 
 /**
  * Created by BinaryBench on 5/3/2017.
  */
-public class LobbyWorldComponent extends WorldComponent implements Runnable {
+public class LobbyWorldComponent extends WorldComponent {
 
     private int id = -1;
-    private CollectionHolder<Player> players;
+    private WorldPlayerHolder players;
 
     public LobbyWorldComponent() {
-        super(new File(ServerUtil.getPlugin().getDataFolder(), "LobbyWorld"));
+        super(new StaticObservable<File>(new File(ServerUtil.getPlugin().getDataFolder(), "LobbyWorld")));
 
         players = new WorldPlayerHolder(this);
+        addChild(players);
 
         addChild(
                 Disablers.damage(players),
@@ -35,7 +46,7 @@ public class LobbyWorldComponent extends WorldComponent implements Runnable {
                 Disablers.hunger(players)
         );
 
-        getOnUnloadListeners().addAll(Arrays.asList(
+        getLoadListeners().addAll(Arrays.asList(
                 Disablers.fireSpread(),
                 Disablers.mobSpawning(),
                 Disablers.mobGriefing(),
@@ -43,9 +54,17 @@ public class LobbyWorldComponent extends WorldComponent implements Runnable {
                 Disablers.randomTickSpeed()
         ));
 
-        onEnable(() -> {
-            this.id = Bukkit.getScheduler().runTaskTimer(ServerUtil.getPlugin(), this, 4L, 4L).getTaskId();
-        });
+
+        onEnable(() ->
+            this.id = Bukkit.getScheduler().runTaskTimer(ServerUtil.getPlugin(), () -> {
+
+                getPlayers().forEach(player -> {
+                    if (player.getLocation().getBlockY() < 50)
+                        spawnPlayer(player);
+                });
+
+            }, 4L, 4L).getTaskId()
+        );
 
         onDisable(() -> {
             if (this.id != -1) {
@@ -55,29 +74,17 @@ public class LobbyWorldComponent extends WorldComponent implements Runnable {
         });
     }
 
-    @Override
-    public void run() {
-        for (Player player : getPlayers()) {
-            Location loc = player.getLocation();
-            if (loc.getBlockY() < 50) {
-                spawnPlayer(player);
-            }
-        }
-    }
-    public void spawnPlayer(Player player)
-    {
+    public void spawnPlayer(Player player) {
         PlayerUtil.resetPlayer(player);
         player.setGameMode(GameMode.ADVENTURE);
         player.teleport(getSpawn());
     }
 
 
-    public Location getSpawn()
-    {
+    public Location getSpawn() {
         double x = RandomUtil.randomDouble(-1, 2);
-        double y = 80;
+        double y = 60;
         double z = RandomUtil.randomDouble(-1, 2);
-
         return new Location(getWorld(), x, y, z);
     }
 

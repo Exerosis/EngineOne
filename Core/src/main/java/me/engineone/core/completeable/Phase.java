@@ -35,7 +35,8 @@ public class Phase extends Component implements Completeable {
         if (complete || !isEnabled())
             return;
         getCompleteListeners().forEach(Runnable::run);
-        complete = true;
+        if (!isEnabled())
+            complete = true;
     }
 
     @Override

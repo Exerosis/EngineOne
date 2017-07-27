@@ -1,5 +1,7 @@
 package me.engineone.core.holder;
 
+import me.engineone.core.utilites.IteratorUtil;
+
 import java.util.Iterator;
 import java.util.function.Predicate;
 
@@ -11,7 +13,7 @@ public interface PartitionHolder<T> extends Holder<T> {
 
     @Override
     default Iterator<T> iterator() {
-        return Iterators.filter(getParent().iterator(), this);
+        return IteratorUtil.filter(getParent().iterator(), this);
     }
 
     @Override

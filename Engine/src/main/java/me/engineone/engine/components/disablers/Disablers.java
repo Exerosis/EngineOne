@@ -3,6 +3,7 @@ package me.engineone.engine.components.disablers;
 import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.component.ParentComponent;
 import me.engineone.core.holder.CollectionHolder;
+import me.engineone.core.holder.MutateHolder;
 import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.utilites.BlockUtil;
 import org.bukkit.Effect;
@@ -124,10 +125,10 @@ public class Disablers {
     }
 
     // Hunger
-    public static ParentComponent hunger(CollectionHolder<Player> players) {
+    public static ParentComponent hunger(MutateHolder<Player> players) {
         return hunger(players, 20);
     }
-    public static ParentComponent hunger(CollectionHolder<Player> players, int foodLevel) {
+    public static ParentComponent hunger(MutateHolder<Player> players, int foodLevel) {
 
         return new ParentComponent(
                 hungerChange(players),

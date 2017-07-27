@@ -6,21 +6,16 @@ allprojects {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'idea'
+    apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
 
 
     repositories {
+        mavenLocal()
         mavenCentral()
         maven {
-            //Paper spigot
-            url 'https://repo.destroystokyo.com/repository/maven-public/'
-        }
-        maven {
-            //Bungee
-            url 'https://oss.sonatype.org/content/groups/public/'
-        }
-        maven {
+            // Spigot
             url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
         }
         maven {
@@ -40,4 +35,12 @@ subprojects {
         }
     }
 
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                from components.java
+            }
+        }
+    }
 }
+

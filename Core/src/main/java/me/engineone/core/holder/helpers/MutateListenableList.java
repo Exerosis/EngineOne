@@ -114,7 +114,10 @@ public abstract class MutateListenableList<T> implements List<T> {
 
     @Override
     public void clear() {
-        throw new UnsupportedOperationException();
+        Iterator<T> iterator = getWrapped().iterator();
+        iterator.forEachRemaining(this::remove);
+
+        //throw new UnsupportedOperationException();
         //getWrapped().clear();
     }
 
