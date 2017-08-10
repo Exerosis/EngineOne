@@ -1,0 +1,1 @@
+tasklist /nh /fi "imagename eq redis-server.exe" | find /i "redis-server.exe" > nul || redis-server.exe

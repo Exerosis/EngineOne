@@ -1,0 +1,5 @@
+SuperSword:
+  Id: DIAMOND_SWORD
+  Data: '570'
+  Options:
+    Display: '&6Super Sword'

@@ -1,24 +1,17 @@
-configurations {
-    includeInJar
+repositories {
+    maven {
+        url 'http://repo.dmulloy2.net/nexus/repository/public/'
+    }
+    flatDir {
+        dirs './Servers/Spigot'
+    }
 }
+
+apply plugin: 'nebula.provided-base'
 
 dependencies {
-    includeInJar(project(':Core')) {
-        transitive = true
-    }
-
-    compile 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compile 'com.comphenix.protocol:ProtocolLib-API:4.2.1'
-
-    //complie 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-
-    // Should be provided in craftbukkit...
-    compile group: 'commons-io', name: 'commons-io', version: '2.5'
-
-
-    configurations.compile.extendsFrom(configurations.includeInJar)
-}
-
-jar {
-    from configurations.includeInJar.collect { zipTree it }
+    compile project(':Core')
+    provided files('../Servers/Spigot/Spigot.jar')
+    provided 'com.comphenix.protocol:ProtocolLib-API:4.2.1'
+    compile 'commons-io:commons-io:2.5'
 }

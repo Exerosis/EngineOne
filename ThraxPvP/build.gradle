@@ -1,0 +1,26 @@
+apply plugin: 'nebula.provided-base'
+libsDirName = '../../Servers/Spigot/plugins'
+
+repositories {
+    maven {
+        url 'http://repo.dmulloy2.net/nexus/repository/public/'
+    }
+}
+
+dependencies {
+    compile project(':Engine')
+    provided 'com.comphenix.protocol:ProtocolLib-API:4.2.1'
+    provided files('../Servers/Spigot/Spigot.jar')
+}
+
+jar {
+    archiveName = 'ThraxPvP.jar'
+    from {
+        (configurations.runtime - configurations.provided).collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+task startRedis(type: Exec) {
+    workingDir '../Servers/Redis'
+    commandLine 'cmd', '/c', 'tasklist /nh /fi "imagename eq redis-server.exe" | find /i "redis-server.exe" > nul || redis-server.exe'
+}

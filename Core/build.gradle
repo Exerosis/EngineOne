@@ -1,15 +1,7 @@
 dependencies {
     compile "org.apache.commons:commons-dbcp2:2.1.1"
-
     compile "org.javatuples:javatuples:1.2"
     compile "com.google.guava:guava:20.0"
     compile "org.projectlombok:lombok:1.16.16"
     compile "org.redisson:redisson:3.2.0"
-}
-
-idea {
-    module {
-        downloadJavadoc = true
-        downloadSources = true
-    }
 }

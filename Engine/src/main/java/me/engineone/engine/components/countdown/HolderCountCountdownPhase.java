@@ -31,7 +31,7 @@ public class HolderCountCountdownPhase extends CountdownPhase {
         this.holder = holder;
 
         //FIX ME
-        getEnableListeners().clear();
+//        getEnableListeners().clear();
 
         addChild(new AddToListComponent<>(holder.getAddedListeners(), o -> checkCountdown()));
         addChild(new AddToListComponent<>(holder.getRemovedListeners(), o -> checkCountdown()));

@@ -1,0 +1,67 @@
+[03:07:09] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[03:07:09] [Server thread/INFO]: Loading properties
+[03:07:09] [Server thread/INFO]: Default game type: SURVIVAL
+[03:07:09] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-7d78b81-a867313 (MC: 1.11.2) (Implementing API version 1.11.2-R0.1-SNAPSHOT)
+[03:07:09] [Server thread/INFO]: Debug logging is disabled
+[03:07:09] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[03:07:09] [Server thread/INFO]: Using 4 threads for Netty based IO
+[03:07:09] [Server thread/INFO]: Generating keypair
+[03:07:09] [Server thread/INFO]: Starting Minecraft server on *:25565
+[03:07:09] [Server thread/INFO]: Using default channel type
+[03:07:09] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[03:07:09] [Server thread/WARN]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+[03:07:09] [Server thread/WARN]: SLF4J: Defaulting to no-operation (NOP) logger implementation
+[03:07:09] [Server thread/WARN]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[03:07:09] [Server thread/INFO]: [WizartMC] Loading WizartMC v1.1
+[03:07:09] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[03:07:09] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[03:07:09] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[03:07:09] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[03:07:09] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[03:07:09] [Server thread/INFO]: Preparing level "world"
+[03:07:10] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)
+[03:07:10] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2428624485121517051)
+[03:07:11] [Server thread/INFO]: Preparing start region for level 2 (Seed: -2428624485121517051)
+[03:07:11] [Server thread/INFO]: [WizartMC] Enabling WizartMC v1.1
+[03:14:11] [Server thread/ERROR]: Error occurred while enabling WizartMC v1.1 (Is it up to date?)
+java.lang.IllegalArgumentException: Listener type must extend org.bukkit.event.Event
+	at net.wizartmc.engine.components.event.EventComponent.<init>(EventComponent.java:38) ~[?:?]
+	at net.wizartmc.engine.components.event.EventComponent.<init>(EventComponent.java:24) ~[?:?]
+	at net.wizartmc.engine.components.event.EventComponent.listen(EventComponent.java:75) ~[?:?]
+	at net.wizartmc.games.skyforts.JoinPhase.<init>(JoinPhase.java:22) ~[?:?]
+	at net.wizartmc.games.skyforts.SkyFortsArena.<init>(SkyFortsArena.java:114) ~[?:?]
+	at net.wizartmc.games.Server.lambda$null$1(Server.java:41) ~[?:?]
+	at net.wizartmc.engine.components.redis.MessagingComponent.lambda$_sendTest$3(MessagingComponent.java:42) ~[?:?]
+	at java.lang.Iterable.forEach(Iterable.java:75) ~[?:1.8.0_101]
+	at net.wizartmc.engine.components.redis.MessagingComponent._sendTest(MessagingComponent.java:42) ~[?:?]
+	at net.wizartmc.games.Main.onEnable(Main.java:77) ~[?:?]
+	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:271) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.plugin.java.JavaPluginLoader.enablePlugin(JavaPluginLoader.java:337) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:405) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.v1_11_R1.CraftServer.enablePlugin(CraftServer.java:375) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.v1_11_R1.CraftServer.enablePlugins(CraftServer.java:325) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.t(MinecraftServer.java:419) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.l(MinecraftServer.java:380) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.a(MinecraftServer.java:335) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.DedicatedServer.init(DedicatedServer.java:272) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.run(MinecraftServer.java:542) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_101]
+[03:14:11] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[03:14:11] [Server thread/INFO]: Done (421.526s)! For help, type "help" or "?"
+[09:25:09] [User Authenticator #1/INFO]: Disconnecting com.mojang.authlib.GameProfile@4f212bd4[id=3bb556e8-7630-38e1-95dc-e6409c8d6453,name=Exerosis,properties={},legacy=false] (/127.0.0.1:59242): There is nothing to see here! Go on, scram!
+[09:25:09] [Server thread/INFO]: com.mojang.authlib.GameProfile@4f212bd4[id=3bb556e8-7630-38e1-95dc-e6409c8d6453,name=Exerosis,properties={},legacy=false] (/127.0.0.1:59242) lost connection: There is nothing to see here! Go on, scram!
+[09:25:39] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[09:25:39] [Server thread/INFO]: Loading properties
+[09:25:39] [Server thread/INFO]: Default game type: SURVIVAL
+[09:25:39] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-7d78b81-a867313 (MC: 1.11.2) (Implementing API version 1.11.2-R0.1-SNAPSHOT)
+[09:25:39] [Server thread/INFO]: Debug logging is disabled
+[09:25:39] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[09:25:39] [Server thread/INFO]: Using 4 threads for Netty based IO
+[09:25:39] [Server thread/INFO]: Generating keypair
+[09:25:39] [Server thread/INFO]: Starting Minecraft server on *:25565
+[09:25:39] [Server thread/INFO]: Using default channel type
+[09:25:39] [Server thread/WARN]: **** FAILED TO BIND TO PORT!
+[09:25:39] [Server thread/WARN]: The exception was: java.net.BindException: Address already in use: bind
+[09:25:39] [Server thread/WARN]: Perhaps a server is already running on that port?
+[09:25:39] [Server thread/INFO]: Stopping server
+[09:25:39] [Server thread/INFO]: Saving players

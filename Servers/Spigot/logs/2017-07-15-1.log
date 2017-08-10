@@ -1,0 +1,55 @@
+[14:21:25] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[14:21:25] [Server thread/INFO]: Loading properties
+[14:21:25] [Server thread/INFO]: Default game type: SURVIVAL
+[14:21:25] [Server thread/INFO]: This server is running CraftBukkit version null (MC: 1.11.2) (Implementing API version Unknown-Version)
+[14:21:25] [Server thread/INFO]: Debug logging is disabled
+[14:21:25] [Server thread/INFO]: Using 4 threads for Netty based IO
+[14:21:25] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[14:21:25] [Server thread/INFO]: Generating keypair
+[14:21:25] [Server thread/INFO]: Starting Minecraft server on *:25565
+[14:21:25] [Server thread/INFO]: Using default channel type
+[14:21:26] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[14:21:26] [Server thread/INFO]: [FastAsyncWorldEdit] Loading FastAsyncWorldEdit v17.07.12-6b6f285-750-13.7.8
+[14:21:26] [Server thread/INFO]: [HideNameplates] Loading HideNameplates v1.0.0
+[14:21:26] [Server thread/INFO]: [ProtocolLib] Loading ProtocolLib v4.3.0
+[14:21:26] [Server thread/WARN]: [ProtocolLib] Assuming package version: v1_11_R1
+[14:21:26] [Server thread/INFO]: [WorldEdit] Loading WorldEdit v6.1.7-SNAPSHOT;3677-000c238
+[14:21:26] [Server thread/INFO]: [FastAsyncWorldEdit] Enabling FastAsyncWorldEdit v17.07.12-6b6f285-750-13.7.8
+[14:21:26] [Server thread/INFO]: Vault is used for persistent `/wea` toggles.
+[14:21:26] [Server thread/INFO]: [ProtocolLib] Enabling ProtocolLib v4.3.0
+[14:21:26] [Server thread/INFO]: [ProtocolLib] Started structure compiler thread.
+[14:21:27] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[14:21:27] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[14:21:27] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[14:21:27] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[14:21:27] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[14:21:27] [Server thread/INFO]: Preparing level "world"
+[14:21:27] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)
+[14:21:27] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2428624485121517051)
+[14:21:28] [Server thread/INFO]: Preparing start region for level 2 (Seed: -2428624485121517051)
+[14:21:28] [Server thread/INFO]: [HideNameplates] Enabling HideNameplates v1.0.0
+[14:21:28] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v6.1.7-SNAPSHOT;3677-000c238
+[14:21:28] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[14:21:28] [Server thread/WARN]: [WorldEdit] 
+**********************************************
+** This WorldEdit version does not fully support your version of Bukkit.
+**
+** When working with blocks or undoing, chests will be empty, signs
+** will be blank, and so on. There will be no support for entity
+** and biome-related functions.
+**
+** Please see http://wiki.sk89q.com/wiki/WorldEdit/Bukkit_adapters
+**********************************************
+
+[14:21:28] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[14:21:28] [Server thread/INFO]: Done (1.939s)! For help, type "help" or "?"
+[14:21:29] [User Authenticator #1/INFO]: UUID of player Zi_Zi_ is 1aab0124-db95-39b9-8779-c358ac7fedcf
+[14:21:30] [Server thread/INFO]: Zi_Zi_[/127.0.0.1:50435] logged in with entity id 72 at ([world]-164.2897895712418, 17.0, -1245.7880118179185)
+[14:21:31] [User Authenticator #2/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[14:21:31] [Server thread/INFO]: Exerosis[/127.0.0.1:50438] logged in with entity id 74 at ([world]-82.38762272949556, 16.0, -1057.3642505147889)
+[14:21:38] [Server thread/INFO]: Exerosis issued server command: /tp Zi_Zi_
+[14:21:38] [Server thread/INFO]: [Exerosis: Teleported Exerosis to Zi_Zi_]
+[14:21:55] [Server thread/INFO]: Exerosis issued server command: /nameplates
+[14:22:02] [Server thread/INFO]: Exerosis issued server command: /nameplates
+[14:22:04] [Server thread/INFO]: Exerosis issued server command: /nameplates
+[14:22:19] [Server thread/INFO]: Exerosis issued server command: /nameplates

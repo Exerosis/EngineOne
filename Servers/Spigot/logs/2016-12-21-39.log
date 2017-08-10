@@ -1,0 +1,302 @@
+[17:23:55] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[17:23:55] [Server thread/INFO]: Loading properties
+[17:23:55] [Server thread/INFO]: Default game type: SURVIVAL
+[17:23:55] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-7d78b81-a867313 (MC: 1.11.2) (Implementing API version 1.11.2-R0.1-SNAPSHOT)
+[17:23:55] [Server thread/INFO]: Debug logging is disabled
+[17:23:55] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[17:23:55] [Server thread/INFO]: Using 4 threads for Netty based IO
+[17:23:55] [Server thread/INFO]: Generating keypair
+[17:23:55] [Server thread/INFO]: Starting Minecraft server on *:25565
+[17:23:55] [Server thread/INFO]: Using default channel type
+[17:23:55] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[17:23:55] [Server thread/WARN]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+[17:23:55] [Server thread/WARN]: SLF4J: Defaulting to no-operation (NOP) logger implementation
+[17:23:55] [Server thread/WARN]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[17:23:55] [Server thread/INFO]: [WizartMC] Loading WizartMC v1.1
+[17:23:55] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[17:23:55] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[17:23:55] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[17:23:55] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[17:23:55] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[17:23:55] [Server thread/INFO]: Preparing level "world"
+[17:23:56] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)
+[17:23:56] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2428624485121517051)
+[17:23:57] [Server thread/INFO]: Preparing start region for level 2 (Seed: -2428624485121517051)
+[17:23:57] [Server thread/INFO]: [WizartMC] Enabling WizartMC v1.1
+[17:23:57] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[17:23:57] [Server thread/INFO]: Done (2.055s)! For help, type "help" or "?"
+[17:24:05] [User Authenticator #1/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[17:24:05] [Server thread/INFO]: CraftPlayer{name=Exerosis} Team: Attackers
+[17:24:05] [Server thread/INFO]: CraftPlayer{name=Exerosis} Team: Defenders
+[17:24:05] [Server thread/INFO]: Exerosis[/127.0.0.1:63134] logged in with entity id 48 at ([world]-122.0, 4.0, -1121.0)
+[17:24:07] [pool-6-thread-9/INFO]: Build
+[17:24:08] [Server thread/INFO]: Exerosis lost connection: Disconnected
+[17:24:08] [Server thread/INFO]: Exerosis left the game
+[17:24:10] [User Authenticator #2/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[17:24:10] [Server thread/INFO]: Exerosis[/127.0.0.1:63148] logged in with entity id 49 at ([world]-121.9734578456264, 14.0, -1119.9550383774751)
+[17:24:14] [Server thread/INFO]: 0.1
+[17:24:14] [Server thread/INFO]: 0.05
+[17:24:15] [Server thread/INFO]: 0.1
+[17:24:15] [Server thread/INFO]: 0.05
+[17:24:19] [Server thread/INFO]: 0.1
+[17:24:19] [Server thread/INFO]: -0.05
+[17:24:19] [Server thread/ERROR]: Could not pass event PlayerItemHeldEvent to WizartMC v1.1
+org.bukkit.event.EventException
+	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:306) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.plugin.RegisteredListener.callEvent(RegisteredListener.java:62) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.plugin.SimplePluginManager.fireEvent(SimplePluginManager.java:502) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.plugin.SimplePluginManager.callEvent(SimplePluginManager.java:487) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.PlayerConnection.a(PlayerConnection.java:1113) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.PacketPlayInHeldItemSlot.a(SourceFile:30) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.PacketPlayInHeldItemSlot.a(SourceFile:8) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.PlayerConnectionUtils$1.run(SourceFile:13) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:511) [?:1.8.0_101]
+	at java.util.concurrent.FutureTask.run(FutureTask.java:266) [?:1.8.0_101]
+	at net.minecraft.server.v1_11_R1.SystemUtils.a(SourceFile:46) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.D(MinecraftServer.java:739) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.DedicatedServer.D(DedicatedServer.java:399) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.C(MinecraftServer.java:675) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.MinecraftServer.run(MinecraftServer.java:574) [Spigot.jar:git-Spigot-7d78b81-a867313]
+	at java.lang.Thread.run(Thread.java:745) [?:1.8.0_101]
+Caused by: java.lang.NullPointerException
+	at net.wizartmc.engine.components.spectate.SpectatorComponent.onScroll(SpectatorComponent.java:87) ~[?:?]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[?:1.8.0_101]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[?:1.8.0_101]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[?:1.8.0_101]
+	at java.lang.reflect.Method.invoke(Method.java:498) ~[?:1.8.0_101]
+	at org.bukkit.plugin.java.JavaPluginLoader$1.execute(JavaPluginLoader.java:302) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	... 15 more
+[17:24:19] [Server thread/INFO]: 0.1
+[17:24:19] [Server thread/INFO]: 0.05
+[17:24:20] [Server thread/INFO]: 0.1
+[17:24:20] [Server thread/INFO]: 0.05
+[17:24:20] [Server thread/INFO]: 0.1
+[17:24:20] [Server thread/INFO]: 0.05
+[17:24:21] [Server thread/INFO]: 0.1
+[17:24:21] [Server thread/INFO]: 0.05
+[17:24:21] [Server thread/INFO]: 0.1
+[17:24:21] [Server thread/INFO]: 0.05
+[17:24:21] [Server thread/INFO]: 0.1
+[17:24:21] [Server thread/INFO]: 0.05
+[17:24:21] [Server thread/INFO]: 0.1
+[17:24:21] [Server thread/INFO]: 0.05
+[17:24:21] [Server thread/INFO]: 0.1
+[17:24:21] [Server thread/INFO]: 0.05
+[17:24:22] [Server thread/INFO]: 0.1
+[17:24:22] [Server thread/INFO]: 0.05
+[17:24:22] [Server thread/INFO]: 0.1
+[17:24:22] [Server thread/INFO]: 0.05
+[17:24:22] [Server thread/INFO]: 0.1
+[17:24:22] [Server thread/INFO]: 0.05
+[17:24:23] [Server thread/INFO]: 0.1
+[17:24:23] [Server thread/INFO]: 0.05
+[17:24:23] [Server thread/INFO]: 0.1
+[17:24:23] [Server thread/INFO]: 0.05
+[17:24:23] [Server thread/INFO]: 0.1
+[17:24:23] [Server thread/INFO]: 0.05
+[17:24:23] [Server thread/INFO]: 0.1
+[17:24:23] [Server thread/INFO]: 0.05
+[17:24:24] [Server thread/INFO]: 0.1
+[17:24:24] [Server thread/INFO]: 0.05
+[17:24:24] [Server thread/INFO]: 0.1
+[17:24:24] [Server thread/INFO]: 0.05
+[17:24:24] [Server thread/INFO]: 0.1
+[17:24:24] [Server thread/INFO]: 0.05
+[17:24:24] [Server thread/INFO]: 0.1
+[17:24:24] [Server thread/INFO]: 0.05
+[17:24:25] [Server thread/INFO]: 0.1
+[17:24:25] [Server thread/INFO]: 0.05
+[17:24:25] [Server thread/INFO]: 0.1
+[17:24:25] [Server thread/INFO]: 0.05
+[17:24:25] [Server thread/INFO]: 0.1
+[17:24:25] [Server thread/INFO]: 0.05
+[17:24:25] [Server thread/INFO]: 0.1
+[17:24:25] [Server thread/INFO]: 0.05
+[17:24:25] [Server thread/INFO]: 0.1
+[17:24:25] [Server thread/INFO]: 0.05
+[17:24:25] [Server thread/INFO]: 0.1
+[17:24:25] [Server thread/INFO]: 0.05
+[17:24:26] [Server thread/INFO]: 0.1
+[17:24:26] [Server thread/INFO]: 0.05
+[17:24:26] [Server thread/INFO]: 0.1
+[17:24:26] [Server thread/INFO]: 0.05
+[17:24:26] [Server thread/INFO]: 0.1
+[17:24:26] [Server thread/INFO]: 0.05
+[17:24:27] [Server thread/INFO]: 0.1
+[17:24:27] [Server thread/INFO]: 0.05
+[17:24:27] [Server thread/INFO]: 0.1
+[17:24:27] [Server thread/INFO]: 0.05
+[17:24:27] [Server thread/INFO]: 0.1
+[17:24:27] [Server thread/INFO]: 0.05
+[17:24:27] [Server thread/INFO]: 0.1
+[17:24:27] [Server thread/INFO]: 0.05
+[17:24:28] [Server thread/INFO]: 0.1
+[17:24:28] [Server thread/INFO]: 0.05
+[17:24:28] [Server thread/INFO]: 0.1
+[17:24:28] [Server thread/INFO]: 0.05
+[17:24:28] [Server thread/INFO]: 0.1
+[17:24:28] [Server thread/INFO]: 0.05
+[17:24:28] [Server thread/INFO]: 0.1
+[17:24:28] [Server thread/INFO]: 0.05
+[17:24:28] [Server thread/INFO]: 0.1
+[17:24:28] [Server thread/INFO]: 0.05
+[17:24:28] [Server thread/INFO]: 0.1
+[17:24:28] [Server thread/INFO]: 0.05
+[17:24:29] [Server thread/INFO]: 0.1
+[17:24:29] [Server thread/INFO]: 0.05
+[17:24:29] [Server thread/INFO]: 0.1
+[17:24:29] [Server thread/INFO]: 0.05
+[17:24:30] [Server thread/INFO]: 0.1
+[17:24:30] [Server thread/INFO]: 0.05
+[17:24:30] [Server thread/INFO]: 0.1
+[17:24:30] [Server thread/INFO]: 0.05
+[17:24:31] [Server thread/INFO]: 0.1
+[17:24:31] [Server thread/INFO]: 0.05
+[17:24:31] [Server thread/INFO]: 0.1
+[17:24:31] [Server thread/INFO]: 0.05
+[17:24:31] [Server thread/INFO]: 0.1
+[17:24:31] [Server thread/INFO]: 0.05
+[17:24:31] [Server thread/INFO]: 0.1
+[17:24:31] [Server thread/INFO]: 0.05
+[17:24:34] [Server thread/INFO]: 0.1
+[17:24:34] [Server thread/INFO]: 0.05
+[17:24:34] [Server thread/INFO]: 0.1
+[17:24:34] [Server thread/INFO]: 0.05
+[17:24:35] [Server thread/INFO]: 0.1
+[17:24:35] [Server thread/INFO]: 0.05
+[17:24:35] [Server thread/INFO]: 0.1
+[17:24:35] [Server thread/INFO]: 0.05
+[17:24:35] [Server thread/INFO]: 0.1
+[17:24:35] [Server thread/INFO]: 0.05
+[17:24:35] [Server thread/INFO]: 0.1
+[17:24:35] [Server thread/INFO]: 0.05
+[17:24:35] [Server thread/INFO]: 0.1
+[17:24:35] [Server thread/INFO]: 0.05
+[17:24:35] [Server thread/INFO]: 0.1
+[17:24:35] [Server thread/INFO]: 0.05
+[17:24:38] [Server thread/INFO]: 0.1
+[17:24:38] [Server thread/INFO]: 0.05
+[17:24:38] [Server thread/INFO]: 0.1
+[17:24:38] [Server thread/INFO]: 0.05
+[17:24:39] [Server thread/INFO]: 0.1
+[17:24:39] [Server thread/INFO]: 0.05
+[17:24:39] [Server thread/INFO]: 0.1
+[17:24:39] [Server thread/INFO]: 0.05
+[17:24:39] [Server thread/INFO]: 0.1
+[17:24:39] [Server thread/INFO]: 0.05
+[17:24:39] [Server thread/INFO]: 0.1
+[17:24:39] [Server thread/INFO]: 0.05
+[17:24:39] [Server thread/INFO]: 0.1
+[17:24:39] [Server thread/INFO]: 0.05
+[17:24:39] [Server thread/INFO]: 0.1
+[17:24:39] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:40] [Server thread/INFO]: 0.1
+[17:24:40] [Server thread/INFO]: 0.05
+[17:24:41] [Server thread/INFO]: 0.1
+[17:24:41] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:42] [Server thread/INFO]: 0.1
+[17:24:42] [Server thread/INFO]: 0.05
+[17:24:44] [Server thread/INFO]: 0.1
+[17:24:44] [Server thread/INFO]: 0.05
+[17:24:44] [Server thread/INFO]: 0.1
+[17:24:44] [Server thread/INFO]: 0.05
+[17:24:45] [Server thread/INFO]: 0.1
+[17:24:45] [Server thread/INFO]: 0.05
+[17:24:45] [Server thread/INFO]: 0.1
+[17:24:45] [Server thread/INFO]: 0.05
+[17:24:45] [Server thread/INFO]: 0.1
+[17:24:45] [Server thread/INFO]: 0.05
+[17:24:45] [Server thread/INFO]: 0.1
+[17:24:45] [Server thread/INFO]: 0.05
+[17:24:46] [Server thread/INFO]: 0.1
+[17:24:46] [Server thread/INFO]: 0.05
+[17:24:46] [Server thread/INFO]: 0.1
+[17:24:46] [Server thread/INFO]: 0.05
+[17:24:48] [Server thread/INFO]: 0.1
+[17:24:48] [Server thread/INFO]: 0.05
+[17:24:48] [Server thread/INFO]: 0.1
+[17:24:48] [Server thread/INFO]: 0.05
+[17:24:48] [Server thread/INFO]: 0.1
+[17:24:48] [Server thread/INFO]: 0.05
+[17:24:48] [Server thread/INFO]: 0.1
+[17:24:48] [Server thread/INFO]: 0.05
+[17:24:48] [Server thread/INFO]: 0.1
+[17:24:48] [Server thread/INFO]: 0.05
+[17:24:48] [Server thread/INFO]: 0.1
+[17:24:48] [Server thread/INFO]: 0.05
+[17:24:49] [Server thread/INFO]: 0.1
+[17:24:49] [Server thread/INFO]: 0.05
+[17:24:49] [Server thread/INFO]: 0.1
+[17:24:49] [Server thread/INFO]: 0.05
+[17:24:50] [Server thread/INFO]: 0.1
+[17:24:50] [Server thread/INFO]: 0.05
+[17:24:50] [Server thread/INFO]: 0.1
+[17:24:50] [Server thread/INFO]: 0.05
+[17:24:50] [Server thread/INFO]: 0.1
+[17:24:50] [Server thread/INFO]: 0.05
+[17:24:50] [Server thread/INFO]: 0.1
+[17:24:50] [Server thread/INFO]: 0.05
+[17:24:52] [Server thread/INFO]: 0.1
+[17:24:52] [Server thread/INFO]: 0.05
+[17:24:52] [Server thread/INFO]: 0.1
+[17:24:52] [Server thread/INFO]: 0.05
+[17:25:07] [pool-6-thread-8/INFO]: Combat
+[17:25:19] [Server thread/INFO]: Exerosis lost connection: Disconnected
+[17:25:19] [Server thread/INFO]: Exerosis left the game
+[17:27:07] [pool-6-thread-6/INFO]: Disabled: net.wizartmc.engine.components.spectate.SpectatorComponent
+[17:27:13] [User Authenticator #3/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[17:27:13] [Server thread/INFO]: Exerosis[/127.0.0.1:63565] logged in with entity id 302 at ([world]-122.0, 14.0, -1121.0)
+[17:27:19] [Server thread/INFO]: Exerosis lost connection: Disconnected
+[17:27:19] [Server thread/INFO]: Exerosis left the game
+[17:27:21] [User Authenticator #4/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[17:27:21] [Server thread/INFO]: Exerosis[/127.0.0.1:63586] logged in with entity id 306 at ([world]-122.0, 14.0, -1121.0)
+[17:27:24] [Server thread/INFO]: Exerosis lost connection: Disconnected
+[17:27:24] [Server thread/INFO]: Exerosis left the game
+[17:27:34] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[17:27:34] [Server thread/INFO]: Loading properties
+[17:27:35] [Server thread/INFO]: Default game type: SURVIVAL
+[17:27:35] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-7d78b81-a867313 (MC: 1.11.2) (Implementing API version 1.11.2-R0.1-SNAPSHOT)
+[17:27:35] [Server thread/INFO]: Debug logging is disabled
+[17:27:35] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[17:27:35] [Server thread/INFO]: Using 4 threads for Netty based IO
+[17:27:35] [Server thread/INFO]: Generating keypair
+[17:27:35] [Server thread/INFO]: Starting Minecraft server on *:25565
+[17:27:35] [Server thread/INFO]: Using default channel type
+[17:27:35] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[17:27:35] [Server thread/WARN]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+[17:27:35] [Server thread/WARN]: SLF4J: Defaulting to no-operation (NOP) logger implementation
+[17:27:35] [Server thread/WARN]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[17:27:35] [Server thread/INFO]: [WizartMC] Loading WizartMC v1.1
+[17:27:35] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[17:27:35] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[17:27:35] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[17:27:35] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[17:27:35] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[17:27:35] [Server thread/INFO]: Preparing level "world"
+[17:27:36] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)

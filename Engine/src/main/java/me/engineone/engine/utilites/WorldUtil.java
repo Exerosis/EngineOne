@@ -108,7 +108,7 @@ public class WorldUtil {
             File file = getWorldFile(worldName);
 
             if (!file.exists()) {
-                System.out.print("World " + worldName + " not found!");
+                System.out.print("WorldObservable " + worldName + " not found!");
                 callback.accept(true);
                 return true;
             }

@@ -9,7 +9,6 @@ import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.Plugin;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
@@ -75,7 +74,7 @@ public class ServerUtil {
         return Bukkit.getOfflinePlayer(uuid);
     }
 
-    public static List<String> getOnlinePlayerNames()  {
+    public static List<String> getOnlinePlayerNames() {
         return getOnlinePlayers().stream().map(HumanEntity::getName).collect(Collectors.toList());
     }
 

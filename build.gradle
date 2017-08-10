@@ -1,27 +1,25 @@
+buildscript {
+    repositories { jcenter() }
+
+    dependencies {
+        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:3.0.3'
+    }
+}
+
 allprojects {
     group 'me.engineone'
-    version '0.0.1-SNAPSHOT'
+    version '1.0.0-SNAPSHOT'
+    apply plugin: 'idea'
 }
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'idea'
-    apply plugin: 'maven-publish'
 
     sourceCompatibility = 1.8
-
 
     repositories {
         mavenLocal()
         mavenCentral()
-        maven {
-            // Spigot
-            url 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
-        }
-        maven {
-            // ProtocolLib
-            url 'http://repo.dmulloy2.net/nexus/repository/public/'
-        }
     }
 
     dependencies {
@@ -34,13 +32,4 @@ subprojects {
             downloadSources = true
         }
     }
-
-    publishing {
-        publications {
-            mavenJava(MavenPublication) {
-                from components.java
-            }
-        }
-    }
 }
-

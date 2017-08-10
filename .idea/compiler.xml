@@ -8,6 +8,10 @@
       <module name="Engine_test" target="1.8" />
       <module name="Example_main" target="1.8" />
       <module name="Example_test" target="1.8" />
+      <module name="Matchmaker_main" target="1.8" />
+      <module name="Matchmaker_test" target="1.8" />
+      <module name="ThraxPvP_main" target="1.8" />
+      <module name="ThraxPvP_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

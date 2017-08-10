@@ -1,0 +1,11 @@
+Item:
+  Id: WOOL
+  Data: 10
+Options:
+  Speed: 200
+  Acceleration: 0.6
+  CanFly: true
+  Tilt: false
+  DespawnOnExit: true
+  Particle: SMOKE_NORMAL
+  Sound: none

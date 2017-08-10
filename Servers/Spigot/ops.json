@@ -1,0 +1,32 @@
+[
+  {
+    "uuid": "3bb556e8-7630-38e1-95dc-e6409c8d6453",
+    "name": "Exerosis",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "53afe31f-eee4-350d-9ad3-88bf900aca64",
+    "name": "Giovanna",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "1aab0124-db95-39b9-8779-c358ac7fedcf",
+    "name": "Zi_Zi_",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "444fb28d-a600-3fa4-8256-5d7658bb66ca",
+    "name": "NathanApes",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  },
+  {
+    "uuid": "551a1a1d-08b1-467c-aa72-b3766198917d",
+    "name": "Exerosis",
+    "level": 4,
+    "bypassesPlayerLimit": false
+  }
+]

@@ -1,0 +1,62 @@
+Blocks:
+  GOLD_ORE-0:
+    Drops: '[CustomItem:RawSilver]'
+  IRON_ORE-0:
+    Drops: '[CustomItem:RawIron]'
+  LAPIS_ORE-0:
+    Drops: '[CustomItem:Amethyst]'
+  DIAMOND_ORE-0:
+    Drops: '[CustomItem:RawCobalt]'
+  REDSTONE_ORE-0:
+    Drops: '[CustomItem:RawCopper]'
+  EMERALD_ORE-0:
+    Drops: '[CustomItem:Topaz]'
+  GLOWING_REDSTONE_ORE-0:
+    Drops: '[CustomItem:RawCopper]'
+  RED_ROSE-2:
+    Drops: '[CustomItem:SwampBloom]'
+  YELLOW_FLOWER-0:
+    Drops: '[CustomItem:VenusFlytrap]'
+  RED_ROSE-0:
+    Drops: '[CustomItem:Thyme]'
+  DOUBLE_PLANT-4:
+    Drops: '[CustomItem:Cattails]'
+  RED_ROSE-3:
+    Drops: '[CustomItem:YellowMushrooms]'
+  RED_ROSE-8:
+    Drops: '[CustomItem:RiverTongue]'
+  RED_MUSHROOM-0:
+    Drops: '[CustomItem:DeathCapMushroom]'
+  BROWN_MUSHROOM-0:
+    Drops: '[CustomItem:BlueMushroom]'
+
+
+Specifications:
+  LAPIS_ORE-0: IRON_PICKAXE
+  REDSTONE_ORE-0: IRON_PICKAXE
+  GOLD_ORE-0: IRON_PICKAXE
+  DIAMOND_ORE-0: IRON_PICKAXE
+  EMERALD_ORE-0: IRON_PICKAXE
+  GLOWING_REDSTONE_ORE-0: IRON_PICKAXE
+  IRON_ORE-0: STONE_PICKAXE, IRON_PICKAXE
+  RED_ROSE-0: ANY
+  RED_ROSE-2: ANY
+  RED_ROSE-3: ANY
+  RED_ROSE-8: ANY
+  DOUBLE_PLANT-4: ANY
+  RED_MUSHROOM-0: ANY
+  BROWN_MUSHROOM-0: ANY
+  YELLOW_FLOWER-0: ANY
+
+Dig_Speeds:
+  DIAMOND_PICKAXE: 3
+  DIAMON_HOE: 3
+  DIAMOND_AXE: 3
+  DIAMOND_SPADE: 3
+  GOLD_PICKAXE: 3
+  GOLD_AXE: 3
+  GOLD_SPADE: 3
+  GOLD_HOE: 3
+  
+  
+  

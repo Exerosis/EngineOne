@@ -1,0 +1,186 @@
+[22:08:59] [Server thread/INFO]: Starting minecraft server version 1.11.2
+[22:08:59] [Server console handler/ERROR]: Exception handling console input
+java.io.IOException: The handle is invalid
+	at java.io.FileInputStream.readBytes(Native Method) ~[?:1.8.0_121]
+	at java.io.FileInputStream.read(Unknown Source) ~[?:1.8.0_121]
+	at java.io.BufferedInputStream.fill(Unknown Source) ~[?:1.8.0_121]
+	at java.io.BufferedInputStream.read(Unknown Source) ~[?:1.8.0_121]
+	at org.bukkit.craftbukkit.libs.jline.internal.NonBlockingInputStream.read(NonBlockingInputStream.java:248) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:261) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.internal.InputStreamReader.read(InputStreamReader.java:198) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readCharacter(ConsoleReader.java:2145) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLineSimple(ConsoleReader.java:3183) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2333) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2269) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at org.bukkit.craftbukkit.libs.jline.console.ConsoleReader.readLine(ConsoleReader.java:2257) ~[Spigot.jar:git-Spigot-7d78b81-a867313]
+	at net.minecraft.server.v1_11_R1.DedicatedServer$2.run(DedicatedServer.java:86) [Spigot.jar:git-Spigot-7d78b81-a867313]
+[22:08:59] [Server thread/INFO]: Loading properties
+[22:08:59] [Server thread/INFO]: Default game type: SURVIVAL
+[22:08:59] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-7d78b81-a867313 (MC: 1.11.2) (Implementing API version 1.11.2-R0.1-SNAPSHOT)
+[22:08:59] [Server thread/INFO]: Debug logging is disabled
+[22:08:59] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[22:08:59] [Server thread/INFO]: Using 4 threads for Netty based IO
+[22:08:59] [Server thread/INFO]: Generating keypair
+[22:08:59] [Server thread/INFO]: Starting Minecraft server on *:25565
+[22:08:59] [Server thread/INFO]: Using default channel type
+[22:08:59] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[22:08:59] [Server thread/INFO]: [FastAsyncWorldEdit] Loading FastAsyncWorldEdit v17.04.05-7c49c34-624-11.10.1
+[22:08:59] [Server thread/INFO]: [FastAsyncWorldEdit] Enabling FastAsyncWorldEdit v17.04.05-7c49c34-624-11.10.1
+[22:08:59] [Server thread/INFO]: Vault is used for persistent `/wea` toggles.
+[22:09:01] [Server thread/INFO]: ====== USE PAPER ======
+[22:09:01] [Server thread/INFO]: DOWNLOAD: https://ci.destroystokyo.com/job/PaperSpigot/
+[22:09:01] [Server thread/INFO]: GUIDE: https://www.spigotmc.org/threads/21726/
+[22:09:01] [Server thread/INFO]:  - This is only a recommendation
+[22:09:01] [Server thread/INFO]: ==============================
+[22:09:01] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[22:09:01] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[22:09:01] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[22:09:01] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[22:09:01] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[22:09:01] [Server thread/INFO]: Preparing level "world"
+[22:09:01] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)
+[22:09:02] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2428624485121517051)
+[22:09:02] [Server thread/INFO]: Preparing start region for level 2 (Seed: -2428624485121517051)
+[22:09:02] [Server thread/INFO]: [WorldEdit] Enabling WorldEdit v6.1.7-SNAPSHOT;3677-000c238
+[22:09:02] [Server thread/INFO]: [WorldEdit] Default configuration file written: config.yml
+[22:09:02] [Server thread/INFO]: WEPIF: Updated config file
+[22:09:02] [Server thread/INFO]: WEPIF: Using the Bukkit Permissions API.
+[22:09:03] [Server thread/INFO]: [WorldEdit] Using com.sk89q.worldedit.bukkit.adapter.impl.Spigot_v1_11_R1 as the Bukkit adapter
+[22:09:03] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[22:09:03] [Server thread/INFO]: Done (2.588s)! For help, type "help" or "?"
+[22:10:23] [User Authenticator #1/INFO]: UUID of player TheCrystalWizard is 16edf6e0-cf87-3e50-8bb8-22d69fb47c75
+[22:10:23] [Server thread/INFO]: TheCrystalWizard[/73.217.251.226:52400] logged in with entity id 69 at ([world]-119.24727993367279, 21.0, -1062.300000011921)
+[22:10:30] [Server thread/INFO]: TheCrystalWizard lost connection: Disconnected
+[22:10:30] [Server thread/INFO]: TheCrystalWizard left the game
+[22:11:44] [User Authenticator #2/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[22:11:44] [Server thread/INFO]: Exerosis[/96.248.86.40:1026] logged in with entity id 120 at ([world]-120.0, 20.0, -1235.0)
+[22:11:47] [Server thread/INFO]: Exerosis issued server command: /pl
+[22:11:51] [Server thread/INFO]: Exerosis issued server command: /gamemode 1
+[22:11:51] [Server thread/INFO]: [Exerosis: Set own game mode to Creative Mode]
+[22:11:55] [Server thread/INFO]: Exerosis issued server command: /2
+[22:11:58] [Server thread/INFO]: Exerosis issued server command: /cli
+[22:20:12] [Server thread/INFO]: Exerosis issued server command: //pos1
+[22:20:16] [Server thread/INFO]: Exerosis issued server command: //pos2
+[22:20:19] [Server thread/INFO]: Exerosis issued server command: //set dirt
+[22:20:19] [Craft Scheduler Thread - 0/INFO]: (FAWE) Using adapter: com.boydti.fawe.bukkit.v1_11.FaweAdapter_1_11@479a274d
+[22:20:19] [Craft Scheduler Thread - 0/INFO]: (FAWE) =========================================
+[22:20:28] [Server thread/INFO]: Exerosis issued server command: /wea
+[22:20:31] [Server thread/INFO]: Exerosis issued server command: //set dirt
+[22:20:43] [Server thread/INFO]: Exerosis issued server command: /cli
+[22:20:50] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*10)
+[22:20:54] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:20:59] [Server thread/INFO]: Exerosis issued server command: //expand 20
+[22:21:01] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*10)
+[22:21:06] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:21:44] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:24:17] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:24:31] [Server thread/INFO]: Exerosis issued server command: //expand 100
+[22:24:34] [Server thread/INFO]: Exerosis issued server command: //expand 100
+[22:24:37] [Server thread/INFO]: Exerosis issued server command: //expand 15
+[22:25:09] [Server thread/INFO]: Exerosis issued server command: //pos1
+[22:25:21] [Server thread/INFO]: Exerosis issued server command: //pos2
+[22:25:27] [Server thread/INFO]: Exerosis issued server command: //expand 100
+[22:25:28] [Server thread/INFO]: Exerosis issued server command: //expand 100
+[22:25:30] [Server thread/INFO]: Exerosis issued server command: //expand 100
+[22:25:31] [Server thread/INFO]: Exerosis issued server command: //expand 100
+[22:25:49] [Server thread/INFO]: Exerosis issued server command: //expand 6
+[22:25:53] [Server thread/INFO]: Exerosis issued server command: //set dirt
+[22:26:11] [Server thread/INFO]: Exerosis issued server command: //contract 5
+[22:26:13] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:26:49] [Server thread/INFO]: Exerosis issued server command: //expand 30
+[22:26:53] [Server thread/INFO]: Exerosis issued server command: //set air
+[22:27:20] [Server thread/INFO]: Exerosis issued server command: //contract 30
+[22:27:32] [Server thread/INFO]: Exerosis issued server command: //set dirt
+[22:27:44] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:27:50] [Server thread/INFO]: Exerosis issued server command: //expand 30
+[22:28:00] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:28:08] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:28:16] [Server thread/INFO]: Exerosis issued server command: //expand 30
+[22:28:17] [Server thread/INFO]: Exerosis issued server command: //expand 30
+[22:28:19] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:28:49] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:28:53] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:29:33] [Server thread/INFO]: Exerosis issued server command: //contract 30
+[22:29:36] [Server thread/INFO]: Exerosis issued server command: //walls stone
+[22:29:48] [Server thread/INFO]: Exerosis issued server command: //contract 30
+[22:29:54] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:30:00] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:30:03] [Server thread/INFO]: Exerosis issued server command: //contract 15
+[22:30:04] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:30:08] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:30:18] [Server thread/INFO]: Exerosis issued server command: //contract 15
+[22:30:19] [Server thread/INFO]: Exerosis issued server command: //contract 15
+[22:30:21] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:30:25] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:30:27] [Server thread/INFO]: Exerosis issued server command: //contract 15
+[22:30:28] [Server thread/INFO]: Exerosis issued server command: //contract 15
+[22:30:30] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:30:37] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:30:41] [Server thread/INFO]: Exerosis issued server command: //expand 5
+[22:30:44] [Server thread/INFO]: Exerosis issued server command: //expand 1
+[22:30:48] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:31:01] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:31:04] [Server thread/INFO]: Exerosis issued server command: //expand 15
+[22:31:05] [Server thread/INFO]: Exerosis issued server command: //expand 15
+[22:31:08] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:31:16] [Server thread/INFO]: Exerosis issued server command: //expand 15
+[22:31:17] [Server thread/INFO]: Exerosis issued server command: //expand 15
+[22:31:18] [Server thread/INFO]: Exerosis issued server command: //replace dirt gravel
+[22:31:30] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:31:34] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:32:35] [Server thread/INFO]: Exerosis issued server command: //replace dirt 45%gravel,25%stone,15%cobblestone,15%clay
+[22:33:02] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:33:17] [Server thread/INFO]: Exerosis issued server command: //overlay clay
+[22:33:25] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:33:32] [Server thread/INFO]: Exerosis issued server command: //expand 50
+[22:33:34] [Server thread/INFO]: Exerosis issued server command: //overlay clay
+[22:34:03] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:34:50] [Server thread/INFO]: Exerosis issued server command: //overlay
+[22:34:56] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:35:14] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:35:24] [Server thread/INFO]: Exerosis issued server command: //replace air stone
+[22:35:29] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:35:36] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:35:43] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:35:47] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:35:50] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:35:52] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:35:57] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:35:59] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:36:02] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:36:04] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:36:10] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:36:12] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:36:13] [Server thread/INFO]: Exerosis issued server command: //contract 1
+[22:36:14] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:36:42] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:36:44] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:37:15] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:37:26] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:37:32] [Server thread/INFO]: Exerosis issued server command: //expand 50
+[22:37:34] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:37:44] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:37:50] [Server thread/INFO]: Exerosis issued server command: //expand 15
+[22:37:52] [Server thread/INFO]: Exerosis issued server command: //overlay stone
+[22:38:08] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:38:08] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:38:10] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:38:13] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:38:15] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:38:19] [Server thread/INFO]: Exerosis issued server command: /redo
+[22:38:26] [Server thread/INFO]: Exerosis issued server command: /undo
+[22:39:04] [Craft Scheduler Thread - 151/INFO]: Not newer
+[22:39:11] [Server thread/INFO]: Exerosis issued server command: //expand 70
+[22:39:18] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:39:27] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:39:31] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:39:38] [Server thread/INFO]: Exerosis issued server command: //undo
+[22:39:41] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:39:45] [Server thread/INFO]: Exerosis lost connection: Disconnected
+[22:39:45] [Server thread/INFO]: Exerosis left the game
+[22:39:48] [User Authenticator #3/INFO]: UUID of player Exerosis is 3bb556e8-7630-38e1-95dc-e6409c8d6453
+[22:39:48] [Server thread/INFO]: Exerosis[/96.248.86.40:1024] logged in with entity id 6790 at ([world]150.24846768955726, 54.118136799961505, -1128.381592268873)
+[22:39:52] [Server thread/INFO]: Exerosis issued server command: /undo
+[22:40:02] [Server thread/INFO]: Exerosis issued server command: //deform y+=0.2*sin(x*2.5+z*5)+0.2*sin(x*5+z*2.5)+0.2*sin(z*5)
+[22:40:21] [Server thread/INFO]: Exerosis lost connection: Disconnected
+[22:40:21] [Server thread/INFO]: Exerosis left the game
