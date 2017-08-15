@@ -5,6 +5,7 @@
     <content url="file://$MODULE_DIR$/../../ThraxPvP">
       <excludeFolder url="file://$MODULE_DIR$/../../ThraxPvP/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/../../ThraxPvP/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../ThraxPvP/out" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
