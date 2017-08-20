@@ -6,7 +6,6 @@
     <content url="file://$MODULE_DIR$/../../../Engine/src/main">
       <sourceFolder url="file://$MODULE_DIR$/../../../Engine/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/../../../Engine/src/main/resources" type="java-resource" />
-      <excludeFolder url="file://$MODULE_DIR$/../../../Engine/src/main/java/me/engineone/engine/displayables" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -19,6 +18,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Gradle: com.vexsoftware:votifier:1.9" level="project" />
     <orderEntry type="module" module-name="Core_main" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
     <orderEntry type="library" name="Gradle: com.comphenix.protocol:ProtocolLib-API:4.2.1" level="project" />

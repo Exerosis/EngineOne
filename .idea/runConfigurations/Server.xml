@@ -2,7 +2,7 @@
   <configuration default="false" name="Server" type="JarApplication" factoryName="JAR Application" singleton="true">
     <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
     <option name="JAR_PATH" value="$PROJECT_DIR$/Servers/Spigot/Spigot.jar" />
-    <option name="WORKING_DIRECTORY" value="C:\Home\Workspace\IntelliJ IDEA\EngineOne\Servers\Spigot" />
+    <option name="WORKING_DIRECTORY" value="C:\Users\Nathan\IdeaProjects\BuyerServerDevelopment\Gladiators\EngineOne\Servers\Spigot" />
     <option name="ALTERNATIVE_JRE_PATH" />
     <envs />
     <method>

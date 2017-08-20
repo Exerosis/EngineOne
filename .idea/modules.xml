@@ -9,7 +9,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/EngineOne.iml" filepath="$PROJECT_DIR$/.idea/modules/EngineOne.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine_main.iml" group="Engine" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Engine/Engine_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Engine/Engine_test.iml" group="Engine" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ThraxPvP.iml" filepath="$PROJECT_DIR$/.idea/modules/ThraxPvP.iml" group="ThraxPvP" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/ThraxPvP/ThraxPvP.iml" filepath="$PROJECT_DIR$/.idea/modules/ThraxPvP/ThraxPvP.iml" group="ThraxPvP" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ThraxPvP/ThraxPvP_main.iml" filepath="$PROJECT_DIR$/.idea/modules/ThraxPvP/ThraxPvP_main.iml" group="ThraxPvP" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/ThraxPvP/ThraxPvP_test.iml" filepath="$PROJECT_DIR$/.idea/modules/ThraxPvP/ThraxPvP_test.iml" group="ThraxPvP" />
     </modules>
