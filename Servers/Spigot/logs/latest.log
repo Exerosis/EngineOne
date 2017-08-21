@@ -1,48 +1,33 @@
-[19:40:00] [Server thread/INFO]: Starting minecraft server version 1.12
-[19:40:00] [Server thread/INFO]: Loading properties
-[19:40:00] [Server thread/INFO]: Default game type: SURVIVAL
-[19:40:00] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-99c2a37-3819f8d (MC: 1.12) (Implementing API version 1.12-R0.1-SNAPSHOT)
-[19:40:00] [Server thread/INFO]: Debug logging is disabled
-[19:40:00] [Server thread/INFO]: Server Ping Player Sample Count: 12
-[19:40:00] [Server thread/INFO]: Using 4 threads for Netty based IO
-[19:40:00] [Server thread/INFO]: Generating keypair
-[19:40:00] [Server thread/INFO]: Starting Minecraft server on *:25565
-[19:40:00] [Server thread/INFO]: Using default channel type
-[19:40:00] [Server thread/INFO]: Set PluginClassLoader as parallel capable
-[19:40:00] [Server thread/INFO]: Created
-[19:40:00] [Server thread/INFO]: [ThraxPvP] Loading ThraxPvP v1.0.0
-[19:40:00] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
-[19:40:00] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
-[19:40:00] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
-[19:40:00] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
-[19:40:00] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
-[19:40:00] [Server thread/INFO]: Preparing level "world"
-[19:40:01] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)
-[19:40:01] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2428624485121517051)
-[19:40:02] [Server thread/INFO]: Preparing start region for level 2 (Seed: -2428624485121517051)
-[19:40:02] [Server thread/INFO]: [ThraxPvP] Enabling ThraxPvP v1.0.0
-[19:40:02] [Server thread/WARN]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
-[19:40:02] [Server thread/WARN]: SLF4J: Defaulting to no-operation (NOP) logger implementation
-[19:40:02] [Server thread/WARN]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
-[19:40:02] [Server thread/INFO]: Attempting to load world.
-[19:40:02] [Server thread/WARN]: Failed to find world directory, attempting download.
-[19:40:04] [Server thread/ERROR]: Error occurred while enabling ThraxPvP v1.0.0 (Is it up to date?)
-java.lang.RuntimeException: Failed to download world zip.
-	at me.engineone.engine.components.world.WorldComponent.lambda$new$0(WorldComponent.java:51) ~[?:?]
-	at java.util.ArrayList.forEach(ArrayList.java:1249) ~[?:1.8.0_131]
-	at me.engineone.core.component.Component.enable(Component.java:59) ~[?:?]
-	at me.engineone.core.component.ParentComponent.enable(ParentComponent.java:19) ~[?:?]
-	at me.engineone.thraxpvp.ThraxPvP.onEnable(ThraxPvP.java:36) ~[?:?]
-	at org.bukkit.plugin.java.JavaPlugin.setEnabled(JavaPlugin.java:264) ~[Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at org.bukkit.plugin.java.JavaPluginLoader.enablePlugin(JavaPluginLoader.java:337) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at org.bukkit.plugin.SimplePluginManager.enablePlugin(SimplePluginManager.java:402) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at org.bukkit.craftbukkit.v1_12_R1.CraftServer.enablePlugin(CraftServer.java:378) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at org.bukkit.craftbukkit.v1_12_R1.CraftServer.enablePlugins(CraftServer.java:327) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at net.minecraft.server.v1_12_R1.MinecraftServer.t(MinecraftServer.java:421) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at net.minecraft.server.v1_12_R1.MinecraftServer.l(MinecraftServer.java:382) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at net.minecraft.server.v1_12_R1.MinecraftServer.a(MinecraftServer.java:337) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at net.minecraft.server.v1_12_R1.DedicatedServer.init(DedicatedServer.java:272) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at net.minecraft.server.v1_12_R1.MinecraftServer.run(MinecraftServer.java:544) [Spigot.jar:git-Spigot-99c2a37-3819f8d]
-	at java.lang.Thread.run(Thread.java:748) [?:1.8.0_131]
-[19:40:04] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
-[19:40:04] [Server thread/INFO]: Done (3.791s)! For help, type "help" or "?"
+[19:04:25] [Server thread/INFO]: Starting minecraft server version 1.12
+[19:04:25] [Server thread/INFO]: Loading properties
+[19:04:25] [Server thread/INFO]: Default game type: SURVIVAL
+[19:04:25] [Server thread/INFO]: This server is running CraftBukkit version git-Spigot-99c2a37-3819f8d (MC: 1.12) (Implementing API version 1.12-R0.1-SNAPSHOT)
+[19:04:25] [Server thread/INFO]: Debug logging is disabled
+[19:04:25] [Server thread/INFO]: Server Ping Player Sample Count: 12
+[19:04:25] [Server thread/INFO]: Using 4 threads for Netty based IO
+[19:04:25] [Server thread/INFO]: Generating keypair
+[19:04:25] [Server thread/INFO]: Starting Minecraft server on *:25565
+[19:04:25] [Server thread/INFO]: Using default channel type
+[19:04:25] [Server thread/INFO]: Set PluginClassLoader as parallel capable
+[19:04:25] [Server thread/INFO]: Created
+[19:04:25] [Server thread/INFO]: [ThraxPvP] Loading ThraxPvP v1.0.0
+[19:04:25] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[19:04:25] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[19:04:25] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[19:04:25] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[19:04:25] [Server thread/INFO]: **** Beginning UUID conversion, this may take A LONG time ****
+[19:04:25] [Server thread/INFO]: Preparing level "world"
+[19:04:26] [Server thread/INFO]: Preparing start region for level 0 (Seed: -2780883585342380306)
+[19:04:27] [Server thread/INFO]: Preparing start region for level 1 (Seed: -2428624485121517051)
+[19:04:27] [Server thread/INFO]: Preparing start region for level 2 (Seed: -2428624485121517051)
+[19:04:27] [Server thread/INFO]: [ThraxPvP] Enabling ThraxPvP v1.0.0
+[19:04:28] [Server thread/WARN]: SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+[19:04:28] [Server thread/WARN]: SLF4J: Defaulting to no-operation (NOP) logger implementation
+[19:04:28] [Server thread/WARN]: SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+[19:04:28] [Server thread/INFO]: Attempting to load world.
+[19:04:28] [Server thread/INFO]: Copying world directory.
+[19:04:28] [Server thread/INFO]: Preparing start region for level 3 (Seed: 9033132027007976059)
+[19:04:28] [Server thread/INFO]: Loading world.
+[19:04:28] [Server thread/INFO]: Server permissions file permissions.yml is empty, ignoring it
+[19:04:28] [Server thread/INFO]: Done (2.718s)! For help, type "help" or "?"
+[19:04:43] [pool-6-thread-1/INFO]: Attempting to unload world.
