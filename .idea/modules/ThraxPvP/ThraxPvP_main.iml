@@ -18,6 +18,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="Gradle: com.vexsoftware:votifier:1.9" level="project" />
     <orderEntry type="module" module-name="Engine_main" />
     <orderEntry type="library" name="Gradle: com.comphenix.protocol:ProtocolLib-API:4.2.1" level="project" />
     <orderEntry type="module" module-name="Core_main" />
