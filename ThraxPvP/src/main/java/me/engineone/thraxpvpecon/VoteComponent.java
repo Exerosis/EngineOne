@@ -1,3 +1,4 @@
+/*
 package me.engineone.thraxpvpecon;
 
 import com.vexsoftware.votifier.Votifier;
@@ -85,3 +86,4 @@ public class VoteComponent extends ParentComponent{
 
     }
 }
+*/

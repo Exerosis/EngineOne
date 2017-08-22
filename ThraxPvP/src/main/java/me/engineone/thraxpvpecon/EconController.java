@@ -23,7 +23,7 @@ public class EconController extends ParentComponent{
         schedulerComponent = addChild(new SchedulerComponent());
 
         //Init Voting
-        addChild(new VoteComponent(schedulerComponent));
+//        addChild(new VoteComponent(schedulerComponent));
 
         //Init Loot
         addChild(new LootComponent());

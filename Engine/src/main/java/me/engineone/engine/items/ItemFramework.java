@@ -15,8 +15,7 @@ import java.util.function.Consumer;
 
 public class ItemFramework {
 
-    public CustomItem like(BiConsumer<Player, Item> description) {
-
+    public static CustomItem like(BiConsumer<Player, Item> description) {
         Item item = new Item() {
             public Material type;
             private final List<Consumer<ItemStack>> listeners = new ArrayList<>();

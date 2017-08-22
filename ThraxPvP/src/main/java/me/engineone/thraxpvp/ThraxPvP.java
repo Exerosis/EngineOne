@@ -1,10 +1,8 @@
 package me.engineone.thraxpvp;
 
 import me.engineone.engine.Arena;
-import me.engineone.engine.components.scheduler.SchedulerComponent;
 import me.engineone.engine.components.world.WorldComponent;
 import me.engineone.engine.holder.OnlinePlayerHolder;
-import me.engineone.thraxpvpecon.EconController;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -13,7 +11,6 @@ import java.net.URL;
 
 public class ThraxPvP extends JavaPlugin {
     private final WorldComponent worldComponent;
-    private final EconController econControllerComponent;
 
     public ThraxPvP() {
         //Components
@@ -25,7 +22,6 @@ public class ThraxPvP extends JavaPlugin {
             e.printStackTrace();
         }
         worldComponent = new WorldComponent(new File("Worlds"), "ArenaWorld", url);
-        econControllerComponent = new EconController();
     }
 
     @Override
@@ -38,9 +34,6 @@ public class ThraxPvP extends JavaPlugin {
         arena.onComplete(worldComponent::disable);
 
         worldComponent.enable();
-
-        //Init Economy
-        econControllerComponent.enable();
     }
 
     @Override
