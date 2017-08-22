@@ -68,6 +68,7 @@ public class VoteComponent extends ParentComponent{
         );
 
         //Listen for Incoming Vote Registrations
+        //Shouldn't need to specify VotifierEvent voteEvent just event -> should do :P
         addChild(listen(VotifierEvent.class,
             (VotifierEvent voteEvent) -> {
                 Player votingPlayer = Bukkit.getPlayer(voteEvent.getVote().getUsername());

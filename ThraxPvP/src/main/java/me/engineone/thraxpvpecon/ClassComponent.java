@@ -50,6 +50,12 @@ public class ClassComponent extends ParentComponent{
     //Init
     public ClassComponent(){
 
+        //Redisson instance needs to be passed in, it's bad to create more than a single one.
+        //Maybe try complex object, this lucks us into 4 classes :(
+        //eg?
+        //ThraxPlayerData playerData = reddison.getMap("playerData").get(player.getUUID());
+        //List<String> list = playerData.getClasses();
+        //double money = playerData.getMoney();
         //Redis
         redisson = Redisson.create();
         redisSpawnList = redisson.getList("npc-loc");
@@ -59,6 +65,7 @@ public class ClassComponent extends ParentComponent{
         redisClass4PlayersList = redisson.getList("class-4-users");
         redisPlayerMoneyList = redisson.getListMultimap("player-econdata");
 
+        //Seperate NPCs into their own component? After all we need them for other things too... like shops, no point in writing duplicate code.
         //Spawn Variables
         npcLocation = new Location(Bukkit.getWorld("test"), (double)redisSpawnList.get(0),
         (double)redisSpawnList.get(1), (double)redisSpawnList.get(2));
