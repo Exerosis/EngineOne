@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module external.linked.project.id=":ThraxPvP:test" external.linked.project.path="$MODULE_DIR$/../../../ThraxPvP" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="me.engineone" external.system.module.type="sourceSet" external.system.module.version="1.0.0-SNAPSHOT" type="JAVA_MODULE" version="4">
+<module external.linked.project.id=":ThraxPvP:test" external.linked.project.path="$MODULE_DIR$/../../../ThraxPvP" external.root.project.path="$MODULE_DIR$/../../.." external.system.id="GRADLE" external.system.module.group="me.engineone" external.system.module.type="sourceSet" external.system.module.version="0.0.1-SNAPSHOT" type="JAVA_MODULE" version="4">
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8">
-    <output-test url="file://$MODULE_DIR$/../../../ThraxPvP/out/test/classes" />
+    <output-test url="file://$MODULE_DIR$/../../../ThraxPvP/build/classes/test" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../ThraxPvP/src/test">
       <sourceFolder url="file://$MODULE_DIR$/../../../ThraxPvP/src/test/java" isTestSource="true" />
@@ -10,49 +10,23 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="ThraxPvP_main" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../Servers/Spigot/Spigot.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
     <orderEntry type="module" module-name="Engine_main" />
-    <orderEntry type="library" name="Gradle: com.comphenix.protocol:ProtocolLib-API:4.2.1" level="project" />
     <orderEntry type="library" name="Gradle: junit:junit:4.12" level="project" />
-    <orderEntry type="module" module-name="Core_main" />
+    <orderEntry type="library" name="Gradle: org.github.paperspigot:paperspigot-api:1.8.8-R0.1-SNAPSHOT" level="project" />
+    <orderEntry type="library" name="Gradle: com.comphenix.protocol:ProtocolLib-API:4.2.1" level="project" />
     <orderEntry type="library" name="Gradle: commons-io:commons-io:2.5" level="project" />
+    <orderEntry type="module" module-name="Core_main" />
+    <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
+    <orderEntry type="library" name="Gradle: commons-lang:commons-lang:2.6" level="project" />
+    <orderEntry type="library" name="Gradle: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.avaje:ebean:2.8.1" level="project" />
+    <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.15" level="project" />
+    <orderEntry type="library" name="Gradle: net.md-5:bungeecord-chat:1.8-SNAPSHOT" level="project" />
     <orderEntry type="library" name="Gradle: cglib:cglib-nodep:2.2.2" level="project" />
     <orderEntry type="library" name="Gradle: com.comphenix.executors:BukkitExecutors:1.1-SNAPSHOT" level="project" />
-    <orderEntry type="library" name="Gradle: org.hamcrest:hamcrest-core:1.3" level="project" />
-    <orderEntry type="library" name="Gradle: org.apache.commons:commons-dbcp2:2.1.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.javatuples:javatuples:1.2" level="project" />
-    <orderEntry type="library" name="Gradle: com.google.guava:guava:20.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.projectlombok:lombok:1.16.16" level="project" />
-    <orderEntry type="library" name="Gradle: org.redisson:redisson:3.2.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.apache.commons:commons-pool2:2.4.2" level="project" />
-    <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
-    <orderEntry type="library" name="Gradle: javax.cache:cache-api:1.0.0" level="project" />
-    <orderEntry type="library" name="Gradle: io.netty:netty-common:4.0.42.Final" level="project" />
-    <orderEntry type="library" name="Gradle: io.netty:netty-codec:4.0.42.Final" level="project" />
-    <orderEntry type="library" name="Gradle: io.netty:netty-buffer:4.0.42.Final" level="project" />
-    <orderEntry type="library" name="Gradle: io.netty:netty-transport:4.0.42.Final" level="project" />
-    <orderEntry type="library" name="Gradle: io.netty:netty-handler:4.0.42.Final" level="project" />
-    <orderEntry type="library" name="Gradle: io.projectreactor:reactor-stream:2.0.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.21" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.7.6" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.7.6" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-databind:2.7.6" level="project" />
-    <orderEntry type="library" name="Gradle: net.openhft:zero-allocation-hashing:0.5" level="project" />
-    <orderEntry type="library" name="Gradle: net.bytebuddy:byte-buddy:1.4.26" level="project" />
-    <orderEntry type="library" name="Gradle: org.jodd:jodd-bean:3.7.1" level="project" />
-    <orderEntry type="library" name="Gradle: io.projectreactor:reactor-core:2.0.8.RELEASE" level="project" />
-    <orderEntry type="library" name="Gradle: org.yaml:snakeyaml:1.15" level="project" />
-    <orderEntry type="library" name="Gradle: com.fasterxml.jackson.core:jackson-annotations:2.7.0" level="project" />
-    <orderEntry type="library" name="Gradle: org.jodd:jodd-core:3.7.1" level="project" />
-    <orderEntry type="library" name="Gradle: org.reactivestreams:reactive-streams:1.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: javax.persistence:persistence-api:1.0" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.3.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.guava:guava:18.0" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="ThraxPvP_main" />
 </module>

@@ -1,3 +1,5 @@
 rootProject.name = 'EngineOne'
-include 'Core', 'Engine', 'ThraxPvP'
+include 'Core', 'Engine', 'Example'
+include 'Matchmaker'
+include 'ThraxPvP'
 
