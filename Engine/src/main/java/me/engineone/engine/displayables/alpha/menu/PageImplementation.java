@@ -4,6 +4,7 @@ import com.comphenix.protocol.PacketType;
 import com.comphenix.protocol.events.PacketContainer;
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import me.engineone.core.component.Component;
+import me.engineone.core.enableable.Enableable;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
@@ -29,13 +30,13 @@ public class PageImplementation extends Component implements Page {
     }
 
     @Override
-    public void enable() {
+    public Enableable enable() {
         super.enable();
         refresh();
     }
 
     @Override
-    public void disable() {
+    public Enableable disable() {
         super.disable();
         PacketContainer packet = getProtocolManager().createPacket(PacketType.Play.Server.CLOSE_WINDOW);
         packet.getBytes().write(0, windowId);

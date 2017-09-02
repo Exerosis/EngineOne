@@ -53,7 +53,7 @@ public class Component implements Enableable {
     }
 
     @Override
-    public void enable() {
+    public Enableable enable() {
         if (enabled)
             return;
         enableListenable.forEach(Runnable::run);
@@ -61,7 +61,7 @@ public class Component implements Enableable {
     }
 
     @Override
-    public void disable() {
+    public Enableable disable() {
         if (!enabled)
             return;
         disableListenable.forEach(Runnable::run);

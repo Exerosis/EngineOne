@@ -3,4 +3,4 @@ version: 1.0.0
 description: This is the Game plugin for ThraxPvP!
 load: STARTUP
 author: Exerosis
-main: me.engineone.thraxpvp.ThraxPvP
+main: me.engineone.thraxpvp.Thrax

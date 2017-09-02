@@ -1,6 +1,7 @@
 package me.engineone.engine.components;
 
 import me.engineone.core.component.ParentComponent;
+import me.engineone.core.enableable.Enableable;
 import me.engineone.core.holder.CollectionHolder;
 import me.engineone.engine.components.disablers.*;
 import org.bukkit.entity.Player;
@@ -21,7 +22,7 @@ public class PreGameComponent extends ParentComponent {
     }
 
     @Override
-    public void disable() {
+    public Enableable disable() {
         super.disable();
     }
 }

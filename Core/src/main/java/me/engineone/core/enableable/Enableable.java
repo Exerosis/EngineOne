@@ -1,9 +1,9 @@
 package me.engineone.core.enableable;
 
 public interface Enableable {
-    void enable();
+    Enableable enable();
 
-    void disable();
+    Enableable disable();
 
     boolean isEnabled();
 }

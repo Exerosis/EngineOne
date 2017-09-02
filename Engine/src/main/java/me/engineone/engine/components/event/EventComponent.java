@@ -1,6 +1,7 @@
 package me.engineone.engine.components.event;
 
 import me.engineone.core.component.ParentComponent;
+import me.engineone.core.enableable.Enableable;
 import me.engineone.engine.utilites.ServerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Event;
@@ -38,7 +39,7 @@ public class EventComponent<T extends Event> extends ParentComponent implements 
     }
 
     @Override
-    public void enable() {
+    public Enableable enable() {
         Bukkit.getPluginManager().registerEvent(type, this, priority, (listener, event) -> {
             if (event != null) {
                 getEventListeners().forEach(tConsumer -> tConsumer.accept((T) event));
@@ -51,7 +52,7 @@ public class EventComponent<T extends Event> extends ParentComponent implements 
     }
 
     @Override
-    public void disable() {
+    public Enableable disable() {
         ServerUtil.unregisterListener(this);
         super.disable();
     }

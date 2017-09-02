@@ -21,14 +21,16 @@ public class ParentPhase extends Phase implements ParentEnableable {
     }
 
     @Override
-    public void enable() {
+    public ParentPhase enable() {
         super.enable();
         ParentEnableable.super.enable();
+        return this;
     }
 
     @Override
-    public void disable() {
+    public ParentPhase disable() {
         super.disable();
         ParentEnableable.super.disable();
+        return this;
     }
 }

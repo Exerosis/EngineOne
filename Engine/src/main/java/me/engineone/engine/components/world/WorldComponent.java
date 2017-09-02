@@ -93,12 +93,7 @@ public class WorldComponent extends ParentComponent {
             });
         });
 
-        addChild(EventComponent.listen(WorldLoadEvent.class, event -> {
-            if (event.getWorld().getName().equals(name)) {
-                world = event.getWorld();
-                loadListeners.forEach(Runnable::run);
-            }
-        }));
+        addChild(EventComponent.listen(WorldLoadEvent.class, event -> loadListeners.forEach(Runnable::run)));
     }
 
     public WorldComponent onLoad(Runnable... listeners) {

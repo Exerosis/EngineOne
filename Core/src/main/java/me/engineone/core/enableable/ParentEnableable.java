@@ -19,14 +19,14 @@ public interface ParentEnableable extends Enableable, Parent<Enableable> {
     }
 
     @Override
-    default void enable() {
+    default ParentEnableable enable() {
         getChildren().forEach(Enableable::enable);
+        return this;
     }
 
     @Override
-    default void disable() {
+    default ParentEnableable disable() {
         getChildren().forEach(Enableable::disable);
+        return this;
     }
-
-
 }

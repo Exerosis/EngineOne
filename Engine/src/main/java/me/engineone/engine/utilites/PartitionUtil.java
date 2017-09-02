@@ -1,14 +1,5 @@
 package me.engineone.engine.utilites;
 
-import me.engineone.core.holder.Holder;
-import me.engineone.core.holder.PartitionHolder;
-import org.javatuples.Pair;
-
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.function.Predicate;
-
 public final class PartitionUtil {
     /*
     private PartitionUtil() {

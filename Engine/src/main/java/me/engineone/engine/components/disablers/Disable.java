@@ -2,7 +2,9 @@ package me.engineone.engine.components.disablers;
 
 import me.engineone.core.component.AddToListComponent;
 import me.engineone.core.component.ParentComponent;
+import me.engineone.core.enableable.Enableable;
 import me.engineone.core.holder.MutableHolder;
+import me.engineone.core.holder.MutateHolder;
 import me.engineone.engine.components.event.EventComponent;
 import me.engineone.engine.utilites.BlockUtil;
 import org.bukkit.Effect;
@@ -148,16 +150,16 @@ public class Disable {
     }
 
     // Hunger
-    public static ParentComponent hunger(MutableHolder<Player> players) {
+    public static ParentComponent hunger(MutateHolder<Player> players) {
         return hunger(players, 20);
     }
 
-    public static ParentComponent hunger(MutableHolder<Player> players, int foodLevel) {
-
-        return new ParentComponent(
-                hungerChange(players),
-                new AddToListComponent<>(players.getAddListeners(), player -> player.setFoodLevel(foodLevel))
-        ).onEnable(() -> players.forEach(player -> player.setFoodLevel(foodLevel)));
+    public static ParentComponent hunger(MutateHolder<Player> players, int foodLevel) {
+        ParentComponent parentComponent = new ParentComponent();
+        parentComponent.addChild(hungerChange(players));
+        parentComponent.addChild(new AddToListComponent<>(players.getAddListeners(), player -> player.setFoodLevel(foodLevel)));
+        parentComponent.onEnable(() -> players.forEach(player -> player.setFoodLevel(foodLevel)));
+        return parentComponent;
     }
 
     //     Hunger Change
@@ -197,7 +199,7 @@ public class Disable {
 
     // ---=== LISTENERS ===---
 
-    // World
+    // WorldObservable
 
     //     GameRule
     public static Consumer<World> gameRule(String gameRule, String value) {
@@ -252,4 +254,7 @@ public class Disable {
         return gameRule("showDeathMessages");
     }
 
+    public static Enableable movement(MutableHolder<Player> players) {
+        throw new UnsupportedOperationException("Method not yet implemented.");
+    }
 }

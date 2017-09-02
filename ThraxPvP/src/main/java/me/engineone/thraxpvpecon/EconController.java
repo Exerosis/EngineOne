@@ -1,6 +1,6 @@
 package me.engineone.thraxpvpecon;
 
-//EconController: Handles ThraxPvP Economy
+//EconController: Handles Thrax Economy
 
 import me.engineone.core.component.ParentComponent;
 import me.engineone.engine.components.scheduler.SchedulerComponent;
@@ -11,7 +11,7 @@ public class EconController extends ParentComponent{
 
     //Chat Messaging Format for Component's Chat Functions
     public static final String msgFormat = Palettes.secondary(Palettes.RED.accent(ChatColor.RED, true)) + Palettes.bold()
-    + "[ThraxPvP]" + Palettes.reset() + Palettes.lightShade(Palettes.YELLOW.accent(ChatColor.GOLD, true)) + " ";
+    + "[Thrax]" + Palettes.reset() + Palettes.lightShade(Palettes.YELLOW.accent(ChatColor.GOLD, true)) + " ";
 
     //Scheduler
     private final SchedulerComponent schedulerComponent;

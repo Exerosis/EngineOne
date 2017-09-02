@@ -33,3 +33,23 @@ subprojects {
         }
     }
 }
+
+configure(subprojects.findAll { it.name != 'Core' }) {
+    libsDirName = '../../Servers/Spigot/plugins'
+
+    jar {
+        archiveName = project.name
+        from {
+            configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        }
+    }
+}
+
+/*
+task startRedis(type: Exec) {
+
+    workingDir './Servers/Redis'
+    commandLine 'cmd', '/c', 'tasklist /nh /fi "imagename eq redis-server.exe" | find /i "redis-server.exe" > nul || redis-server.exe'
+}
+
+task('build').dependsOn('startRedis')*/

@@ -93,7 +93,7 @@ public class WorldUtil {
      * @param worldName
      *              The name of the world to be deleted
      * @param callback
-     *              A runnable that will be executed when the world is
+     *              A runnable that will be executed tch the world is
      *              unloaded and deleted
      * @return true if the world is successfully unloaded. (Note: it will
      *         return true even if it fails to delete the world files after it

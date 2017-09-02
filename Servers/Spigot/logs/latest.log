@@ -26,7 +26,7 @@ Caused by: java.lang.IndexOutOfBoundsException: index: 0 but current size: 0
 	at org.redisson.RedissonList.get(RedissonList.java:296) ~[?:?]
 	at me.engineone.thraxpvpecon.LootComponent.<init>(LootComponent.java:55) ~[?:?]
 	at me.engineone.thraxpvpecon.EconController.<init>(EconController.java:29) ~[?:?]
-	at me.engineone.thraxpvp.ThraxPvP.<init>(ThraxPvP.java:28) ~[?:?]
+	at me.engineone.thraxpvp.Thrax.<init>(ThraxPvP.java:28) ~[?:?]
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method) ~[?:1.8.0_131]
 	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62) ~[?:1.8.0_131]
 	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45) ~[?:1.8.0_131]

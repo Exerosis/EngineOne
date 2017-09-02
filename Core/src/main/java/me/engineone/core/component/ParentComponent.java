@@ -15,14 +15,16 @@ public class ParentComponent extends Component implements ParentEnableable {
     }
 
     @Override
-    public void enable() {
+    public ParentComponent enable() {
         super.enable();
         ParentEnableable.super.enable();
+        return this;
     }
 
     @Override
-    public void disable() {
+    public ParentComponent disable() {
         super.disable();
         ParentEnableable.super.disable();
+        return this;
     }
 }
