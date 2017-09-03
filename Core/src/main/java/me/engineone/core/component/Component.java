@@ -27,7 +27,7 @@ public class Component implements Enableable {
             getDisableListenable().add(listeners[0]);
         return this;
     }
-    
+
     public Component unregisterEnable(Runnable... listeners) {
         if (listeners.length > 1)
             getEnableListenable().removeAll(Arrays.asList(listeners));
@@ -53,19 +53,21 @@ public class Component implements Enableable {
     }
 
     @Override
-    public Enableable enable() {
+    public Component enable() {
         if (enabled)
-            return;
+            return this;
         enableListenable.forEach(Runnable::run);
         enabled = true;
+        return this;
     }
 
     @Override
-    public Enableable disable() {
+    public Component disable() {
         if (!enabled)
-            return;
+            return this;
         disableListenable.forEach(Runnable::run);
         enabled = false;
+        return this;
     }
 
     @Override

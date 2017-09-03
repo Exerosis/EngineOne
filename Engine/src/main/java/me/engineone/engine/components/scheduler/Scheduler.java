@@ -1,7 +1,6 @@
 package me.engineone.engine.components.scheduler;
 
 import me.engineone.core.completeable.Phase;
-import me.engineone.core.enableable.Enableable;
 import org.bukkit.Bukkit;
 
 import java.util.concurrent.ScheduledExecutorService;
@@ -83,7 +82,7 @@ public class Scheduler {
         }
 
         @Override
-        public Enableable enable() {
+        public TaskBuilder enable() {
             if (executor == null || executor.isShutdown() || executor.isTerminated())
                 executor = new ScheduledThreadPoolExecutor(10);
             executor.scheduleAtFixedRate(() -> {
@@ -98,13 +97,15 @@ public class Scheduler {
                         for (Consumer<Integer> task : tasks)
                             task.accept(times);
             }, time, time, unit);
+            return this;
         }
 
         @Override
-        public Enableable disable() {
+        public TaskBuilder disable() {
             //TODO Might need to call shutdownNow
             if (executor != null)
                 executor.shutdown();
+            return this;
         }
 
 

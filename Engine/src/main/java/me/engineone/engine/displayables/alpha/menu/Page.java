@@ -2,6 +2,7 @@ package me.engineone.engine.displayables.alpha.menu;
 
 import com.comphenix.protocol.wrappers.WrappedChatComponent;
 import me.engineone.engine.displayables.alpha.Displayable;
+import me.engineone.engine.displayables.menu.Element;
 
 public interface Page extends Displayable {
     Element element();
@@ -13,6 +14,6 @@ public interface Page extends Displayable {
     Page setRows(int rows);
 
     enum Type {
-        CRAFTING, FURNACE, CONTAINER, CHEST, DISPENSER, ENCHANTING, BREWING, VILLAGER, BEACON, ANVIL, HOPPER, DROPPER, SHULKER, HORSE;
+        CRAFTING, FURNACE, CONTAINER, CHEST, DISPENSER, ENCHANTING, BREWING, VILLAGER, BEACON, ANVIL, HOPPER, DROPPER, SHULKER, HORSE
     }
 }

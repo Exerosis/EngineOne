@@ -1,27 +1,26 @@
 package me.engineone.core.utilites;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.BiPredicate;
 import java.util.function.Consumer;
 
 public final class Swi {
     private Swi() {
-        String test = "";
-        Swi.tch(test, ca -> {
-            ca.se(String.class, () -> {
+        Swi.tch("test", ca -> {
+            ca.se("test", () -> {
 
             });
-            ca.se(ArrayList.class, () -> {
+            ca.se("test2", () -> {
 
             });
-            ca.se(List.class, () -> {
+            ca.se("test3", () -> {
 
             });
-            ca.se(Integer.class, () -> {
+            ca.se("test4", () -> {
 
             });
-        }, (Object object, Class<?> clazz) -> clazz.isInstance(object));
+        }, String::contains);
     }
 
     public static <T> void tch(T input, Consumer<Ca<T>> closure) {
@@ -29,15 +28,25 @@ public final class Swi {
     }
 
     public static <A, B> void tch(A input, Consumer<Ca<B>> closure, BiPredicate<A, B> evaluator) {
-
+        Ca<B> cases = new Ca<>();
+        closure.accept(cases);
+        if (evaluator != null)
+            cases.cases.forEach((value, se) -> {
+                if (evaluator.test(input, value))
+                    se.run();
+            });
+        else
+            cases.cases.forEach((value, se) -> {
+                if (input.equals(value))
+                    se.run();
+            });
     }
-
 
     public static class Ca<A> {
+        protected final Map<A, Runnable> cases = new HashMap<>();
+
         public void se(A value, Runnable se) {
-
+            cases.put(value, se);
         }
-
     }
-
 }

@@ -3,14 +3,11 @@ package me.engineone.thraxpvp;
 import me.engineone.engine.Arena;
 import me.engineone.engine.components.world.WorldComponent;
 import me.engineone.engine.holder.OnlinePlayerHolder;
-import org.bukkit.event.block.BlockDamageEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
-
-import static me.engineone.engine.components.event.EventComponent.listen;
 
 public class Thrax extends JavaPlugin {
     private final WorldComponent worldComponent;
@@ -28,12 +25,15 @@ public class Thrax extends JavaPlugin {
     }
 
 
-
     @Override
     public void onEnable() {
         Arena arena = new ThraxBaseGamemode(worldComponent, new OnlinePlayerHolder());
 
-        listen(BlockDamageEvent.class, event -> {}).enable();
+        Scoreboard scoreboard = new Scoreboard();
+        scoreboard.setTitle("Test Title");
+        scoreboard.set(0, "testline 0");
+        scoreboard.set(1, "testline 1");
+        
         //Hooks
 //        worldComponent.onLoad(arena::enable);
 //        worldComponent.onUnload(arena::disable, worldComponent::enable);

@@ -1,5 +1,6 @@
 package me.engineone.engine.displayables.menu;
 
+import me.engineone.engine.displayables.alpha.menu.Page;
 import org.bukkit.Material;
 
 import java.util.function.Consumer;

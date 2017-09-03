@@ -6,6 +6,5 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class MenuDisplayable extends Component implements Menu {
     private static final AtomicInteger WINDOW_ID = new AtomicInteger();
-    private final byte windowId;
-
+    private final byte windowId = 0;
 }

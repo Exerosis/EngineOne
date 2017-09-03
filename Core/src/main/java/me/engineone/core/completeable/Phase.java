@@ -1,7 +1,6 @@
 package me.engineone.core.completeable;
 
 import me.engineone.core.component.Component;
-import me.engineone.core.enableable.Enableable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +24,11 @@ public class Phase extends Component implements Completeable {
     }
 
     @Override
-    public Enableable enable() {
+    public Phase enable() {
         if (!isEnabled())
             complete = false;
         super.enable();
+        return this;
     }
 
     @Override
